@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.swyp.saratang.mapper.UserMapper">
 
-    <select id="getAllUserIds" resultType="long">
-        SELECT id FROM sac.user
+    <select id="getAllUsers" resultType="com.swyp.saratang.model.UserDTO">
+        SELECT id, name FROM sac.user
     </select>
 
 </mapper>

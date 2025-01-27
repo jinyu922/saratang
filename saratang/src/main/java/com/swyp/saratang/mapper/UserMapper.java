@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.swyp.saratang.model.UserDTO;
+
 @Mapper
 public interface UserMapper {
-    List<Long> getAllUserIds(); 
+    public List<UserDTO> getAllUsers(); 
 }

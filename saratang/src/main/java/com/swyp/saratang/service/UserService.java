@@ -1,20 +1,9 @@
 package com.swyp.saratang.service;
-
 import java.util.List;
+import com.swyp.saratang.model.UserDTO;
 
-import org.springframework.stereotype.Service;
+public interface UserService {
+	public List<UserDTO> getAllUsers();
 
-import com.swyp.saratang.mapper.UserMapper;
-
-@Service
-public class UserService {
-    private final UserMapper userMapper;
-
-    public UserService(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
-    public List<Long> getAllUserIds() {
-        return userMapper.getAllUserIds();
-    }
 }
+
