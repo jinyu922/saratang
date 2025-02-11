@@ -4,7 +4,7 @@
 <mapper namespace="com.swyp.saratang.mapper.UserMapper">
 
     <select id="getAllUsers" resultType="com.swyp.saratang.model.UserDTO">
-        SELECT id, name FROM sac.user
+        SELECT id, name FROM saraDB.user
     </select>
 
 </mapper>
