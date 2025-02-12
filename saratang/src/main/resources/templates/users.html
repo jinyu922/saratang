@@ -5,7 +5,8 @@
     <title>사용자 ID 목록</title>
 </head>
 <body>
-    <h1>사용자 목록</h1>
+	<h1>사라탕 백앤드 서버</h1>
+    <h3>사용자 목록(정상 출력 시 : DB connection done)</h3>
     <ul>
         <li th:each="user : ${users}">
             <span th:text="${user.id}"></span> : <span th:text="${user.name}"></span>
