@@ -1,12 +1,14 @@
 package com.swyp.saratang.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import com.swyp.saratang.mapper.UserMapper;
 import com.swyp.saratang.mapper.TemporaryUserMapper;
 import com.swyp.saratang.model.UserDTO;
+import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.TemporaryUserDTO;
 
 @Service
@@ -16,19 +18,31 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     
     @Autowired
-    private TemporaryUserMapper temporaryUserMapper; // 임시 유저 저장을 위한 매퍼
+    private TemporaryUserMapper temporaryUserMapper; 
 
     @Autowired
     private NaverAuthService naverAuthService;
-    
+
+    @Autowired
+    private KakaoAuthService kakaoAuthService;
+
+    /**
+     * 소셜 회원가입 처리 (네이버, 카카오)
+     */
     @Override
-    public void registerNaverUser(UserDTO userDTO) {
-    	System.out.println("[registerNaverUser] 신규 회원가입 진행: " + userDTO);
-        if (existsBySocialId(userDTO.getSocialId())) {
-            throw new IllegalArgumentException("이미 가입된 네이버 사용자입니다.");
+    public ResponseEntity<ApiResponseDTO<Void>> registerUser(UserDTO userDTO) {
+        try {
+            if (existsBySocialId(userDTO.getSocialId())) {
+                return ResponseEntity.status(409).body(new ApiResponseDTO<>(409, "이미 가입된 사용자", null));
+            }
+
+            userMapper.registerNaverUser(userDTO); // 네이버와 카카오 같은 테이블 사용
+
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "회원가입 성공", null));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new ApiResponseDTO<>(500, "회원가입 처리 중 오류 발생: " + e.getMessage(), null));
         }
-        
-        userMapper.registerNaverUser(userDTO);
     }
 
     @Override
@@ -36,82 +50,93 @@ public class UserServiceImpl implements UserService {
         return userMapper.countBySocialId(socialId) > 0;
     }
 
+    /**
+     * 네이버 또는 카카오 회원가입 요청 (accessToken 이용)
+     */
     @Override
-    public String registerNaverUserWithToken(String accessToken) {
+    public ResponseEntity<ApiResponseDTO<Void>> registerUserWithToken(String accessToken, String provider) {
         try {
-            // 네이버 API에서 사용자 정보 가져오기
-            TemporaryUserDTO tuserDTO = naverAuthService.getNaverUserInfo(accessToken).block();
+            TemporaryUserDTO tuserDTO;
+
+            if ("naver".equalsIgnoreCase(provider)) {
+                tuserDTO = naverAuthService.getNaverUserInfo(accessToken).block();
+            } else if ("kakao".equalsIgnoreCase(provider)) {
+                tuserDTO = kakaoAuthService.getKakaoUserInfo(accessToken).block();
+            } else {
+                return ResponseEntity.status(400).body(new ApiResponseDTO<>(400, "지원하지 않는 OAuth 제공자입니다.", null));
+            }
 
             if (tuserDTO == null) {
-                return "연동 실패";
+                return ResponseEntity.status(400).body(new ApiResponseDTO<>(400, "연동 실패", null));
             }
 
-            // ② **정식 가입된 사용자 먼저 확인 (Users 테이블 조회)**
             if (existsBySocialId(tuserDTO.getSocialId())) {
-                return "이미 가입된 사용자";
+                return ResponseEntity.status(409).body(new ApiResponseDTO<>(409, "이미 가입된 사용자", null));
             }
 
-            // ③ 신규 사용자 임시 저장
             temporaryUserMapper.saveTemporaryUser(tuserDTO);
 
-            // ④ 프론트에서 추가 프로필 입력 페이지로 이동
-            return "추가 프로필 입력 필요";
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "추가 프로필 입력 필요", null));
 
         } catch (WebClientResponseException.Unauthorized e) {
-            return "네이버 accessToken이 유효하지 않습니다.";
+            return ResponseEntity.status(401).body(new ApiResponseDTO<>(401, "OAuth accessToken이 유효하지 않습니다.", null));
         } catch (Exception e) {
-            return "네이버 회원가입 처리 중 오류 발생: " + e.getMessage();
+            return ResponseEntity.status(500).body(new ApiResponseDTO<>(500, "회원가입 처리 중 오류 발생: " + e.getMessage(), null));
         }
     }
 
     @Override
-    public String completeRegistration(UserDTO userDTO) {
+    public ResponseEntity<ApiResponseDTO<Void>> completeRegistration(UserDTO userDTO) {
         try {
-        	 // ① 임시 가입 정보 개수 확인
             int count = temporaryUserMapper.countByTempSocialId(userDTO.getSocialId());
 
-            // ② 1개 이상이면 통과, 0개면 예외 발생
             if (count == 0) {
-                throw new RuntimeException("인증후 진행바랍니다.");
+                return ResponseEntity.status(400).body(new ApiResponseDTO<>(400, "인증 후 진행 필요", null));
             }
-         
-            // ② UserDTO로 변환하여 최종 가입 진행
-            registerNaverUser(userDTO);
 
-            // ③ 임시 데이터 삭제
+            registerUser(userDTO);
+
             temporaryUserMapper.deleteBySocialId(userDTO.getSocialId());
 
-            return "가입완료";
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "가입 완료", null));
 
         } catch (Exception e) {
-            return "회원가입 처리 중 오류 발생: " + e.getMessage();
+            return ResponseEntity.status(500).body(new ApiResponseDTO<>(500, "회원가입 처리 중 오류 발생: " + e.getMessage(), null));
         }
     }
-    
-    
-    @Override
-    public UserDTO loginWithSNS(String accessToken) {
-        try {
-            // 네이버 API에서 사용자 정보 가져오기
-            UserDTO snsUser = naverAuthService.getNaverUser(accessToken).block();
 
-            if (snsUser == null) {
-                throw new IllegalArgumentException("유효하지 않은 네이버 accessToken 입니다.");
+    /**
+     * 소셜 로그인 (네이버, 카카오)
+     */
+    @Override
+    public ResponseEntity<ApiResponseDTO<UserDTO>> loginWithSNS(String accessToken, String provider) {
+        try {
+            UserDTO snsUser;
+
+            if ("naver".equalsIgnoreCase(provider)) {
+                snsUser = naverAuthService.getNaverUser(accessToken).block();
+            } else if ("kakao".equalsIgnoreCase(provider)) {
+                snsUser = kakaoAuthService.getKakaoUser(accessToken).block();
+            } else {
+                return ResponseEntity.status(400).body(new ApiResponseDTO<>(400, "지원하지 않는 OAuth 제공자입니다.", null));
             }
 
-            // DB에서 해당 socialId가 있는지 확인
+            if (snsUser == null) {
+                return ResponseEntity.status(401).body(new ApiResponseDTO<>(401, "유효하지 않은 accessToken 입니다.", null));
+            }
+
             UserDTO existingUser = userMapper.findBySocialId(snsUser.getSocialId());
 
             if (existingUser == null) {
-                throw new IllegalStateException("회원가입이 되어 있지 않습니다.");
+                return ResponseEntity.status(404).body(new ApiResponseDTO<>(404, "회원가입 필요", null));
             }
 
-            return existingUser; // 로그인 성공
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그인 성공", existingUser));
 
         } catch (WebClientResponseException.Unauthorized e) {
-            throw new IllegalArgumentException("유효하지 않은 네이버 accessToken 입니다."); // 401 Unauthorized
+            return ResponseEntity.status(401).body(new ApiResponseDTO<>(401, "유효하지 않은 accessToken 입니다.", null));
         } catch (Exception e) {
-            throw new RuntimeException("로그인 처리 중 오류 발생: " + e.getMessage());
+            return ResponseEntity.status(500).body(new ApiResponseDTO<>(500, "로그인 처리 중 오류 발생: " + e.getMessage(), null));
         }
     }
 }

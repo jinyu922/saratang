@@ -5,8 +5,8 @@
 
     <!-- 임시 사용자 저장 -->
     <insert id="saveTemporaryUser">
-        INSERT INTO temporary_users (username, email, social_id, auth_provider, email_verified, created_at)
-        VALUES (#{username}, #{email}, #{socialId}, #{authProvider}, #{emailVerified}, NOW());
+        INSERT INTO temporary_users (nickname, email, social_id, auth_provider, email_verified, regdate)
+        VALUES (#{nickname}, #{email}, #{socialId}, #{authProvider}, #{emailVerified}, NOW());
     </insert>
 
     <select id="countByTempSocialId" resultType="int">

@@ -4,22 +4,26 @@
 <mapper namespace="com.swyp.saratang.mapper.UserMapper">
 
      <select id="countBySocialId" resultType="int">
-        SELECT COUNT(*) FROM Users WHERE social_id = #{socialId}
+        SELECT COUNT(*) FROM users WHERE social_id = #{socialId}
     </select>
 
     <insert id="registerNaverUser">
-    INSERT INTO Users (
-        username, email, social_id, auth_provider, email_verified, role, bio, 
-        weight, height, age, gender, is_active, regdate
+    INSERT INTO users (
+        username, nickname, email, password, social_id, auth_provider, email_verified, role, bio, 
+        weight, height, birth_date, gender, is_active, regdate, top_size, bottom_size, foot_size
     ) 
     VALUES (
-        #{username}, #{email}, #{socialId}, #{authProvider}, #{emailVerified}, 
-        #{role}, #{bio}, #{weight}, #{height}, #{age}, #{gender}, 
-        #{isActive}, NOW()
+        #{username}, #{nickname}, #{email}, #{password}, #{socialId}, #{authProvider}, #{emailVerified}, 
+        #{role}, #{bio}, #{weight}, #{height}, #{birthDate}, #{gender}, 
+        #{isActive}, NOW(), #{topSize}, #{bottomSize}, #{footSize}
     )
 	</insert>
+
     
-    <select id="findBySocialId" resultType="com.swyp.saratang.model.UserDTO">
-    SELECT * FROM users WHERE social_id = #{socialId} LIMIT 1
-	</select>
+   <select id="findBySocialId" resultType="com.swyp.saratang.model.UserDTO">
+    SELECT id, username, nickname, email, social_id, auth_provider, email_verified, role, bio, weight, height, birth_date, gender, is_active, regdate, top_size, bottom_size, foot_size
+    FROM users
+    WHERE social_id = #{socialId}
+    LIMIT 1
+</select>
 </mapper>
