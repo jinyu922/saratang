@@ -31,6 +31,12 @@
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-commons</artifactId>
 		</dependency>
+		<!--NCPObject Storage 사용위한 sdk-->
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk-s3</artifactId>
+		    <version>1.12.299</version>
+		</dependency>
 
         <!-- Spring Boot Starter Thymeleaf -->
         <dependency>

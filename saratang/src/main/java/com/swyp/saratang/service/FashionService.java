@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.swyp.saratang.data.RequestList;
 import com.swyp.saratang.mapper.PostMapper;
+import com.swyp.saratang.model.PostDTO;
 
 @Service
 public class FashionService {
@@ -26,6 +27,14 @@ public class FashionService {
 		List<Map<String, Object>> content = postMapper.getFashionList(requestList);
 		int total = postMapper.getFashionListCount();
 		
+
+		
 		return new PageImpl<>(content, pageable, total);
+	}
+	
+	public void createFashionPost(PostDTO postDTO) {
+		//게시물 post랑
+		postMapper.createFashionPost(postDTO);
+		//그림자료 저장하는거까지
 	}
 }
