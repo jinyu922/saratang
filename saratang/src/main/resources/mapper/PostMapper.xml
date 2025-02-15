@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swyp.saratang.mapper.PostMapper">
+
+    <!-- 게시판 리스트 조회 사진내용추가필요	 -->
+    <select id="getFashionList" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.PostDTO">
+    	SELECT 
+	    	ID, 
+			USER_ID,
+			POST_TYPE,
+			CATEGORY_ID,
+			BRAND,
+			TITLE,
+			ORIGINAL_PRICE,
+			DISCOUNT_PRICE,
+			PRODUCT_LINK,
+			MEMO,
+			CURRENT_PRICE,
+			REGDATE
+		FROM posts
+		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+    </select>
+	<select id="getFashionListCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		  FROM posts
+	</select>
+	
+
+</mapper>
