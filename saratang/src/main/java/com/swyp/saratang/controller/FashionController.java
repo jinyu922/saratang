@@ -1,5 +1,7 @@
 package com.swyp.saratang.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -25,7 +27,7 @@ public class FashionController {
 	
 	@PostMapping("/fashion")
 	public ResponseEntity<String> createFashionPost(@RequestBody PostDTO postDTO){
-		fashionService.createFashionPost(postDTO);
+		fashionService.createFashionPost(postDTO, postDTO.getImageUrls());
 		return ResponseEntity.ok("FashionPost create successfully!");
 	}
 

@@ -1,11 +1,17 @@
 package com.swyp.saratang.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostDTO {
     private Integer id; // 게시글 고유 ID *
     private Integer userId; // 게시글 작성자 ID *
@@ -24,24 +30,6 @@ public class PostDTO {
     private String memo; // 메모 또는 구매 고민 이유
     private String detailMemo; // 상세 이유
     private LocalDateTime regdate; // 게시글 작성일 *
-
-    public PostDTO(Integer id, Integer userId, Integer categoryId, Integer concernKeywordId, String postType,
-            String brand, Integer originalPrice, Integer discountPrice, String productLink, String title,
-            Integer currentPrice, Boolean isSpecPublic, String memo, String detailMemo, LocalDateTime regdate) {
-        this.id = id;
-        this.userId = userId;
-        this.categoryId = categoryId;
-        this.concernKeywordId = concernKeywordId;
-        this.postType = postType;
-        this.brand = brand;
-        this.originalPrice = originalPrice;
-        this.discountPrice = discountPrice;
-        this.productLink = productLink;
-        this.title = title;
-        this.currentPrice = currentPrice;
-        this.isSpecPublic = isSpecPublic;
-        this.memo = memo;
-        this.detailMemo = detailMemo;
-        this.regdate = regdate;
-    }
+    
+    private List<String> imageUrls; // 이미지 URL 리스트
 }

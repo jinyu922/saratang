@@ -1,6 +1,8 @@
 package com.swyp.saratang.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ public class NCPStorageService {
     @Value("${ncp.storage.endpoint}")
     private String endPoint;
     
+    //파일업로드
     public String uploadFile(MultipartFile file) throws IOException {
         // 파일명 = 랜덤시드 + 원본파일이름
         String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
@@ -40,5 +43,17 @@ public class NCPStorageService {
 
         // 업로드된 파일의 URL 반환
         return endPoint + "/" + bucketName + "/" + fileName;
+    }
+    
+    //복수파일업로드
+    public List<String> uploadFiles(List<MultipartFile> files) throws IOException {
+    	List<String> fileUrls = new ArrayList<>();
+    	
+    	for (MultipartFile file : files) {
+    		String fileUrl = uploadFile(file);
+    		fileUrls.add(fileUrl);
+    	}
+    	
+    	return fileUrls;
     }
 }

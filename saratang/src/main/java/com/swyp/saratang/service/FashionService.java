@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.swyp.saratang.data.RequestList;
 import com.swyp.saratang.mapper.PostMapper;
 import com.swyp.saratang.model.PostDTO;
+import com.swyp.saratang.model.PostImageDTO;
 
 @Service
 public class FashionService {
@@ -19,21 +20,30 @@ public class FashionService {
 	@Autowired
 	PostMapper postMapper;
 	
-	public Page<Map<String, Object>> getFashionList(Pageable pageable){
+	public Page<PostDTO> getFashionList(Pageable pageable){
 		RequestList<?> requestList=RequestList.builder()
 				.pageable(pageable)
 				.build();
 		
-		List<Map<String, Object>> content = postMapper.getFashionList(requestList);
+		List<PostDTO> postDTOs = postMapper.getFashionList(requestList);
+        for (PostDTO postDTO : postDTOs) {
+            List<String> imageUrls = postMapper.getImagesByPostId(postDTO.getId());
+            postDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
+        }
+		
 		int total = postMapper.getFashionListCount();
 		
-
-		
-		return new PageImpl<>(content, pageable, total);
+		return new PageImpl<>(postDTOs, pageable, total);
 	}
 	
-	public void createFashionPost(PostDTO postDTO) {
+	public void createFashionPost(PostDTO postDTO, List<String> imageUrls) {
 		postMapper.createFashionPost(postDTO);
-		//그림자료 저장하는거까지
+		//그림자료 저장
+        if (imageUrls != null && !imageUrls.isEmpty()) {
+            for (String imageUrl : imageUrls) {
+            	PostImageDTO postImageDTO=new PostImageDTO(postDTO.getId(), imageUrl);
+                postMapper.insertPostImage(postImageDTO);
+            }
+        }
 	}
 }

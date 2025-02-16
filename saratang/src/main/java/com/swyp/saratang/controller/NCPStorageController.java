@@ -1,6 +1,8 @@
 package com.swyp.saratang.controller;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +20,12 @@ public class NCPStorageController {
 	private NCPStorageService ncpStorageService;
 	
 	@PostMapping("/upload")
-	public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file){
+	public ResponseEntity<List<String>> uploadFile(@RequestParam("file") List<MultipartFile> files){
         try {
-            String fileUrl = ncpStorageService.uploadFile(file);
-            return ResponseEntity.ok(fileUrl);
+            List<String> fileUrls = ncpStorageService.uploadFiles(files);
+            return ResponseEntity.ok(fileUrls);
         } catch (IOException e) {
-            return ResponseEntity.badRequest().body("File upload failed: " + e.getMessage());
+        	return ResponseEntity.badRequest().body(Collections.singletonList("File upload failed: " + e.getMessage()));
         }
 		
 	}
