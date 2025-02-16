@@ -16,17 +16,15 @@ import com.swyp.saratang.service.FashionService;
 public class FashionController {
 	
 	@Autowired
-	FashionService fashionService;
+	private FashionService fashionService;
 	
 	@GetMapping("/fashion")
 	public ResponseEntity<?> getFashionList(@PageableDefault(size = 5,page = 0) Pageable pageable){
 		return ResponseEntity.ok(fashionService.getFashionList(pageable));
 	}
+	
 	@PostMapping("/fashion")
 	public ResponseEntity<String> createFashionPost(@RequestBody PostDTO postDTO){
-	    if (postDTO.getUserId() == null) {
-	        return ResponseEntity.badRequest().body("user_id cannot be null");
-	    }
 		fashionService.createFashionPost(postDTO);
 		return ResponseEntity.ok("FashionPost create successfully!");
 	}

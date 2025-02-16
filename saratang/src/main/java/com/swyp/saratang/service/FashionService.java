@@ -33,7 +33,6 @@ public class FashionService {
 	}
 	
 	public void createFashionPost(PostDTO postDTO) {
-		//게시물 post랑
 		postMapper.createFashionPost(postDTO);
 		//그림자료 저장하는거까지
 	}
