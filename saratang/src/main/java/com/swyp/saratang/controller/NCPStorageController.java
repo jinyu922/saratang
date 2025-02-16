@@ -13,12 +13,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.swyp.saratang.service.NCPStorageService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 public class NCPStorageController {
 	
 	@Autowired
 	private NCPStorageService ncpStorageService;
 	
+	@Operation(summary = "이미지 파일 저장", description = "form-data 형식으로 file을 요구함, 반환값으로 NCP object storage URL 이 반환됩니다")
 	@PostMapping("/upload")
 	public ResponseEntity<List<String>> uploadFile(@RequestParam("file") List<MultipartFile> files){
         try {
