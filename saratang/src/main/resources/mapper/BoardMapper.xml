@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swyp.saratang.mapper.BoardMapper">
+
+    <!-- 패션정보 리스트 조회 -->
+    <select id="getFashionList" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+    	SELECT 
+	    	ID, 
+			USER_ID,
+			CATEGORY_ID,
+			CONCERN_KEYWORD_ID,
+			POST_TYPE,
+			BRAND,
+			TITLE,
+			PRODUCT_LINK,
+			CURRENT_PRICE,
+			IS_SPEC_PUBLIC,
+			DETAIL_MEMO,
+			REGDATE
+		FROM posts
+		WHERE POST_TYPE = 'fashion'
+		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+    </select>
+        <!-- 패션정보 리스트 상세 조회 -->
+    <select id="getFashionPostById" parameterType="int" resultType="com.swyp.saratang.model.BoardDTO">
+    	SELECT 
+	    	ID, 
+			USER_ID,
+			CATEGORY_ID,
+			CONCERN_KEYWORD_ID,
+			POST_TYPE,
+			BRAND,
+			TITLE,
+			PRODUCT_LINK,
+			CURRENT_PRICE,
+			IS_SPEC_PUBLIC,
+			DETAIL_MEMO,
+			REGDATE
+		FROM posts
+		WHERE ID = #{id} AND POST_TYPE = 'fashion'
+    </select>
+    <!-- 할인정보 리스트 조회 -->
+    <select id="getDiscountList" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+    	SELECT 
+	    	ID, 
+			USER_ID,
+			CATEGORY_ID,
+			CONCERN_KEYWORD_ID,
+			POST_TYPE,
+			BRAND,
+			TITLE,
+			ORIGINAL_PRICE,
+			DISCOUNT_PRICE,
+			PRODUCT_LINK,
+			MEMO,
+			REGDATE
+		FROM posts
+		WHERE POST_TYPE = 'discount' 
+		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+    </select>
+	<!-- 할인정보 리스트 상세 조회 -->
+    <select id="getDiscountPostById" parameterType="int" resultType="com.swyp.saratang.model.BoardDTO">
+    	SELECT 
+	    	ID, 
+			USER_ID,
+			CATEGORY_ID,
+			CONCERN_KEYWORD_ID,
+			POST_TYPE,
+			BRAND,
+			TITLE,
+			ORIGINAL_PRICE,
+			DISCOUNT_PRICE,
+			PRODUCT_LINK,
+			MEMO,
+			REGDATE
+		FROM posts
+		WHERE ID = #{id} AND POST_TYPE = 'discount'
+    </select>
+    
+    <select id="getImagesByPostId" parameterType="Integer" resultType="String">
+	    SELECT 
+	    	image_url
+	    FROM post_images
+	    WHERE post_id = #{postId}
+	</select>
+    <!-- 리스트 조회 페이징 -->
+	<select id="getBoardListCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		  FROM posts
+	</select>
+	
+	<!-- 이미지 url 삽입 -->
+	<insert id="insertPostImage" parameterType="com.swyp.saratang.model.PostImageDTO">
+	    INSERT INTO post_images 
+	    	(post_id, image_url ,uploaded_at) 
+	    VALUES 
+	    	(#{postId}, #{imageUrl},NOW())
+	</insert>
+	
+	<!-- 패션정보/할인정보 저장	 BoardMapper.java 에서 @insert로 쿼리 실행하므로 두번 실행되지 않도록 주석처리함   -->
+<!--	<insert id="createFashionPost" parameterType="com.swyp.saratang.model.BoardDTO">
+        INSERT INTO posts
+	        (user_id,category_id,concern_keyword_id,post_type
+	        ,brand,original_price,discount_price,product_link,title
+	        ,current_price,is_spec_public,memo,detail_memo)
+        VALUES
+			(#{userId}, #{categoryId}, #{concernKeywordId}, #{post_type}, 
+			#{brand}, #{originalPrice}, #{discountPrice}, #{productLink}, #{title}, 
+			#{currentPrice}, #{isSpecPublic}, #{memo}, #{detailMemo})
+	</insert>-->
+
+	
+
+</mapper>

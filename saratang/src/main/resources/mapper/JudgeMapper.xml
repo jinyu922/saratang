@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swyp.saratang.mapper.JudgeMapper">
+
+    
+    <insert id="addJudgement">
+        INSERT INTO judgements (user_id, post_id, judgement, regdate) 
+    	VALUES (#{userId}, #{postId}, #{judgementType}, NOW());
+    </insert>
+    
+    <select id="existJudgeByUserIdAndPostId" resultType="int">
+    	SELECT COUNT(*)
+    	FROM judgements
+    	WHERE user_id = #{userId} AND post_id = #{postId}
+    </select>
+    
+    <select id="countJudgementsByPostId" resultType="map">
+	    SELECT 
+	        SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount,
+	        SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount
+	    FROM judgements
+	    WHERE post_id = #{postId}
+	</select>
+
+
+</mapper>

@@ -13,8 +13,8 @@ public class OpenAPIConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
             .info(new Info()
-                .title("My API")
-                .version("1.0")
+                .title("Saratang API")
+                .version("1.0.1")
                 .description("Spring Boot REST API with Swagger")
                 .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }
