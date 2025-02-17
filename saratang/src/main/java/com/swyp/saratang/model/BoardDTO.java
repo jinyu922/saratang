@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostDTO {
+public class BoardDTO {
     @Schema(description = "게시글 고유 ID (자동 생성)", accessMode = Schema.AccessMode.READ_ONLY)
     private Integer id; // 게시글 고유 ID *
 

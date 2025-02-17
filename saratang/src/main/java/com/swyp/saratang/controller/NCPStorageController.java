@@ -21,7 +21,7 @@ public class NCPStorageController {
 	@Autowired
 	private NCPStorageService ncpStorageService;
 	
-	@Operation(summary = "이미지 파일 저장", description = "form-data 형식으로 file을 요구함, 반환값으로 NCP object storage URL 이 반환됩니다")
+	@Operation(summary = "이미지 파일 저장", description = "form-data 형식으로 file을 요구함, 여러개의 파일 동시에 가능, 반환값으로 NCP object storage URL 이 반환됩니다")
 	@PostMapping("/upload")
 	public ResponseEntity<List<String>> uploadFile(@RequestParam("file") List<MultipartFile> files){
         try {

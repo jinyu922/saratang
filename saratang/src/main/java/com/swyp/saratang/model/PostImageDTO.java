@@ -13,5 +13,4 @@ import lombok.Setter;
 public class PostImageDTO {
 	private int postId;
 	private String imageUrl;
-
 }
