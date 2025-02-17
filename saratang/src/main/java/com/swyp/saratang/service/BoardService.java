@@ -38,6 +38,10 @@ public class BoardService {
 		return new PageImpl<>(boardDTOs, pageable, total);
 	}
 	
+	public BoardDTO getFashionPostById(int id){
+		return boardMapper.getFashionPostById(id);
+	}
+	
 	public Page<BoardDTO> getDiscountList(Pageable pageable){
 		RequestList<?> requestList=RequestList.builder()
 				.pageable(pageable)
@@ -56,9 +60,13 @@ public class BoardService {
 		return new PageImpl<>(boardDTOs, pageable, total);
 	}
 	
+	public BoardDTO getDiscountPostById(int id){
+		return boardMapper.getDiscountPostById(id);
+	}
+	
 	public void createPost(BoardDTO boardDTO, List<String> imageUrls) {
-		if (!"fashion".equals(boardDTO.getPostType()) || !"discount".equals(boardDTO.getPostType())) {
-		    // 조건을 만족할 때 실행할 코드
+		if (!("fashion".equals(boardDTO.getPostType()) || "discount".equals(boardDTO.getPostType()))) {
+		    throw new IllegalArgumentException("postType 값은 fashion 또는 discount 이여야 합니다");
 		}
 		/*
 		 * -----------------------------------------------
