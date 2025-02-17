@@ -1,5 +1,6 @@
 package com.swyp.saratang.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +10,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.kms.model.NotFoundException;
 import com.swyp.saratang.data.RequestList;
 import com.swyp.saratang.mapper.BoardMapper;
+import com.swyp.saratang.mapper.JudgeMapper;
 import com.swyp.saratang.model.BoardDTO;
 import com.swyp.saratang.model.PostImageDTO;
 
@@ -19,6 +22,9 @@ public class BoardService {
 	
 	@Autowired
 	BoardMapper boardMapper;
+	
+	@Autowired
+	JudgeMapper judgeMapper;
 	
 	public Page<BoardDTO> getFashionList(Pageable pageable){
 		RequestList<?> requestList=RequestList.builder()
@@ -38,8 +44,23 @@ public class BoardService {
 		return new PageImpl<>(boardDTOs, pageable, total);
 	}
 	
-	public BoardDTO getFashionPostById(int id){
-		return boardMapper.getFashionPostById(id);
+	public Map<String, Object> getFashionPostById(int id){
+		BoardDTO boardDTO = boardMapper.getFashionPostById(id);
+		if (boardDTO == null) {
+			throw new NotFoundException("데이터가 없습니다");
+		}
+		Map<String, Integer> judgementCounts = judgeMapper.countJudgementsByPostId(id);
+		if (judgementCounts == null) {
+		    judgementCounts = new HashMap<>(); // 빈 맵으로 초기화
+		}
+		
+        Map<String, Object> response = new HashMap<>();
+        response.put("post", boardDTO);
+        response.put("positiveCount", judgementCounts.getOrDefault("positiveCount", 0));
+        response.put("negativeCount", judgementCounts.getOrDefault("negativeCount", 0));
+		
+		
+        return response;
 	}
 	
 	public Page<BoardDTO> getDiscountList(Pageable pageable){
@@ -60,14 +81,25 @@ public class BoardService {
 		return new PageImpl<>(boardDTOs, pageable, total);
 	}
 	
-	public BoardDTO getDiscountPostById(int id){
-		return boardMapper.getDiscountPostById(id);
+	public Map<String, Object> getDiscountPostById(int id){
+		BoardDTO boardDTO = boardMapper.getDiscountPostById(id);
+		if (boardDTO == null) {
+			throw new NotFoundException("데이터가 없습니다");
+		}
+		Map<String, Integer> judgementCounts = judgeMapper.countJudgementsByPostId(id);
+		if (judgementCounts == null) {
+		    judgementCounts = new HashMap<>(); // 빈 맵으로 초기화
+		}
+		
+        Map<String, Object> response = new HashMap<>();
+        response.put("post", boardDTO);
+        response.put("positiveCount", judgementCounts.getOrDefault("positiveCount", 0));
+        response.put("negativeCount", judgementCounts.getOrDefault("negativeCount", 0));
+		
+        return response;
 	}
 	
 	public void createPost(BoardDTO boardDTO, List<String> imageUrls) {
-		if (!("fashion".equals(boardDTO.getPostType()) || "discount".equals(boardDTO.getPostType()))) {
-		    throw new IllegalArgumentException("postType 값은 fashion 또는 discount 이여야 합니다");
-		}
 		/*
 		 * -----------------------------------------------
 		 * todo: boardDTO.setUserId(현재 로그인한 사용자의 pk id);
