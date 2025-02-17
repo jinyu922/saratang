@@ -1,0 +1,124 @@
+package com.swyp.saratang.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
+import com.swyp.saratang.model.ApiResponseDTO;
+import com.swyp.saratang.model.UserDTO;
+import com.swyp.saratang.service.TempUserService;
+import com.swyp.saratang.service.UserService;
+import com.swyp.saratang.session.SessionManager;
+
+@RestController
+@RequestMapping("/profile")
+@Tag(name = "Profile API", description = "회원 프로필 관련 API")
+public class ProfileController {
+
+    @Autowired
+    private UserService userService;
+    
+    @Autowired
+    private TempUserService tempUserService;
+
+    @Autowired
+    private SessionManager sessionManager;
+
+    
+
+    /**
+     * 신규 회원 프로필 입력 API
+     */
+    @PostMapping("/new")
+    public ApiResponseDTO<UserDTO> createNewProfile(@RequestBody UserDTO user, HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        if (sessionUser.getUsername() != null) {
+            return new ApiResponseDTO<>(400, "이미 프로필이 등록된 사용자입니다.", null);
+        }
+
+        // 정식 회원 등록
+        userService.insertUser(sessionUser);
+
+        // 임시 계정 삭제
+        tempUserService.deleteTempUser(sessionUser.getSocialId(), sessionUser.getAuthProvider());
+
+        sessionManager.setSession(session.getId(), sessionUser);
+
+        return new ApiResponseDTO<>(200, "프로필 입력 완료", sessionUser);
+    }
+
+
+    /**
+     * 프로필 조회 API
+     */
+    @GetMapping("/me")
+    @Operation(summary = "프로필 조회", description = "현재 로그인한 사용자의 프로필 정보를 반환합니다.")
+    @ApiResponse(responseCode = "200", description = "프로필 조회 성공")
+    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
+    public ApiResponseDTO<UserDTO> getProfile(HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        UserDTO user = userService.getUserBySocialId(sessionUser.getSocialId(), sessionUser.getAuthProvider());
+        return new ApiResponseDTO<>(200, "프로필 조회 성공", user);
+    }
+
+    /**
+     * 프로필 수정 API
+     */
+    @PostMapping("/edit")
+    @Operation(summary = "프로필 수정", description = "회원의 일부 프로필 정보를 수정합니다.")
+    @ApiResponse(responseCode = "200", description = "프로필 수정 완료")
+    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
+    public ApiResponseDTO<String> editProfile(@RequestBody UserDTO user, HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        user.setSocialId(sessionUser.getSocialId());
+        user.setAuthProvider(sessionUser.getAuthProvider());
+        user.setIsActive(true);
+
+        userService.editProfile(user);
+        sessionManager.setSession(session.getId(), user);
+
+        return new ApiResponseDTO<>(200, "프로필 수정 완료", "success");
+    }
+
+    /**
+     * 회원 탈퇴 API
+     */
+    @PostMapping("/delete")
+    @Operation(summary = "회원 탈퇴", description = "회원 탈퇴를 수행합니다. 이메일 및 소셜 ID를 null로 변경하고 계정을 비활성화합니다.")
+    @ApiResponse(responseCode = "200", description = "회원 탈퇴 완료")
+    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
+    public ApiResponseDTO<String> deleteProfile(HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        userService.deleteUser(sessionUser.getSocialId(), sessionUser.getAuthProvider(), sessionUser.getEmail());
+        sessionManager.removeSession(session.getId());
+
+        return new ApiResponseDTO<>(200, "회원 탈퇴 완료", "success");
+    }
+}

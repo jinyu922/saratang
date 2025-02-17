@@ -7,10 +7,13 @@ import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.UserDTO;
 
 public interface UserService {
-    public ResponseEntity<ApiResponseDTO<Void>> registerUser(UserDTO userDTO);
-	boolean existsBySocialId(String socialId); 
-	public ResponseEntity<ApiResponseDTO<Void>> registerUserWithToken(String accessToken, String provider);
-	public ResponseEntity<ApiResponseDTO<Void>> completeRegistration(UserDTO userDTO);
-	public ResponseEntity<ApiResponseDTO<UserDTO>> loginWithSNS(String accessToken, String provider);
+
+    void insertUser(UserDTO user);
+
+    UserDTO getUserBySocialId(String socialId, String provider);
+    
+    void editProfile(UserDTO user); 
+    
+    void deleteUser(String socialId, String authProvider, String email);
 }
 

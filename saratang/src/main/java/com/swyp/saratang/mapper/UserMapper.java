@@ -10,11 +10,16 @@ import com.swyp.saratang.model.UserDTO;
 @Mapper
 public interface UserMapper {
 	
-	// 네이버 사용자 등록
-    void registerNaverUser(UserDTO user);
+
+    UserDTO findBySocialId(@Param("socialId") String socialId, @Param("authProvider") String authProvider);
+   
+    UserDTO findByEmail(@Param("email") String email);
+ 
+    void insertUser(UserDTO user);
     
-    // 소셜 ID로 가입 여부 확인
-    int countBySocialId(@Param("socialId") String socialId);
+    void editUserProfile(UserDTO user);
     
-    UserDTO findBySocialId(@Param("socialId") String socialId);
+    void deleteUser(@Param("socialId") String socialId, @Param("authProvider") String authProvider, @Param("email") String email);
+    
+    
 }

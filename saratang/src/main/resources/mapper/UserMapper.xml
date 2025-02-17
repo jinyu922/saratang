@@ -2,28 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.swyp.saratang.mapper.UserMapper">
+	
 
-     <select id="countBySocialId" resultType="int">
-        SELECT COUNT(*) FROM users WHERE social_id = #{socialId}
+  	<select id="findBySocialId" parameterType="map" resultType="com.swyp.saratang.model.UserDTO">
+        SELECT * FROM users 
+        WHERE social_id = #{socialId} 
+        AND auth_provider = #{authProvider}
     </select>
+	
+	<select id="findByEmail" parameterType="string" resultType="com.swyp.saratang.model.UserDTO">
+    SELECT * FROM users WHERE email = #{email}
+    and is_active=1
+	</select>
 
-    <insert id="registerNaverUser">
-    INSERT INTO users (
-        username, nickname, email, password, social_id, auth_provider, email_verified, role, bio, 
-        weight, height, birth_date, gender, is_active, regdate, top_size, bottom_size, foot_size
-    ) 
-    VALUES (
-        #{username}, #{nickname}, #{email}, #{password}, #{socialId}, #{authProvider}, #{emailVerified}, 
-        #{role}, #{bio}, #{weight}, #{height}, #{birthDate}, #{gender}, 
-        #{isActive}, NOW(), #{topSize}, #{bottomSize}, #{footSize}
-    )
+    <!-- 정식 회원 등록 -->
+	<insert id="insertUser">
+   		 INSERT INTO users (social_id, auth_provider, email, nickname, email_verified, username, is_active, regdate)
+    		VALUES (#{socialId}, #{authProvider}, #{email}, #{nickname}, #{emailVerified}, #{username}, true, NOW())
 	</insert>
-
-    
-   <select id="findBySocialId" resultType="com.swyp.saratang.model.UserDTO">
-    SELECT id, username, nickname, email, social_id, auth_provider, email_verified, role, bio, weight, height, birth_date, gender, is_active, regdate, top_size, bottom_size, foot_size
-    FROM users
-    WHERE social_id = #{socialId}
-    LIMIT 1
-</select>
+	
+	
+	<update id="editUserProfile">
+        UPDATE users
+        SET weight = #{weight}, 
+            height = #{height}, 
+            top_size = #{topSize}, 
+            bottom_size = #{bottomSize}, 
+            foot_size = #{footSize}, 
+            is_active = true
+        WHERE social_id = #{socialId} AND auth_provider = #{authProvider}
+    </update>
+	
+	
+	<update id="deleteUser">
+    UPDATE users
+    SET social_id = NULL,
+        email = CONCAT('deleted-', UNIX_TIMESTAMP(), '-', email),  
+            is_active = 0
+        WHERE social_id = #{socialId} AND auth_provider = #{authProvider}
+        OR email = #{email}
+    </update>
 </mapper>
