@@ -8,9 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class UserDTO {
 	    private String username;
@@ -31,12 +28,4 @@ public class UserDTO {
 	    private Integer topSize;
 	    private Integer bottomSize;
 	    private Integer footSize;
-	    
-	    public UserDTO(String username, String email, String socialId, String authProvider, Boolean emailVerified) {
-	        this.username = username;
-	        this.email = email;
-	        this.socialId = socialId;
-	        this.authProvider = authProvider; 
-	        this.emailVerified = emailVerified;
-	    }
 }

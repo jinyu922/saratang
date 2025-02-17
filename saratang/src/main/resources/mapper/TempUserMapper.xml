@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swyp.saratang.mapper.TempUserMapper">
+	
+	<!-- 임시 회원 등록 -->
+	<insert id="insertTempUser">
+		INSERT INTO temp_users (social_id, auth_provider, email, nickname,
+		email_verified, regdate, is_active)
+		VALUES (#{socialId}, #{authProvider}, #{email}, #{nickname},
+		#{emailVerified}, NOW(), false)
+	</insert>
+
+	<!-- 임시 회원 조회 -->
+	<select id="findTempUserBySocialId" resultType="com.swyp.saratang.model.UserDTO">
+		SELECT * FROM temp_users WHERE social_id = #{socialId} AND auth_provider
+		= #{authProvider}
+	</select>
+
+	<!-- 임시 회원 삭제 -->
+	<delete id="deleteTempUser">
+		DELETE FROM temp_users WHERE social_id = #{socialId} AND auth_provider =
+		#{authProvider}
+	</delete>
+	
+	
+</mapper>

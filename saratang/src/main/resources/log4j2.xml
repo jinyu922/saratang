@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_PATH">logs</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- 콘솔 로그 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] [%p] [%c{1}] - %m%n"/>
+        </Console>
+
+        <!-- 파일 로그 -->
+        <RollingFile name="FileAppender" fileName="${LOG_PATH}/app.log"
+                     filePattern="${LOG_PATH}/app-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>[%d{yyyy-MM-dd HH:mm:ss}] [%p] [%c{1}] - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Root Logger -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileAppender"/>
+        </Root>
+        
+        <!-- 특정 패키지 로그 레벨 설정 -->
+        <Logger name="com.swyp.saratang" level="debug"/>
+    </Loggers>
+</Configuration>
