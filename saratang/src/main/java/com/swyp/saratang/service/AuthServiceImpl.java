@@ -66,8 +66,11 @@ public class AuthServiceImpl implements AuthService {
     @Value("${kakao.profile.url}")
     private String KAKAO_PROFILE_URL;
 
-    @Value("${oauth.redirect.uri}")
-    private String REDIRECT_URI;
+    @Value("${oauth.naver.redirect.uri}")
+    private String NAVER_REDIRECT_URI;
+
+    @Value("${oauth.kakao.redirect.uri}")
+    private String KAKAO_REDIRECT_URI;
 
     /**
      * SNS 로그인 처리
@@ -118,6 +121,7 @@ public class AuthServiceImpl implements AuthService {
         String tokenUrl = provider.equals("naver") ? NAVER_TOKEN_URL : KAKAO_TOKEN_URL;
         String clientId = provider.equals("naver") ? NAVER_CLIENT_ID : KAKAO_CLIENT_ID;
         String clientSecret = provider.equals("naver") ? NAVER_CLIENT_SECRET : KAKAO_CLIENT_SECRET;
+        String redirectUri = provider.equals("naver") ? NAVER_REDIRECT_URI : KAKAO_REDIRECT_URI; 
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -126,7 +130,7 @@ public class AuthServiceImpl implements AuthService {
         params.add("grant_type", "authorization_code");
         params.add("client_id", clientId);
         params.add("code", code);
-        params.add("redirect_uri", REDIRECT_URI); // application.properties에서 가져옴
+        params.add("redirect_uri", redirectUri); // ✅ 네이버/카카오의 `redirect_uri` 적용
 
         if (provider.equals("naver") || (KAKAO_CLIENT_SECRET != null && !KAKAO_CLIENT_SECRET.isEmpty())) {
             params.add("client_secret", clientSecret);
