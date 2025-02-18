@@ -40,6 +40,11 @@ public class ProfileController {
      * 신규 회원 프로필 입력 API
      */
     @PostMapping("/new")
+    @Operation(summary = "신규 프로필 등록", description = "프로필까지 정식회원 등록")
+    @ApiResponse(responseCode = "200", description = "회원가입 완료")
+    @ApiResponse(responseCode = "400", description = "이미 프로필이 등록된 사용자")
+    @ApiResponse(responseCode = "401", description = "세션 만료")
+    @ApiResponse(responseCode = "500", description = "서버 오류")
     public ApiResponseDTO<UserDTO> createNewProfile(@RequestBody UserDTO user, HttpSession session) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
 
@@ -59,7 +64,7 @@ public class ProfileController {
 
         sessionManager.setSession(session.getId(), sessionUser);
 
-        return new ApiResponseDTO<>(200, "프로필 입력 완료", sessionUser);
+        return new ApiResponseDTO<>(200, "프로필 입력 완료(회원가입완료)", sessionUser);
     }
 
 
@@ -67,7 +72,7 @@ public class ProfileController {
      * 프로필 조회 API
      */
     @GetMapping("/me")
-    @Operation(summary = "프로필 조회", description = "현재 로그인한 사용자의 프로필 정보를 반환합니다.")
+    @Operation(summary = "프로필 조회", description = "현재 로그인한 사용자의 프로필 정보 확인")
     @ApiResponse(responseCode = "200", description = "프로필 조회 성공")
     @ApiResponse(responseCode = "401", description = "세션이 만료됨")
     public ApiResponseDTO<UserDTO> getProfile(HttpSession session) {
@@ -84,7 +89,7 @@ public class ProfileController {
      * 프로필 수정 API
      */
     @PostMapping("/edit")
-    @Operation(summary = "프로필 수정", description = "회원의 일부 프로필 정보를 수정합니다.")
+    @Operation(summary = "프로필 수정", description = "회원의 일부 프로필 정보를 수정")
     @ApiResponse(responseCode = "200", description = "프로필 수정 완료")
     @ApiResponse(responseCode = "401", description = "세션이 만료됨")
     public ApiResponseDTO<String> editProfile(@RequestBody UserDTO user, HttpSession session) {
@@ -107,7 +112,7 @@ public class ProfileController {
      * 회원 탈퇴 API
      */
     @PostMapping("/delete")
-    @Operation(summary = "회원 탈퇴", description = "회원 탈퇴를 수행합니다. 이메일 및 소셜 ID를 null로 변경하고 계정을 비활성화합니다.")
+    @Operation(summary = "회원 탈퇴", description = "회원 탈퇴")
     @ApiResponse(responseCode = "200", description = "회원 탈퇴 완료")
     @ApiResponse(responseCode = "401", description = "세션이 만료됨")
     public ApiResponseDTO<String> deleteProfile(HttpSession session) {
