@@ -29,4 +29,5 @@ public class UserDTO {
 	    private Integer topSize;
 	    private Integer bottomSize;
 	    private Integer footSize;
+	    private Boolean profileYn;
 }
