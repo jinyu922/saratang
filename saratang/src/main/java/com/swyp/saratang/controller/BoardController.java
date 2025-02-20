@@ -3,6 +3,9 @@ package com.swyp.saratang.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.BoardDTO;
+import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.service.BoardService;
+import com.swyp.saratang.session.SessionManager;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -26,60 +32,61 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@Operation(summary = "패션정보 조회", description = "패션정보 리스트 반환, 페이징 지원")
+	@Autowired
+	private SessionManager sessionManager;
+	
+	@Operation(summary = "패션/할인정보 조회", description = "패션/할인정보 리스트 반환, 페이징 지원,postType은 fashion 혹은 discount 중 하나<br>  **요청값으로 어떤 사용자가 조회하는지 requestUserId 를 받습니다, 로그인 상태에서 요청할 경우 세션 사용자의 Id로 자동 맵핑됩니다")
 	@GetMapping("/fashion")
-	public ResponseEntity<?> getFashionList(        
+	public ApiResponseDTO<?> getFashionList(
 			@RequestParam(defaultValue = "5") int size,
-	        @RequestParam(defaultValue = "0") int page){
+	        @RequestParam(defaultValue = "0") int page,
+	        @RequestParam(defaultValue = "fashion" ) String postType,
+	        @RequestParam int requestUserId,
+	        HttpSession session){
+        if (!"fashion".equals(postType) && !"discount".equals(postType)) {
+            return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
+        }
+        int userId=requestUserId;
+//		String sessionId = session.getId();  // 현재 세션 ID 가져오기
+//	    UserDTO sessionuser = sessionManager.getSession(sessionId); // SessionManager에서 유저 정보 조회
+//	    userId=sessionuser.getId();        
+        
 		Pageable pageable = PageRequest.of(page, size);
-		return ResponseEntity.ok(boardService.getFashionList(pageable));
+		//투두 포스트타입 이상한거 넣으면 오류뱉도록! 상세조회도 동일
+		return new ApiResponseDTO<>(200, "성공적으로 패션정보를 조회했습니다", boardService.getFashionList(userId,pageable,postType));
 	}
 	
-	@Operation(summary = "패션정보 상세 조회", description = "id로 상세조회")
+	@Operation(summary = "패션/할인정보 상세 조회", description = "id로 상세조회 사라,마라 카운트가 추가되어 나타납니다")
 	@GetMapping("/fashion/{id}")
-	public ResponseEntity<?> getFashionPostById(@PathVariable int id){
-		Map<String, Object> response =new HashMap<>();
-		try {
-			response = boardService.getFashionPostById(id);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+	public ApiResponseDTO<Map<String, Object>> getFashionPostById(@PathVariable int id,@RequestParam(defaultValue = "fashion" ) String postType){
+        if (!"fashion".equals(postType) && !"discount".equals(postType)) {
+            return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
         }
-	    return ResponseEntity.ok(response);
-	}
-	
-	@Operation(summary = "할인정보 조회", description = "할인정보 리스트 반환, 페이징 지원")
-	@GetMapping("/discount")
-	public ResponseEntity<?> getDiscountList(        
-			@RequestParam(defaultValue = "5") int size,
-	        @RequestParam(defaultValue = "0") int page){
-		Pageable pageable = PageRequest.of(page, size);
-		return ResponseEntity.ok(boardService.getDiscountList(pageable));
-	}
-
-
-
-	
-	@Operation(summary = "할인정보 상세 조회", description = "id로 상세조회")
-	@GetMapping("/discount/{id}")
-	public ResponseEntity<?> getDiscountPostById(@PathVariable int id){
-		Map<String, Object> response =new HashMap<>();
+		Map<String, Object> response=new HashMap<>();
 		try {
-			response = boardService.getDiscountPostById(id);
+			response =boardService.getFashionPostById(id,postType);
+		} catch (NotFoundException e) {
+        	return new ApiResponseDTO<>(400, "정보를 찾을 수 없습니다, "+e.getMessage(), null);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        	return new ApiResponseDTO<>(400, "예기치 않은 오류가 발생했습니다, "+e.getMessage(), null);
         }
-	    return ResponseEntity.ok(response);
+	    return new ApiResponseDTO<>(200, "성공적으로 패션정보를 상세 조회했습니다", response);
 	}
 	
 	@Operation(summary = "패션/할인정보 저장", description = "패션정보 저장<br>- 로그인 구현 전 까진 userId 도 추가로 입력<br>- 복수의 url은 콤마로 구분하여 입력 \"url1\",\"url2\"<br>- 각 필드 별 세부 정보는 하단 Schemas 의 BoardDTO 참고하세요 ")
 	@PostMapping("/fashion")
-	public ResponseEntity<String> createPost(@RequestBody BoardDTO boardDTO){
+	public ApiResponseDTO<?> createPost(@RequestBody BoardDTO boardDTO,HttpSession session){
+//		String sessionId = session.getId();  // 현재 세션 ID 가져오기
+//	    UserDTO sessionuser = sessionManager.getSession(sessionId); // SessionManager에서 유저 정보 조회
+//	    boardDTO.setUserId(sessionuser.getId());
+	    if (boardDTO.getUserId() == null) {//로그인 했는지 안했는지만 알고싶으면 변수명에 sessionId 넣기
+	    	return new ApiResponseDTO<>(400, "글쓴이가 누군지 id 정보가 없습니다 로그인 하거나(세션으로부터 id정보를 받아옴). 혹은 id를 직접 입력하세요", null);
+	    }
 		if (!("fashion".equals(boardDTO.getPostType()) || "discount".equals(boardDTO.getPostType()))) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("PostType은 fashion 혹은 discount 중 하나입니다");
+			return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
 		}
 		boardService.createPost(boardDTO, boardDTO.getImageUrls());
-		
-		return ResponseEntity.ok("등록 성공");
+		return new ApiResponseDTO<>(200, "성공적으로 정보를 저장하였습니다.", null);
 	}
 
 }

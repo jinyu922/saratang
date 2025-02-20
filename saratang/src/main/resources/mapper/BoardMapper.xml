@@ -12,18 +12,26 @@
 			CONCERN_KEYWORD_ID,
 			POST_TYPE,
 			BRAND,
-			TITLE,
+			ORIGINAL_PRICE,
+			DISCOUNT_PRICE,
 			PRODUCT_LINK,
+			TITLE,
 			CURRENT_PRICE,
+			MEMO,
 			IS_SPEC_PUBLIC,
 			DETAIL_MEMO,
 			REGDATE
-		FROM posts
-		WHERE POST_TYPE = 'fashion'
-		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	    FROM posts
+	    WHERE POST_TYPE = #{postType}
+	      AND CATEGORY_ID IN 
+	      <foreach item="categoryId" collection="categoryIds" open="(" separator="," close=")">
+	         #{categoryId}
+	      </foreach>
+	    ORDER BY REGDATE DESC  <!-- 정렬 추가 (최신순) -->
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
     </select>
         <!-- 패션정보 리스트 상세 조회 -->
-    <select id="getFashionPostById" parameterType="int" resultType="com.swyp.saratang.model.BoardDTO">
+    <select id="getFashionPostById" resultType="com.swyp.saratang.model.BoardDTO">
     	SELECT 
 	    	ID, 
 			USER_ID,
@@ -31,52 +39,19 @@
 			CONCERN_KEYWORD_ID,
 			POST_TYPE,
 			BRAND,
-			TITLE,
+			ORIGINAL_PRICE,
+			DISCOUNT_PRICE,
 			PRODUCT_LINK,
+			TITLE,
 			CURRENT_PRICE,
+			MEMO,
 			IS_SPEC_PUBLIC,
 			DETAIL_MEMO,
 			REGDATE
 		FROM posts
-		WHERE ID = #{id} AND POST_TYPE = 'fashion'
+		WHERE ID = #{id} AND POST_TYPE = #{postType}
     </select>
-    <!-- 할인정보 리스트 조회 -->
-    <select id="getDiscountList" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
-    	SELECT 
-	    	ID, 
-			USER_ID,
-			CATEGORY_ID,
-			CONCERN_KEYWORD_ID,
-			POST_TYPE,
-			BRAND,
-			TITLE,
-			ORIGINAL_PRICE,
-			DISCOUNT_PRICE,
-			PRODUCT_LINK,
-			MEMO,
-			REGDATE
-		FROM posts
-		WHERE POST_TYPE = 'discount' 
-		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
-    </select>
-	<!-- 할인정보 리스트 상세 조회 -->
-    <select id="getDiscountPostById" parameterType="int" resultType="com.swyp.saratang.model.BoardDTO">
-    	SELECT 
-	    	ID, 
-			USER_ID,
-			CATEGORY_ID,
-			CONCERN_KEYWORD_ID,
-			POST_TYPE,
-			BRAND,
-			TITLE,
-			ORIGINAL_PRICE,
-			DISCOUNT_PRICE,
-			PRODUCT_LINK,
-			MEMO,
-			REGDATE
-		FROM posts
-		WHERE ID = #{id} AND POST_TYPE = 'discount'
-    </select>
+
     
     <select id="getImagesByPostId" parameterType="Integer" resultType="String">
 	    SELECT 
@@ -109,7 +84,5 @@
 			#{brand}, #{originalPrice}, #{discountPrice}, #{productLink}, #{title}, 
 			#{currentPrice}, #{isSpecPublic}, #{memo}, #{detailMemo})
 	</insert>-->
-
-	
 
 </mapper>

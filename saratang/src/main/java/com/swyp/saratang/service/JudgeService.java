@@ -14,7 +14,7 @@ public class JudgeService {
 		//todo 널값 오류 처리 추가해야함
 		
         if (judgeMapper.existJudgeByUserIdAndPostId(userId, postId) > 0) {
-            throw new IllegalStateException("유저는 이미 이 게시글에 대해 판단을 내렸습니다.");
+            throw new IllegalStateException();
         }
 		judgeMapper.addJudgement(userId, postId, judgementType);
 	}
