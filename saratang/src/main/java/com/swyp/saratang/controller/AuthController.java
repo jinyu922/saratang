@@ -52,7 +52,7 @@ public class AuthController {
         try {
             UserDTO user = authService.snsLogin(provider, userInfo, session.getId());
 
-            if (user.getUsername() == null) {
+            if (!user.getProfileYn()) {
                 logger.info("프로필 입력 필요 - Social ID: {}", user.getSocialId());
                 return new ApiResponseDTO<>(201, "신규가입, 프로필 입력필요", user);
             }

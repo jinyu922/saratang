@@ -17,10 +17,27 @@
 
     <!-- 정식 회원 등록 -->
 	<insert id="insertUser">
-   		 INSERT INTO users (social_id, auth_provider, email, nickname, email_verified, username, is_active, regdate)
+   		 INSERT INTO users (social_id, auth_provider, email, nickname, email_verified, username, is_active,regdate)
     		VALUES (#{socialId}, #{authProvider}, #{email}, #{nickname}, #{emailVerified}, #{username}, true, NOW())
 	</insert>
 	
+	<update id="newUserProfile">
+        UPDATE users
+        SET username = #{username},
+            weight = #{weight}, 
+            height = #{height}, 
+            top_size = #{topSize}, 
+            bottom_size = #{bottomSize}, 
+            foot_size = #{footSize}, 
+            is_active = true,
+            role= 'regular',
+            bio = #{bio},
+            birth_date = #{birthDate},
+            gender=#{gender},
+            is_active = true,
+            profile_yn = true
+        WHERE social_id = #{socialId} AND auth_provider = #{authProvider}
+    </update>
 	
 	<update id="editUserProfile">
         UPDATE users
@@ -28,8 +45,7 @@
             height = #{height}, 
             top_size = #{topSize}, 
             bottom_size = #{bottomSize}, 
-            foot_size = #{footSize}, 
-            is_active = true
+            foot_size = #{footSize}
         WHERE social_id = #{socialId} AND auth_provider = #{authProvider}
     </update>
 	

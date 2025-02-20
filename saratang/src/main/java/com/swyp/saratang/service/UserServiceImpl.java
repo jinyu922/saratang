@@ -27,6 +27,11 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
+    public void newProfile(UserDTO user) {
+        userMapper.newUserProfile(user);
+    }
+    
+    @Override
     public void editProfile(UserDTO user) {
         userMapper.editUserProfile(user);
     }

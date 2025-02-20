@@ -12,6 +12,8 @@ public interface UserService {
 
     UserDTO getUserBySocialId(String socialId, String provider);
     
+    void newProfile(UserDTO user);
+    
     void editProfile(UserDTO user); 
     
     void deleteUser(String socialId, String authProvider, String email);

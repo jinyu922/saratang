@@ -18,7 +18,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.swyp.saratang.controller.AuthController;
-import com.swyp.saratang.mapper.TempUserMapper;
 import com.swyp.saratang.mapper.UserMapper;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.UserDTO;
@@ -36,8 +35,6 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private SessionManager sessionManager;
 
-    @Autowired
-    private TempUserMapper tempUserMapper;
     
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -83,34 +80,34 @@ public class AuthServiceImpl implements AuthService {
 
             UserDTO user = getUserProfile(provider, accessToken, sessionId);
 
-            // 기존 회원 조회
+         
             UserDTO existingUser = userMapper.findBySocialId(user.getSocialId(), provider);
+
             if (existingUser != null) {
-                sessionManager.setSession(sessionId, existingUser);
-                return existingUser; 
+                if (existingUser.getProfileYn()==true) { 
+                    sessionManager.setSession(sessionId, existingUser);
+                    return existingUser;
+                } else {
+               
+                    sessionManager.setSession(sessionId, existingUser);
+                    return existingUser;
+                }
             }
 
-            // 이메일 중복 확인
-            UserDTO userByEmail = userMapper.findByEmail(user.getEmail());
-            if (userByEmail != null) {
-                logger.warn("이미 등록된 이메일: {}", user.getEmail());
-                throw new IllegalArgumentException("이미 등록된 이메일입니다.");
-            }
+            
+            user.setProfileYn(false); 
+            userMapper.insertUser(user);
 
-            // 임시 회원 저장
-            tempUserMapper.insertTempUser(user);
             sessionManager.setSession(sessionId, user);
-
-            return user; 
+            return user;
 
         } catch (IllegalArgumentException e) {
-            throw e; 
+            throw e;
         } catch (RuntimeException e) {
             logger.error("SNS 로그인 중 오류 발생: {}", e.getMessage(), e);
             throw new RuntimeException("토큰 요청 중 오류", e);
         }
     }
-
 
 
     /**

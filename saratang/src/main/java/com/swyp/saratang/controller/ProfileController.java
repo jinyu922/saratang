@@ -16,7 +16,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.UserDTO;
-import com.swyp.saratang.service.TempUserService;
 import com.swyp.saratang.service.UserService;
 import com.swyp.saratang.session.SessionManager;
 
@@ -28,8 +27,6 @@ public class ProfileController {
     @Autowired
     private UserService userService;
     
-    @Autowired
-    private TempUserService tempUserService;
 
     @Autowired
     private SessionManager sessionManager;
@@ -55,16 +52,16 @@ public class ProfileController {
         if (sessionUser.getUsername() != null) {
             return new ApiResponseDTO<>(400, "이미 프로필이 등록된 사용자입니다.", null);
         }
+        
+        user.setSocialId(sessionUser.getSocialId());
+        user.setAuthProvider(sessionUser.getAuthProvider());
 
-        // 정식 회원 등록
-        userService.insertUser(sessionUser);
+        userService.newProfile(user);
 
-        // 임시 계정 삭제
-        tempUserService.deleteTempUser(sessionUser.getSocialId(), sessionUser.getAuthProvider());
+        UserDTO updatedUser = userService.getUserBySocialId(user.getSocialId(), user.getAuthProvider());
+        sessionManager.setSession(session.getId(), updatedUser);
 
-        sessionManager.setSession(session.getId(), sessionUser);
-
-        return new ApiResponseDTO<>(200, "프로필 입력 완료(회원가입완료)", sessionUser);
+        return new ApiResponseDTO<>(200, "프로필 입력 완료(회원가입완료)", updatedUser);
     }
 
 
@@ -89,7 +86,7 @@ public class ProfileController {
      * 프로필 수정 API
      */
     @PostMapping("/edit")
-    @Operation(summary = "프로필 수정", description = "회원의 일부 프로필 정보를 수정")
+    @Operation(summary = "프로필 수정", description = "회원의 프로필 정보를 수정")
     @ApiResponse(responseCode = "200", description = "프로필 수정 완료")
     @ApiResponse(responseCode = "401", description = "세션이 만료됨")
     public ApiResponseDTO<String> editProfile(@RequestBody UserDTO user, HttpSession session) {

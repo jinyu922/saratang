@@ -17,6 +17,8 @@ public interface UserMapper {
  
     void insertUser(UserDTO user);
     
+    void newUserProfile(UserDTO user);
+    
     void editUserProfile(UserDTO user);
     
     void deleteUser(@Param("socialId") String socialId, @Param("authProvider") String authProvider, @Param("email") String email);
