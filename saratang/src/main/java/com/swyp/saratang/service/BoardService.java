@@ -121,6 +121,10 @@ public class BoardService {
 	        response.put("post", boardDTO);
 	        response.put("positiveCount", judgementCounts.getOrDefault("positiveCount", 0));
 	        response.put("negativeCount", judgementCounts.getOrDefault("negativeCount", 0));
+	        response.put("negativeCount", judgementCounts.getOrDefault("malePositiveCount", 0));
+	        response.put("negativeCount", judgementCounts.getOrDefault("maleNegativeCount", 0));
+	        response.put("negativeCount", judgementCounts.getOrDefault("femalePositiveCount", 0));
+	        response.put("negativeCount", judgementCounts.getOrDefault("femaleNegativeCount", 0));
 	        
 	        return response;
 	    } catch (NotFoundException e) {
