@@ -3196,3 +3196,334 @@ java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check th
 [2025-02-21 17:08:32] [DEBUG] [getBoardListCount] - ==>  Preparing: SELECT COUNT(*) AS CNT FROM posts
 [2025-02-21 17:08:32] [DEBUG] [getBoardListCount] - ==> Parameters: 
 [2025-02-21 17:08:32] [DEBUG] [getBoardListCount] - <==      Total: 1
+[2025-02-21 17:35:53] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 17:35:53] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:35:53] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 17:35:53] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-21 17:35:53] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-21 17:35:53] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:35:53] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:35:53] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-21 17:35:53] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-21 17:35:57] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 24960 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 17:35:57] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 17:35:57] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 17:35:58] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 17:35:58] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:35:58] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 17:35:58] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 17:35:58] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 17:35:58] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 889 ms
+[2025-02-21 17:35:59] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:35:59] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 17:35:59] [INFO] [SaratangApplication] - Started SaratangApplication in 2.747 seconds (JVM running for 3.718)
+[2025-02-21 17:36:02] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-21 17:36:02] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-21 17:36:02] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-21 17:36:02] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 289 ms
+[2025-02-21 17:38:13] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 17:38:14] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:38:14] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 17:38:14] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-21 17:38:14] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-25] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:38:14] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-11] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:38:14] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:38:14] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:38:18] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 22764 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 17:38:18] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 17:38:18] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 17:38:18] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 17:38:18] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:38:18] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 17:38:18] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 17:38:18] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 17:38:18] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 925 ms
+[2025-02-21 17:38:20] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:38:20] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 17:38:20] [INFO] [SaratangApplication] - Started SaratangApplication in 2.796 seconds (JVM running for 3.87)
+[2025-02-21 17:38:28] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-21 17:38:28] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-21 17:38:28] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-21 17:38:29] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 428 ms
+[2025-02-21 17:44:55] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 17:44:55] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:44:55] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 17:44:55] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-21 17:44:55] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:44:55] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:45:00] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 25552 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 17:45:00] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 17:45:00] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 17:45:00] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 17:45:00] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:45:00] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 17:45:00] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 17:45:01] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 17:45:01] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 918 ms
+[2025-02-21 17:45:02] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:45:02] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 17:45:02] [INFO] [SaratangApplication] - Started SaratangApplication in 2.763 seconds (JVM running for 3.723)
+[2025-02-21 17:49:22] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 17:49:22] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:49:22] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 17:49:22] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:49:22] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:49:29] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 14492 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 17:49:29] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 17:49:29] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 17:49:30] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 17:49:30] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:49:30] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 17:49:30] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 17:49:30] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 17:49:30] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 936 ms
+[2025-02-21 17:49:32] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:49:32] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 17:49:32] [INFO] [SaratangApplication] - Started SaratangApplication in 2.763 seconds (JVM running for 3.797)
+[2025-02-21 17:49:38] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-21 17:49:38] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-21 17:49:38] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-21 17:49:38] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 439 ms
+[2025-02-21 17:53:30] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 17:53:30] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:53:30] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 17:53:30] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-21 17:53:30] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:53:30] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:53:33] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 10936 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 17:53:33] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 17:53:33] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 17:53:34] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 17:53:34] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:53:34] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 17:53:34] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 17:53:34] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 17:53:34] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 899 ms
+[2025-02-21 17:53:35] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:53:35] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 17:53:35] [INFO] [SaratangApplication] - Started SaratangApplication in 2.729 seconds (JVM running for 3.784)
+[2025-02-21 17:53:38] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-21 17:53:38] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-21 17:53:38] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-21 17:53:38] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 276 ms
+[2025-02-21 17:56:14] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 17:56:14] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:56:14] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 17:56:14] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-21 17:56:14] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-11] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:56:14] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-4] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:56:14] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:56:14] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:56:17] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 24536 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 17:56:17] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 17:56:17] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 17:56:18] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 17:56:18] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:56:18] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 17:56:18] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 17:56:18] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 17:56:18] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1028 ms
+[2025-02-21 17:56:20] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:56:20] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 17:56:20] [INFO] [SaratangApplication] - Started SaratangApplication in 2.874 seconds (JVM running for 3.924)
+[2025-02-21 17:56:27] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-21 17:56:27] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-21 17:56:27] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-21 17:56:27] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 269 ms
+[2025-02-21 17:58:13] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 17:58:13] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:58:13] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 17:58:13] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-21 17:58:13] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-18] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:58:13] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-4] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:58:13] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-29] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:58:13] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-15] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:58:13] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:58:13] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:58:17] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 15088 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 17:58:17] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 17:58:17] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 17:58:18] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 17:58:18] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:58:18] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 17:58:18] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 17:58:18] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 17:58:18] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1008 ms
+[2025-02-21 17:58:20] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:58:20] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 17:58:20] [INFO] [SaratangApplication] - Started SaratangApplication in 2.991 seconds (JVM running for 4.141)
+[2025-02-21 17:58:25] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-21 17:58:25] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-21 17:58:25] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-21 17:58:25] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 260 ms
+[2025-02-21 17:59:03] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 17:59:03] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:59:03] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 17:59:03] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-21 17:59:03] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-25] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:59:03] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-18] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:59:03] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-11] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:59:03] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-4] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:59:03] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-29] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:59:03] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-22] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:59:03] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-8] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 17:59:03] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:59:03] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:59:06] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 1224 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 17:59:06] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 17:59:06] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 17:59:07] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 17:59:07] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:59:07] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 17:59:07] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 17:59:07] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 17:59:07] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 943 ms
+[2025-02-21 17:59:08] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:59:08] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 17:59:09] [INFO] [SaratangApplication] - Started SaratangApplication in 2.763 seconds (JVM running for 3.808)
+[2025-02-21 17:59:13] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-21 17:59:13] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-21 17:59:13] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-21 17:59:14] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 274 ms
+[2025-02-21 18:01:44] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 18:01:44] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 18:01:44] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 18:01:44] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-21 18:01:44] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-18] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 18:01:44] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-22] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 18:01:44] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 18:01:44] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-21 18:01:47] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 22436 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 18:01:47] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 18:01:47] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 18:01:48] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 18:01:48] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 18:01:48] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 18:01:48] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 18:01:48] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 18:01:48] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 943 ms
+[2025-02-21 18:01:49] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 18:01:49] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 18:01:49] [INFO] [SaratangApplication] - Started SaratangApplication in 2.76 seconds (JVM running for 3.734)
+[2025-02-21 18:02:01] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-21 18:02:01] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-21 18:02:01] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-21 18:02:01] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 444 ms
+[2025-02-21 18:02:21] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-21 18:02:21] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 18:02:21] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-21 18:02:21] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-21 18:02:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-25] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 18:02:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-18] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 18:02:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-11] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 18:02:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-4] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 18:02:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-29] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 18:02:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-22] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 18:02:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-15] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-21 18:02:21] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-21 18:02:21] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]

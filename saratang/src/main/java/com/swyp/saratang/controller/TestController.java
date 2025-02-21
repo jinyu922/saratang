@@ -19,6 +19,8 @@ public class TestController {
 	@Autowired
     private SessionManager sessionManager;
 	
+	@Operation(summary = "현재 세션에서 사용자의 user 테이블 고유 id를 찾습니다")
+	@GetMapping("/test")
     public ApiResponseDTO<Integer> getUserIdFromSession(HttpSession session){
         Integer userId = null;
         try {

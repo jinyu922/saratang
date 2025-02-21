@@ -11,6 +11,8 @@ import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.service.JudgeService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
 public class JudgeController {
@@ -22,6 +24,7 @@ public class JudgeController {
     public ApiResponseDTO<?> judge(
         @RequestParam int userId,
         @RequestParam int postId,
+    	@Parameter(name="judgementType" ,schema=@Schema(allowableValues = { "positive", "negative" },defaultValue = "positive"))
         @RequestParam String judgementType
     ) {
         
