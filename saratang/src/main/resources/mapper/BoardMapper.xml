@@ -112,6 +112,22 @@
 		FROM posts
 		WHERE ID = #{id} AND POST_TYPE = #{postType}
     </select>
+    
+    <!--사라/마라 판단한 게시글 히스토리 페이징요 요청변수로 패션/할인정보 최신/오래된순 누가요청했는지-->
+	<select id="getHistory" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+		SELECT 
+	        p.ID, p.USER_ID,p.CATEGORY_ID,p.CONCERN_KEYWORD_ID,p.POST_TYPE,p.BRAND,p.ORIGINAL_PRICE,
+	        p.DISCOUNT_PRICE,p.PRODUCT_LINK,p.TITLE,p.CURRENT_PRICE,p.MEMO,p.IS_SPEC_PUBLIC,p.DETAIL_MEMO,p.REGDATE
+	    FROM posts p
+	    WHERE p.POST_TYPE = #{postType}
+	      AND p.ID IN (
+	          SELECT j.post_id FROM judgements j 
+	          WHERE j.user_id = #{requestUserId} AND j.judgement = #{judgementType}
+	      )
+	    ORDER BY p.REGDATE ${sortType}
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+	<!--링크 들어간 게시글 히스토리 페이징요 요청변수로 패션/할인정보 최신/오래된순-->
 
     
     <select id="getImagesByPostId" parameterType="Integer" resultType="String">

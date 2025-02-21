@@ -131,6 +131,30 @@ public class BoardService {
 	    }
 	}
 	
+	//히스토리 조회
+	public Page<BoardDTO> getHistory(int userId,Pageable pageable,String postType,String judgementType,String sortType){
+		//Mapper 쿼리에 필요한 내용 정의
+		RequestList<?> requestList=RequestList.builder()
+				.requestUserId(userId)
+				.pageable(pageable)
+				.postType(postType)
+				.judgementType(judgementType)
+				.sortType(sortType)
+				.build();
+		
+		List<BoardDTO> boardDTOs = boardMapper.getHistory(requestList);
+		
+		//반환할 게시글 DTO마다 url 정보 추가
+        for (BoardDTO boardDTO : boardDTOs) {
+            List<String> imageUrls = boardMapper.getImagesByPostId(boardDTO.getId());
+            boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
+        }
+		
+		int total = boardMapper.getBoardListCount();
+		
+		return new PageImpl<>(boardDTOs, pageable, total);
+	}
+	
 	public void createPost(BoardDTO boardDTO, List<String> imageUrls) {
 		/*
 		 * -----------------------------------------------

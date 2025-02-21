@@ -14,4 +14,7 @@ public class RequestList<T> { //패션/할인정보 요청시 필요한 요소�
 	private int limitSize; //알고리즘 쿼리를 보낼때 랜덤성을 조절하는 변수
 	private int finalLimitSize; //페이징을 지원하지 않는 쿼리를 보낼때 응답 게시물 개수를 조절하는 변수
 	private Pageable pageable; //페이징 지원 쿼리를 보낼때 필요한 변수
+	
+	private String judgementType; // 히스토리 조회 시 사라/마라 카테고리 결정
+	private String sortType; //최신순, 과거순
 }

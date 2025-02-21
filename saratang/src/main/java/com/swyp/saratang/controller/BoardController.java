@@ -56,6 +56,34 @@ public class BoardController {
 		return new ApiResponseDTO<>(200, "성공적으로 패션정보를 조회했습니다", boardService.getFashionList(userId,pageable,postType));
 	}
 	
+	@Operation(summary = "히스토리 조회", description = "히스토리 페이징 조회,postType:fashion/discount judgementType:positive/negative<br> **요청값으로 어떤 사용자가 조회하는지 requestUserId 를 받습니다, 로그인 상태에서 요청할 경우 세션 사용자의 Id로 자동 맵핑됩니다")
+	@GetMapping("/fashion/history")
+	public ApiResponseDTO<?> getHistory(
+			@RequestParam(defaultValue = "5") int size,
+	        @RequestParam(defaultValue = "0") int page,
+	        @RequestParam(defaultValue = "fashion" ) String postType,
+	        @RequestParam String judgementType,
+	        @RequestParam int requestUserId,
+	        @RequestParam String sortType,
+	        HttpSession session){
+        if (!"fashion".equals(postType) && !"discount".equals(postType)) {
+            return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
+        }
+        if (!"positive".equals(judgementType) && !"negative".equals(judgementType)) {
+            return new ApiResponseDTO<>(400, "judgementType은 positive 혹은 negative 중 하나입니다.", null);
+        }
+        if (!"desc".equals(sortType) && !"asc".equals(sortType)&& !"ASC".equals(sortType)&& !"DESC".equals(sortType)) {
+            return new ApiResponseDTO<>(400, "sort은 desc,asc,ASC,DESC 중 하나입니다.", null);
+        }
+        
+        int userId=requestUserId;
+//		String sessionId = session.getId();  // 현재 세션 ID 가져오기
+//	    UserDTO sessionuser = sessionManager.getSession(sessionId); // SessionManager에서 유저 정보 조회
+//	    userId=sessionuser.getId();      
+		Pageable pageable = PageRequest.of(page, size);
+		return new ApiResponseDTO<>(200, "성공적으로 히스토리를 조회했습니다", boardService.getHistory(userId,pageable,postType,judgementType,sortType));
+	}
+	
 	@Operation(summary = "랜덤 알고리즘 적용된 패션/할인정보 조회", description = "패션/할인정보 리스트 반환 페이징은 지원하지 않습니다,postType은 fashion 혹은 discount 중 하나"
 			+ "<br>  요청값으로 어떤 사용자가 조회하는지 requestUserId 를 받습니다, 로그인 상태에서 요청할 경우 세션 사용자의 Id로 자동 맵핑됩니다"
 			+ "<br>  *limitSize,finalLimitSize 설명"
