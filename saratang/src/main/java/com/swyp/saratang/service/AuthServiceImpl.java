@@ -69,9 +69,6 @@ public class AuthServiceImpl implements AuthService {
     @Value("${oauth.kakao.redirect.uri}")
     private String KAKAO_REDIRECT_URI;
 
-    /**
-     * SNS 로그인 처리
-     */
     @Override
     public UserDTO snsLogin(String provider, Map<String, Object> userInfo, String sessionId) {
         try {
@@ -80,29 +77,36 @@ public class AuthServiceImpl implements AuthService {
 
             UserDTO user = getUserProfile(provider, accessToken, sessionId);
 
-         
+            // ✅ 1. provider + socialId 기준으로 기존 회원 조회
             UserDTO existingUser = userMapper.findBySocialId(user.getSocialId(), provider);
 
             if (existingUser != null) {
-                if (existingUser.getProfileYn()==true) { 
+                // ✅ 1-1. 프로필까지 입력 완료된 회원이면 로그인 성공 (200)
+                if (existingUser.getProfileYn()) { 
                     sessionManager.setSession(sessionId, existingUser);
                     return existingUser;
                 } else {
-               
+                    // ✅ 1-2. 가입은 되었지만 프로필 미작성 상태 (201)
                     sessionManager.setSession(sessionId, existingUser);
                     return existingUser;
                 }
             }
 
-            
-            user.setProfileYn(false); 
+            // ✅ 2. 같은 이메일을 가진 다른 provider의 계정이 존재하는지 확인
+            UserDTO existingEmailUser = userMapper.findByEmail(user.getEmail());
+            if (existingEmailUser != null) {
+                throw new IllegalArgumentException("이미 가입된 이메일입니다.");
+            }
+
+            // ✅ 3. 신규 사용자 - 프로필 미작성 상태로 DB 저장 (201)
+            user.setProfileYn(false);
             userMapper.insertUser(user);
 
             sessionManager.setSession(sessionId, user);
             return user;
 
         } catch (IllegalArgumentException e) {
-            throw e;
+            throw e; // "이미 가입된 이메일입니다." 예외 발생
         } catch (RuntimeException e) {
             logger.error("SNS 로그인 중 오류 발생: {}", e.getMessage(), e);
             throw new RuntimeException("토큰 요청 중 오류", e);

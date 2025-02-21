@@ -12,7 +12,7 @@
 	
 	<select id="findByEmail" parameterType="string" resultType="com.swyp.saratang.model.UserDTO">
     SELECT * FROM users WHERE email = #{email}
-    and is_active=1
+    and is_active=true
 	</select>
 
     <!-- 정식 회원 등록 -->

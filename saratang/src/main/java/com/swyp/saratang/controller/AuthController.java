@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.swyp.saratang.model.ApiResponseDTO;
@@ -42,7 +43,7 @@ public class AuthController {
     @ApiResponse(responseCode = "400", description = "이미 존재하는 이메일")
     @ApiResponse(responseCode = "410", description = "토큰 요청 오류")
     @ApiResponse(responseCode = "500", description = "서버 오류")
-    public ApiResponseDTO<UserDTO> snsLogin(
+    public ResponseEntity<ApiResponseDTO<UserDTO>> snsLogin(
             @Parameter(description = "로그인 제공자 (naver 또는 kakao)") @PathVariable String provider,
             @RequestBody Map<String, Object> userInfo,
             HttpSession session) {
@@ -54,23 +55,27 @@ public class AuthController {
 
             if (!user.getProfileYn()) {
                 logger.info("프로필 입력 필요 - Social ID: {}", user.getSocialId());
-                return new ApiResponseDTO<>(201, "신규가입, 프로필 입력필요", user);
+                return ResponseEntity.status(201)
+                        .body(new ApiResponseDTO<>(201, "신규가입, 프로필 입력필요", user));
             }
 
             logger.info("SNS 로그인 성공 - User: {}", user.getEmail());
-            return new ApiResponseDTO<>(200, "로그인 성공", user);
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그인 성공", user));
 
         } catch (IllegalArgumentException e) {
             logger.warn("이미 존재하는 이메일: {}", e.getMessage());
-            return new ApiResponseDTO<>(400, "이미 존재하는 이메일입니다.", null);
+            return ResponseEntity.status(400)
+                    .body(new ApiResponseDTO<>(400, "이미 존재하는 이메일입니다.", null));
 
         } catch (RuntimeException e) {
             logger.error("SNS 로그인 중 오류 발생: {}", e.getMessage(), e);
-            return new ApiResponseDTO<>(410, "토큰 요청 중 오류", null);
+            return ResponseEntity.status(410)
+                    .body(new ApiResponseDTO<>(410, "토큰 요청 중 오류", null));
 
         } catch (Exception e) {
             logger.error("서버 오류 발생: {}", e.getMessage(), e);
-            return new ApiResponseDTO<>(500, "서버 오류 발생", null);
+            return ResponseEntity.status(500)
+                    .body(new ApiResponseDTO<>(500, "서버 오류 발생", null));
         }
     }
 
