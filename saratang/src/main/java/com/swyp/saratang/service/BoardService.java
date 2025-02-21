@@ -3,10 +3,13 @@ package com.swyp.saratang.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.javassist.NotFoundException;
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -17,7 +20,6 @@ import com.swyp.saratang.data.RequestList;
 import com.swyp.saratang.mapper.BoardMapper;
 import com.swyp.saratang.mapper.JudgeMapper;
 import com.swyp.saratang.model.BoardDTO;
-import com.swyp.saratang.model.CategoryDTO;
 import com.swyp.saratang.model.PostImageDTO;
 import com.swyp.saratang.session.SessionManager;
 
@@ -36,40 +38,18 @@ public class BoardService {
 	@Autowired
 	CategoryService categoryService;
 	
-	
+	//최신순 페이징 리스트 출력
 	public Page<BoardDTO> getFashionList(int userId,Pageable pageable,String postType){
-	    // 사용자의 선호 카테고리 가져오기
-	    CategoryDTO categoryDTO = categoryService.getCategoryList(userId);
-
-	    // CategoryDTO를 List<Integer> categoryIds 형태로 변환
-	    List<Integer> categoryIds = new ArrayList<>();
-	    if (categoryDTO.isOuterwear()) categoryIds.add(1);
-	    if (categoryDTO.isTops()) categoryIds.add(2);
-	    if (categoryDTO.isBottoms()) categoryIds.add(3);
-	    if (categoryDTO.isUnderwearHomewear()) categoryIds.add(4);
-	    if (categoryDTO.isShoes()) categoryIds.add(5);
-	    if (categoryDTO.isBags()) categoryIds.add(6);
-	    if (categoryDTO.isFashionAccessories()) categoryIds.add(7);
-	    if (categoryDTO.isKids()) categoryIds.add(8);
-	    if (categoryDTO.isSportsLeisure()) categoryIds.add(9);
-	    if (categoryDTO.isDigitalLife()) categoryIds.add(10);
-	    if (categoryDTO.isBeauty()) categoryIds.add(11);
-	    if (categoryDTO.isFood()) categoryIds.add(12);
-
-	    // 사용자의 선호 카테고리가 없는 경우 빈 결과 반환
-	    if (categoryIds.isEmpty()) {
-	        return new PageImpl<>(Collections.emptyList(), pageable, 0);
-	    }
-	    
+		//Mapper 쿼리에 필요한 내용 정의
 		RequestList<?> requestList=RequestList.builder()
+				.requestUserId(userId)
 				.pageable(pageable)
 				.postType(postType)
-				.categoryIds(categoryIds)  // 변환된 카테고리 리스트 사용
 				.build();
 		
-		List<BoardDTO> boardDTOs = boardMapper.getFashionList(requestList);
+		List<BoardDTO> boardDTOs = boardMapper.getFashionListPaging(requestList);
 		
-		//요청 시 전달받은 정보 이외의 정보 추가
+		//반환할 게시글 DTO마다 url 정보 추가
         for (BoardDTO boardDTO : boardDTOs) {
             List<String> imageUrls = boardMapper.getImagesByPostId(boardDTO.getId());
             boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
@@ -78,6 +58,47 @@ public class BoardService {
 		int total = boardMapper.getBoardListCount();
 		
 		return new PageImpl<>(boardDTOs, pageable, total);
+	}
+	
+	//최신+인기+랜덤 복합 리스트 출력 (페이징x limitSize만큼의 결과 출력)
+	public List<BoardDTO> getFashionListAlgorithm(int userId,String postType,int limitSize,int finalLimitSize)throws IllegalArgumentException{
+		//Mapper 쿼리에 필요한 내용 정의
+		RequestList<?> requestList=RequestList.builder()
+				.requestUserId(userId)
+				.postType(postType)
+				.limitSize(limitSize)
+				.build();
+		
+		//최신,인기,랜덤으로 뽑아서 합친다음 무작위로 섞고 finalLimitSize 만큼 반환
+		List<BoardDTO> boardDTOsLatest = boardMapper.getFashionListLatest(requestList);
+		List<BoardDTO> boardDTOsPopular = boardMapper.getFashionListPopular(requestList);
+		List<BoardDTO> boardDTOsRandom = boardMapper.getFashionListRandom(requestList);
+		List<BoardDTO> resultDTOs = new ArrayList<>();
+		resultDTOs.addAll(boardDTOsLatest);
+		resultDTOs.addAll(boardDTOsPopular);
+		resultDTOs.addAll(boardDTOsRandom);
+		// 중복 제거후 리스트 변환 (Set을 사용하여 중복 제거 후 List로 변환)
+		Set<BoardDTO> resultSet = new HashSet<>(resultDTOs);
+		resultDTOs = new ArrayList<>(resultSet);
+		
+		Collections.shuffle(resultDTOs); // 무작위 섞기
+		
+		// 만약 섞은 게시물 총 개수가 요청한 개수보다 많을경우 자른다
+		if(resultDTOs.size()>finalLimitSize) {
+			try {
+				resultDTOs = resultDTOs.subList(0, finalLimitSize);//
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+
+		// 반환할 게시글 DTO마다 url 정보 추가
+        for (BoardDTO boardDTO : resultDTOs) {
+            List<String> imageUrls = boardMapper.getImagesByPostId(boardDTO.getId());
+            boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
+        }
+		
+		return resultDTOs;
 	}
 	
 	public Map<String, Object> getFashionPostById(int id,String postType) throws NotFoundException {
@@ -109,44 +130,30 @@ public class BoardService {
 	        throw new RuntimeException("패션정보 상세조회 실패", e);
 	    }
 	}
-
-//통합예정	
 	
-//	public Page<BoardDTO> getDiscountList(Pageable pageable){
-//		RequestList<?> requestList=RequestList.builder()
-//				.pageable(pageable)
-//				.build();
-//		
-//		List<BoardDTO> boardDTOs = boardMapper.getDiscountList(requestList);
-//		
-//		//요청 시 전달받은 정보 이외의 정보 추가
-//        for (BoardDTO boardDTO : boardDTOs) {
-//            List<String> imageUrls = boardMapper.getImagesByPostId(boardDTO.getId());
-//            boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
-//        }
-//		
-//		int total = boardMapper.getBoardListCount();
-//		
-//		return new PageImpl<>(boardDTOs, pageable, total);
-//	}
-//	
-//	public Map<String, Object> getDiscountPostById(int id){
-//		BoardDTO boardDTO = boardMapper.getDiscountPostById(id);
-//		if (boardDTO == null) {
-//			throw new NotFoundException("데이터가 없습니다");
-//		}
-//		Map<String, Integer> judgementCounts = judgeMapper.countJudgementsByPostId(id);
-//		if (judgementCounts == null) {
-//		    judgementCounts = new HashMap<>(); // 빈 맵으로 초기화
-//		}
-//		
-//        Map<String, Object> response = new HashMap<>();
-//        response.put("post", boardDTO);
-//        response.put("positiveCount", judgementCounts.getOrDefault("positiveCount", 0));
-//        response.put("negativeCount", judgementCounts.getOrDefault("negativeCount", 0));
-//		
-//        return response;
-//	}
+	//히스토리 조회
+	public Page<BoardDTO> getHistory(int userId,Pageable pageable,String postType,String judgementType,String sortType){
+		//Mapper 쿼리에 필요한 내용 정의
+		RequestList<?> requestList=RequestList.builder()
+				.requestUserId(userId)
+				.pageable(pageable)
+				.postType(postType)
+				.judgementType(judgementType)
+				.sortType(sortType)
+				.build();
+		
+		List<BoardDTO> boardDTOs = boardMapper.getHistory(requestList);
+		
+		//반환할 게시글 DTO마다 url 정보 추가
+        for (BoardDTO boardDTO : boardDTOs) {
+            List<String> imageUrls = boardMapper.getImagesByPostId(boardDTO.getId());
+            boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
+        }
+		
+		int total = boardMapper.getBoardListCount();
+		
+		return new PageImpl<>(boardDTOs, pageable, total);
+	}
 	
 	public void createPost(BoardDTO boardDTO, List<String> imageUrls) {
 		/*
