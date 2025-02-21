@@ -3131,3 +3131,68 @@ java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check th
 [2025-02-21 17:06:37] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
 [2025-02-21 17:06:37] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
 [2025-02-21 17:06:37] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-21 17:07:03] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 7308 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-21 17:07:03] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-21 17:07:03] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-21 17:07:04] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-21 17:07:04] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:07:04] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-21 17:07:04] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-21 17:07:04] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-21 17:07:04] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1193 ms
+[2025-02-21 17:07:06] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-21 17:07:06] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-21 17:07:06] [INFO] [SaratangApplication] - Started SaratangApplication in 3.686 seconds (JVM running for 4.799)
+[2025-02-21 17:08:00] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-21 17:08:00] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-21 17:08:00] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-21 17:08:01] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-21 17:08:01] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-21 17:08:01] [DEBUG] [getHistory] - ==>  Preparing: SELECT p.ID, p.USER_ID,p.CATEGORY_ID,p.CONCERN_KEYWORD_ID,p.POST_TYPE,p.BRAND,p.ORIGINAL_PRICE, p.DISCOUNT_PRICE,p.PRODUCT_LINK,p.TITLE,p.CURRENT_PRICE,p.MEMO,p.IS_SPEC_PUBLIC,p.DETAIL_MEMO,p.REGDATE FROM posts p WHERE p.POST_TYPE = ? AND p.ID IN ( SELECT j.post_id FROM judgements j WHERE j.user_id = ? AND j.judgement = ? ) ORDER BY p.REGDATE asc LIMIT ? OFFSET ?
+[2025-02-21 17:08:01] [DEBUG] [getHistory] - ==> Parameters: fashion(String), 1(Integer), positive(String), 5(Integer), 0(Long)
+[2025-02-21 17:08:01] [DEBUG] [getHistory] - <==      Total: 4
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - ==> Parameters: 17(Integer)
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - ==> Parameters: 18(Integer)
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - ==> Parameters: 19(Integer)
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - ==> Parameters: 22(Integer)
+[2025-02-21 17:08:01] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:01] [DEBUG] [getBoardListCount] - ==>  Preparing: SELECT COUNT(*) AS CNT FROM posts
+[2025-02-21 17:08:01] [DEBUG] [getBoardListCount] - ==> Parameters: 
+[2025-02-21 17:08:01] [DEBUG] [getBoardListCount] - <==      Total: 1
+[2025-02-21 17:08:20] [DEBUG] [getHistory] - ==>  Preparing: SELECT p.ID, p.USER_ID,p.CATEGORY_ID,p.CONCERN_KEYWORD_ID,p.POST_TYPE,p.BRAND,p.ORIGINAL_PRICE, p.DISCOUNT_PRICE,p.PRODUCT_LINK,p.TITLE,p.CURRENT_PRICE,p.MEMO,p.IS_SPEC_PUBLIC,p.DETAIL_MEMO,p.REGDATE FROM posts p WHERE p.POST_TYPE = ? AND p.ID IN ( SELECT j.post_id FROM judgements j WHERE j.user_id = ? AND j.judgement = ? ) ORDER BY p.REGDATE DESC LIMIT ? OFFSET ?
+[2025-02-21 17:08:20] [DEBUG] [getHistory] - ==> Parameters: fashion(String), 1(Integer), positive(String), 5(Integer), 0(Long)
+[2025-02-21 17:08:20] [DEBUG] [getHistory] - <==      Total: 4
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - ==> Parameters: 22(Integer)
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - ==> Parameters: 18(Integer)
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - ==> Parameters: 19(Integer)
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - ==> Parameters: 17(Integer)
+[2025-02-21 17:08:20] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:20] [DEBUG] [getBoardListCount] - ==>  Preparing: SELECT COUNT(*) AS CNT FROM posts
+[2025-02-21 17:08:20] [DEBUG] [getBoardListCount] - ==> Parameters: 
+[2025-02-21 17:08:20] [DEBUG] [getBoardListCount] - <==      Total: 1
+[2025-02-21 17:08:32] [DEBUG] [getHistory] - ==>  Preparing: SELECT p.ID, p.USER_ID,p.CATEGORY_ID,p.CONCERN_KEYWORD_ID,p.POST_TYPE,p.BRAND,p.ORIGINAL_PRICE, p.DISCOUNT_PRICE,p.PRODUCT_LINK,p.TITLE,p.CURRENT_PRICE,p.MEMO,p.IS_SPEC_PUBLIC,p.DETAIL_MEMO,p.REGDATE FROM posts p WHERE p.POST_TYPE = ? AND p.ID IN ( SELECT j.post_id FROM judgements j WHERE j.user_id = ? AND j.judgement = ? ) ORDER BY p.REGDATE DESC LIMIT ? OFFSET ?
+[2025-02-21 17:08:32] [DEBUG] [getHistory] - ==> Parameters: fashion(String), 1(Integer), negative(String), 5(Integer), 0(Long)
+[2025-02-21 17:08:32] [DEBUG] [getHistory] - <==      Total: 2
+[2025-02-21 17:08:32] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:32] [DEBUG] [getImagesByPostId] - ==> Parameters: 21(Integer)
+[2025-02-21 17:08:32] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:32] [DEBUG] [getImagesByPostId] - ==>  Preparing: SELECT image_url FROM post_images WHERE post_id = ?
+[2025-02-21 17:08:32] [DEBUG] [getImagesByPostId] - ==> Parameters: 20(Integer)
+[2025-02-21 17:08:32] [DEBUG] [getImagesByPostId] - <==      Total: 1
+[2025-02-21 17:08:32] [DEBUG] [getBoardListCount] - ==>  Preparing: SELECT COUNT(*) AS CNT FROM posts
+[2025-02-21 17:08:32] [DEBUG] [getBoardListCount] - ==> Parameters: 
+[2025-02-21 17:08:32] [DEBUG] [getBoardListCount] - <==      Total: 1
