@@ -14,7 +14,11 @@ import com.swyp.saratang.model.PostImageDTO;
 @Mapper
 public interface BoardMapper {
 	
-	public List<BoardDTO> getFashionList(RequestList<?> requestList); //패션정보 조회
+	public List<BoardDTO> getFashionListPaging(RequestList<?> requestList); //패션정보 페이징 조회 (최신순으로 페이징)
+	public List<BoardDTO> getFashionListLatest(RequestList<?> requestList); //패션정보 최신순 조회
+	public List<BoardDTO> getFashionListPopular(RequestList<?> requestList); //패션정보 인기순 조회
+	public List<BoardDTO> getFashionListRandom(RequestList<?> requestList); //패션정보 랜덤 조회
+
 	public BoardDTO getFashionPostById(@Param("id") int id,@Param("postType") String postType);//패션정보 상세조회
 //	public List<BoardDTO> getDiscountList(RequestList<?> requestList); //할인정보 조회
 //	public BoardDTO getDiscountPostById(@Param("id") int id);//할인정보 상세조회

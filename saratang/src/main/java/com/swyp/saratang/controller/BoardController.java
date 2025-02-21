@@ -1,6 +1,8 @@
 package com.swyp.saratang.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -49,11 +51,38 @@ public class BoardController {
         int userId=requestUserId;
 //		String sessionId = session.getId();  // 현재 세션 ID 가져오기
 //	    UserDTO sessionuser = sessionManager.getSession(sessionId); // SessionManager에서 유저 정보 조회
-//	    userId=sessionuser.getId();        
-        
+//	    userId=sessionuser.getId();      
 		Pageable pageable = PageRequest.of(page, size);
-		//투두 포스트타입 이상한거 넣으면 오류뱉도록! 상세조회도 동일
 		return new ApiResponseDTO<>(200, "성공적으로 패션정보를 조회했습니다", boardService.getFashionList(userId,pageable,postType));
+	}
+	
+	@Operation(summary = "랜덤 알고리즘 적용된 패션/할인정보 조회", description = "패션/할인정보 리스트 반환 페이징은 지원하지 않습니다,postType은 fashion 혹은 discount 중 하나"
+			+ "<br>  요청값으로 어떤 사용자가 조회하는지 requestUserId 를 받습니다, 로그인 상태에서 요청할 경우 세션 사용자의 Id로 자동 맵핑됩니다"
+			+ "<br>  *limitSize,finalLimitSize 설명"
+			+ "<br>  데이터에서 1.최신순/2.인기순/3.랜덤 다른 방식으로 총 3번 limitSize 만큼 뽑아 하나로 합친 뒤 다시 랜덤으로 섞은것을 finalLimitSize 만큼 출력하는 방식입니다"
+			+ "<br>  **쉽게 말해 limitSize가 커질수록 무작위성이 증가하며 finalLimitSize 는 최종 출력 게시글 개수를 결정합니다. "
+			+ "<br>  ***필터링 된 게시글 개수가 요청 게시글 개수보다 작을경우 요청 개수 이하의 데이터가 반환될 수 있습니다, 따라서 알고리즘 특성상 limitSize>=finalLimitSize 이길 권장합니다 ")
+	@GetMapping("/fashion/random")
+	public ApiResponseDTO<?> getFashionListAlgorithm(
+	        @RequestParam(defaultValue = "fashion" ) String postType,
+	        @RequestParam int requestUserId,
+	        @RequestParam(defaultValue = "5" ) int limitSize,
+	        @RequestParam(defaultValue = "5" ) int finalLimitSize,
+	        HttpSession session){
+        if (!"fashion".equals(postType) && !"discount".equals(postType)) {
+            return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
+        }
+        int userId=requestUserId;
+//		String sessionId = session.getId();  // 현재 세션 ID 가져오기
+//	    UserDTO sessionuser = sessionManager.getSession(sessionId); // SessionManager에서 유저 정보 조회
+//	    userId=sessionuser.getId();
+        List<BoardDTO> result=new ArrayList<>();
+        try {
+        	result=boardService.getFashionListAlgorithm(userId,postType,limitSize,finalLimitSize);
+		} catch (Exception e) {
+			return new ApiResponseDTO<>(400, "쿼리 조회중 오류 발생: "+e.getMessage(), null);
+		}
+		return new ApiResponseDTO<>(200, "성공적으로 랜덤 알고리즘 적용된 패션정보를 조회했습니다", result);
 	}
 	
 	@Operation(summary = "패션/할인정보 상세 조회", description = "id로 상세조회 사라,마라 카운트가 추가되어 나타납니다")
