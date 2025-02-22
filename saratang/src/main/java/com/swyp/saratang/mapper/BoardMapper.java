@@ -6,9 +6,11 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Pageable;
 
 import com.swyp.saratang.data.RequestList;
 import com.swyp.saratang.model.BoardDTO;
+import com.swyp.saratang.model.CommentDTO;
 import com.swyp.saratang.model.PostImageDTO;
 
 @Mapper
@@ -32,6 +34,11 @@ public interface BoardMapper {
 	
 	public int getBoardListCount(); //패션정보 페이징
 	
+	
 	public List<String> getImagesByPostId(Integer postId); //NCP object storage 이미지 url 리스트 조회
 	public void insertPostImage(PostImageDTO postImageDTO); //NCP object storage 이미지 url 저장
+	
+	public void insertComment(CommentDTO commentDTO);//댓글 저장
+	public List<CommentDTO> getCommentList(@Param("postId") int postId,Pageable pageable);//댓글 조회
+	public int getCommentListCount(); //댓글정보 페이징
 }

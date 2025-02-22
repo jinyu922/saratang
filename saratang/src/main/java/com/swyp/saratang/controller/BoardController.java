@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.swyp.saratang.data.PeriodType;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.BoardDTO;
+import com.swyp.saratang.model.CommentDTO;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.service.BoardService;
 import com.swyp.saratang.session.SessionManager;
@@ -180,6 +181,21 @@ public class BoardController {
 //	    userId=sessionuser.getId();
 		Pageable pageable = PageRequest.of(page, size);
 		return new ApiResponseDTO<>(200, "성공적으로 베스트정보를 상세 조회했습니다", boardService.getBest(userId, pageable, postType, period));
+	}
+	
+	@PostMapping("/comment")
+	public ApiResponseDTO<?> insertComment(@RequestBody CommentDTO commentDTO,HttpSession session){
+		boardService.insertComment(commentDTO);
+		return new ApiResponseDTO<>(200, "성공적으로 댓글 정보를 저장하였습니다.", null);
+	}
+	
+	@GetMapping("/comment/{postId}")
+	public ApiResponseDTO<?> getCommentList(
+			@PathVariable int postId,
+			@RequestParam(defaultValue = "5") int size,
+	        @RequestParam(defaultValue = "0") int page){
+		Pageable pageable = PageRequest.of(page, size);
+		return new ApiResponseDTO<>(200, "성공적으로 댓글 정보를 조회하였습니다.", boardService.getCommentList(postId,pageable));
 	}
 
 }

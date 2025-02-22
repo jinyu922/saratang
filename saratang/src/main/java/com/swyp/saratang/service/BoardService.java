@@ -21,6 +21,7 @@ import com.swyp.saratang.data.RequestList;
 import com.swyp.saratang.mapper.BoardMapper;
 import com.swyp.saratang.mapper.JudgeMapper;
 import com.swyp.saratang.model.BoardDTO;
+import com.swyp.saratang.model.CommentDTO;
 import com.swyp.saratang.model.PostImageDTO;
 import com.swyp.saratang.session.SessionManager;
 
@@ -163,11 +164,7 @@ public class BoardService {
 	}
 	
 	public void createPost(BoardDTO boardDTO, List<String> imageUrls) {
-		/*
-		 * -----------------------------------------------
-		 * todo: 세션 정보를 통해 현재 유저 id 알아서 boardDTO에 맵핑
-		 * -----------------------------------------------
-		 */		
+	
 		boardMapper.createPost(boardDTO);
 		//그림자료 저장
         if (imageUrls != null && !imageUrls.isEmpty()) {
@@ -205,6 +202,20 @@ public class BoardService {
 		
 		return new PageImpl<>(boardDTOs, pageable, total);
 		
+	}
+	
+	public void insertComment(CommentDTO commentDTO) {
+		boardMapper.insertComment(commentDTO);
+	}
+	
+	public Page<CommentDTO> getCommentList(int postId,Pageable pageable) {
+		
+		List<CommentDTO> commentDTOs=new ArrayList<>();
+		commentDTOs = boardMapper.getCommentList(postId, pageable);
+		
+		int total = boardMapper.getCommentListCount();
+		
+		return new PageImpl<>(commentDTOs, pageable, total);
 	}
 	
 }

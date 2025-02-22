@@ -227,5 +227,31 @@
 			#{brand}, #{originalPrice}, #{discountPrice}, #{productLink}, #{title}, 
 			#{currentPrice}, #{isSpecPublic}, #{memo}, #{detailMemo})
 	</insert>-->
+	
+	<!--댓글저장-->
+	<insert id="insertComment" parameterType="com.swyp.saratang.model.CommentDTO">
+		INSERT INTO comments
+			(post_id,user_id,content)
+	    VALUES 
+	    	(#{postId}, #{userId},#{content})
+	</insert>
+	
+	<!--댓글리스트조회-->
+	<select id="getCommentList" resultType="com.swyp.saratang.model.CommentDTO">
+		SELECT 
+			id,post_id,user_id,content,regdate
+		FROM 
+			comments
+		WHERE 
+			post_id=#{postId}
+		ORDER BY regdate DESC  <!-- 최신순 정렬 -->
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+	
+	<!-- 댓글 조회 페이징 -->
+	<select id="getCommentListCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		  FROM comments
+	</select>
 
 </mapper>
