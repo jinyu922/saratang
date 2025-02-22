@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
 public interface CategoryMapper {
 	
     // 유저의 기존 카테고리 삭제
-    void deleteCategoryByUserId(@Param("userId") int userId);
+    public void deleteCategoryByUserId(@Param("userId") int userId);
 	
 	public void saveCategory(@Param("userId") int userId,@Param("categoryId") int categoryId);
 	

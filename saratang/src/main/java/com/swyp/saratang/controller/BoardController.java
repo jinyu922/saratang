@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swyp.saratang.data.PeriodType;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.BoardDTO;
+import com.swyp.saratang.model.CommentDTO;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.service.BoardService;
 import com.swyp.saratang.session.SessionManager;
@@ -153,6 +155,47 @@ public class BoardController {
 		}
 		boardService.createPost(boardDTO, boardDTO.getImageUrls());
 		return new ApiResponseDTO<>(200, "성공적으로 정보를 저장하였습니다.", null);
+	}
+	
+	@Operation(summary = "기간별 베스트", description = "패션/할인정보 기간별 베스트, 선택한 기간부터 지금까지 가장 인기있는 게시글 조회")
+	@GetMapping("/fashion/best")
+	public ApiResponseDTO<?> getBest(
+		@Parameter(name="postType" ,schema=@Schema(allowableValues = { "fashion", "discount" },defaultValue = "fashion"))
+		@RequestParam(defaultValue = "fashion" ) String postType,
+		@Parameter(name="periodType" ,schema=@Schema(allowableValues = { "yesterday", "week", "month", "year" },defaultValue = "yesterday"))
+        @RequestParam String periodType,
+		@RequestParam int requestUserId,
+		@RequestParam(defaultValue = "5") int size,
+        @RequestParam(defaultValue = "0") int page,
+        HttpSession session){
+        if (!"fashion".equals(postType) && !"discount".equals(postType)) {
+            return new ApiResponseDTO<>(400, "postType 값은 'fashion', 'discount' 중 하나여야 함.", null);
+        }
+        if (!PeriodType.isValid(periodType)) {
+            return new ApiResponseDTO<>(400, "period 값은 'yesterday', 'week', 'month', 'year' 중 하나여야 함.", null);
+        }
+        int period=PeriodType.fromString(periodType).getDays();
+        int userId=requestUserId;
+//		String sessionId = session.getId();  // 현재 세션 ID 가져오기
+//	    UserDTO sessionuser = sessionManager.getSession(sessionId); // SessionManager에서 유저 정보 조회
+//	    userId=sessionuser.getId();
+		Pageable pageable = PageRequest.of(page, size);
+		return new ApiResponseDTO<>(200, "성공적으로 베스트정보를 상세 조회했습니다", boardService.getBest(userId, pageable, postType, period));
+	}
+	
+	@PostMapping("/comment")
+	public ApiResponseDTO<?> insertComment(@RequestBody CommentDTO commentDTO,HttpSession session){
+		boardService.insertComment(commentDTO);
+		return new ApiResponseDTO<>(200, "성공적으로 댓글 정보를 저장하였습니다.", null);
+	}
+	
+	@GetMapping("/comment/{postId}")
+	public ApiResponseDTO<?> getCommentList(
+			@PathVariable int postId,
+			@RequestParam(defaultValue = "5") int size,
+	        @RequestParam(defaultValue = "0") int page){
+		Pageable pageable = PageRequest.of(page, size);
+		return new ApiResponseDTO<>(200, "성공적으로 댓글 정보를 조회하였습니다.", boardService.getCommentList(postId,pageable));
 	}
 
 }
