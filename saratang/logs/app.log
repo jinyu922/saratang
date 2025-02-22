@@ -1439,3 +1439,629 @@ java.lang.Error: Unresolved compilation problem:
 [2025-02-22 16:38:09] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
 [2025-02-22 16:38:09] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
 [2025-02-22 16:38:09] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 19:30:00] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 24936 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 19:30:00] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 19:30:00] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 19:30:01] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 19:30:01] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:30:01] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 19:30:01] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 19:30:01] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 19:30:01] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1236 ms
+[2025-02-22 19:30:03] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:30:03] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 19:30:03] [INFO] [SaratangApplication] - Started SaratangApplication in 3.579 seconds (JVM running for 4.578)
+[2025-02-22 19:30:10] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 19:30:10] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 19:30:10] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-22 19:30:17] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 431 ms
+[2025-02-22 19:30:35] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 19:30:36] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 19:30:36] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:30:36] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 19:30:36] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 19:30:36] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 19:30:36] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 19:30:36] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 19:30:36] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 19:30:36] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 19:30:36] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 19:33:17] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 19:33:17] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:33:17] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 19:33:17] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 19:33:17] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-11] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 19:33:17] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-4] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 19:33:17] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 19:33:17] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:33:17] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:33:17] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 19:33:17] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 19:33:22] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 5852 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 19:33:22] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 19:33:22] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 19:33:23] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 19:33:23] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:33:23] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 19:33:23] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 19:33:23] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 19:33:23] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 962 ms
+[2025-02-22 19:33:25] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:33:25] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 19:33:25] [INFO] [SaratangApplication] - Started SaratangApplication in 2.915 seconds (JVM running for 3.913)
+[2025-02-22 19:33:38] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 19:33:38] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 19:33:38] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-22 19:33:38] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 19:33:39] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 19:33:39] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:33:39] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 19:33:39] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 19:33:39] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 19:33:39] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 19:33:39] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 19:33:39] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 19:33:39] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 19:33:39] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 19:34:45] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 448 ms
+[2025-02-22 19:34:50] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:34:50] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 19:34:50] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 19:34:50] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 19:34:50] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 19:34:50] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 19:34:50] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 19:34:50] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 19:34:51] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 19:34:53] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:34:53] [DEBUG] [getFashionPostById] - ==> Parameters: 2(Integer), fashion(String)
+[2025-02-22 19:34:53] [DEBUG] [getFashionPostById] - <==      Total: 0
+[2025-02-22 19:34:55] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:34:55] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 19:34:55] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 19:34:55] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 19:34:55] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 19:34:55] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 19:34:55] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 19:34:55] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 19:34:55] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 19:37:38] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 19:37:39] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:37:39] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 19:37:39] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 19:37:39] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 19:37:39] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-18] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 19:37:39] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:37:39] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:37:39] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 19:37:39] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 19:37:43] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 15328 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 19:37:43] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 19:37:43] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 19:37:44] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 19:37:44] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:37:44] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 19:37:44] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 19:37:44] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 19:37:44] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1054 ms
+[2025-02-22 19:37:45] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:37:46] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 19:37:46] [INFO] [SaratangApplication] - Started SaratangApplication in 3.126 seconds (JVM running for 4.128)
+[2025-02-22 19:37:50] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 19:37:50] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 19:37:50] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-22 19:37:50] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 19:37:51] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 19:37:51] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:37:51] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 19:37:51] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 19:37:51] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 19:37:51] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 19:37:51] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 19:37:51] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 19:37:51] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 19:37:51] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 19:38:56] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 19:38:57] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:38:57] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 19:38:57] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 19:38:57] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 19:38:57] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:38:57] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:38:57] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 19:38:57] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 19:38:59] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 26748 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 19:38:59] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 19:38:59] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 19:39:00] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 19:39:00] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:39:00] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 19:39:00] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 19:39:00] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 19:39:00] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 992 ms
+[2025-02-22 19:39:02] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:39:02] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 19:39:02] [INFO] [SaratangApplication] - Started SaratangApplication in 2.963 seconds (JVM running for 4.014)
+[2025-02-22 19:39:05] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 19:39:05] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 19:39:05] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-22 19:39:05] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 19:39:05] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 19:39:05] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:39:05] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 19:39:06] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 19:39:06] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 19:39:06] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 19:39:06] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 19:39:06] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 19:39:06] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 19:39:06] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 19:39:34] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 19:39:34] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:39:34] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 19:39:34] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 19:39:34] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 19:39:34] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:39:34] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:39:34] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 19:39:34] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 19:40:05] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 15772 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 19:40:05] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 19:40:05] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 19:40:05] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 19:40:05] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:40:05] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 19:40:05] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 19:40:06] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 19:40:06] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 948 ms
+[2025-02-22 19:40:07] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:40:07] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 19:40:07] [INFO] [SaratangApplication] - Started SaratangApplication in 2.872 seconds (JVM running for 3.838)
+[2025-02-22 19:40:10] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 19:40:10] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 19:40:10] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-22 19:40:10] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 19:40:11] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 19:40:11] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:40:11] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 19:40:11] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 19:40:11] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 19:40:11] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 19:40:11] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 19:40:11] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 19:40:11] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 19:40:11] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 19:40:36] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 19:40:37] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:40:37] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 19:40:37] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 19:40:37] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 19:40:37] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:40:37] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:40:37] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 19:40:37] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 19:40:40] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 18188 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 19:40:40] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 19:40:40] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 19:40:41] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 19:40:41] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:40:41] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 19:40:41] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 19:40:41] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 19:40:41] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 949 ms
+[2025-02-22 19:40:43] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:40:43] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 19:40:43] [INFO] [SaratangApplication] - Started SaratangApplication in 2.855 seconds (JVM running for 4.045)
+[2025-02-22 19:40:45] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 19:40:45] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 19:40:45] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-22 19:40:45] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 19:40:46] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 19:40:46] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:40:46] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 19:40:46] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 19:40:46] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 19:40:46] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 19:40:46] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 19:40:46] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 19:40:46] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 19:40:46] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 19:56:56] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 19:56:57] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:56:57] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 19:56:57] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 19:56:57] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 19:56:57] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:56:57] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:56:57] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 19:56:57] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 19:57:00] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 24328 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 19:57:00] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 19:57:00] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 19:57:01] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 19:57:01] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:57:01] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 19:57:01] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 19:57:02] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 19:57:02] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1099 ms
+[2025-02-22 19:57:04] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 19:57:04] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 19:57:04] [INFO] [SaratangApplication] - Started SaratangApplication in 3.407 seconds (JVM running for 4.503)
+[2025-02-22 19:57:25] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 19:57:25] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 19:57:25] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-22 19:57:25] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 19:57:25] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 19:57:25] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 19:57:25] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 19:57:25] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 19:57:25] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 19:57:25] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 19:57:26] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 19:57:26] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 19:57:26] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 19:57:26] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 20:04:02] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 20:04:02] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:04:02] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 20:04:02] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 20:04:02] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 20:04:02] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:04:02] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:04:02] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 20:04:02] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 20:04:04] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 28308 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 20:04:04] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 20:04:04] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 20:04:05] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 20:04:05] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:04:05] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 20:04:05] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 20:04:05] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 20:04:05] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 956 ms
+[2025-02-22 20:04:07] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:04:07] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 20:04:07] [INFO] [SaratangApplication] - Started SaratangApplication in 2.867 seconds (JVM running for 3.884)
+[2025-02-22 20:04:12] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 20:04:12] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 20:04:12] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-22 20:04:12] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 20:04:13] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 20:04:13] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 20:04:13] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 20:04:13] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 20:04:13] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 20:04:13] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 20:04:13] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 20:04:13] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT CAST(SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS INTEGER) AS positiveCount, CAST(SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS INTEGER) AS negativeCount, CAST(SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS INTEGER) AS malePositiveCount, CAST(SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS INTEGER) AS femalePositiveCount, CAST(SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS INTEGER) AS maleNegativeCount, CAST(SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS INTEGER) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 20:04:13] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 20:05:51] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 20:05:51] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:05:51] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 20:05:51] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 20:05:51] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 20:05:51] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:05:51] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:05:51] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 20:05:51] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 20:05:55] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 30248 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 20:05:55] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 20:05:55] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 20:05:56] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 20:05:56] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:05:56] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 20:05:56] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 20:05:56] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 20:05:56] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 984 ms
+[2025-02-22 20:05:58] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:05:58] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 20:05:58] [INFO] [SaratangApplication] - Started SaratangApplication in 2.917 seconds (JVM running for 3.959)
+[2025-02-22 20:06:03] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 20:06:03] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 20:06:03] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-22 20:06:03] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 20:06:03] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 20:06:03] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 20:06:03] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 20:06:03] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 20:06:03] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 20:06:03] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 20:06:03] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 20:06:03] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT CAST(SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS SIGNED) AS positiveCount, CAST(SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS SIGNED) AS negativeCount, CAST(SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS SIGNED) AS malePositiveCount, CAST(SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS SIGNED) AS femalePositiveCount, CAST(SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS SIGNED) AS maleNegativeCount, CAST(SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS SIGNED) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 20:06:03] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 20:06:03] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 20:08:44] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 20:08:45] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:08:45] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 20:08:45] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 20:08:45] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 20:08:45] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:08:45] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:08:45] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 20:08:45] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 20:08:50] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 16920 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 20:08:50] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 20:08:50] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 20:08:51] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 20:08:51] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:08:51] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 20:08:51] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 20:08:51] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 20:08:51] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 942 ms
+[2025-02-22 20:08:53] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:08:53] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 20:08:53] [INFO] [SaratangApplication] - Started SaratangApplication in 2.93 seconds (JVM running for 3.98)
+[2025-02-22 20:08:55] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 20:08:55] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 20:08:55] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-22 20:08:55] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 20:08:56] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 20:08:56] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 20:08:56] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 20:08:56] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 20:08:56] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 20:08:56] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 20:08:56] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 20:08:56] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 20:08:56] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 20:08:56] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 20:13:21] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 20:13:21] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:13:21] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 20:13:21] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 20:13:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 20:13:21] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:13:21] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:13:21] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 20:13:21] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 20:13:25] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 20900 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 20:13:25] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 20:13:25] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 20:13:26] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 20:13:26] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:13:26] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 20:13:26] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 20:13:26] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 20:13:26] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1065 ms
+[2025-02-22 20:13:28] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:13:28] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 20:13:28] [INFO] [SaratangApplication] - Started SaratangApplication in 3.266 seconds (JVM running for 4.279)
+[2025-02-22 20:14:51] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 20:14:52] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:14:52] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 20:14:52] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:14:52] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:14:54] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 22020 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 20:14:54] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 20:14:54] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 20:14:55] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 20:14:55] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:14:55] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 20:14:55] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 20:14:55] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 20:14:55] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 999 ms
+[2025-02-22 20:14:57] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:14:57] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 20:14:57] [INFO] [SaratangApplication] - Started SaratangApplication in 3.382 seconds (JVM running for 4.441)
+[2025-02-22 20:15:01] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 20:15:01] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 20:15:01] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-22 20:15:01] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 20:15:01] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 20:15:01] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 20:15:01] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 20:15:01] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 20:15:01] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 20:15:01] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 20:15:01] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 20:15:01] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 20:15:01] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 20:15:01] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 20:16:11] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 20:16:11] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:16:11] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 20:16:11] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 20:16:11] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 20:16:11] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:16:11] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:16:11] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 20:16:11] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 20:16:25] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 1068 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 20:16:25] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 20:16:25] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 20:16:26] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 20:16:26] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:16:26] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 20:16:26] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 20:16:26] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 20:16:26] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1260 ms
+[2025-02-22 20:16:28] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:16:28] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 20:16:28] [INFO] [SaratangApplication] - Started SaratangApplication in 3.237 seconds (JVM running for 4.364)
+[2025-02-22 20:16:35] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 20:16:35] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 20:16:35] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-22 20:16:35] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 20:16:36] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 20:16:36] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 20:16:36] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 20:16:36] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 20:16:36] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 20:16:36] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 20:16:36] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 20:16:36] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 20:16:36] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 20:16:36] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 20:32:01] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 20:32:01] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:32:01] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 20:32:01] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 20:32:01] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 20:32:01] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:32:01] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:32:01] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 20:32:01] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 20:32:04] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 15452 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 20:32:04] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 20:32:04] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 20:32:05] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 20:32:05] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:32:05] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 20:32:05] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 20:32:05] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 20:32:05] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1000 ms
+[2025-02-22 20:32:06] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:32:06] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 20:32:06] [INFO] [SaratangApplication] - Started SaratangApplication in 2.961 seconds (JVM running for 4.021)
+[2025-02-22 20:32:10] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 20:32:10] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 20:32:10] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-22 20:32:11] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 20:32:11] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 20:32:11] [DEBUG] [getFashionPostById] - ==>  Preparing: SELECT ID, USER_ID, CATEGORY_ID, CONCERN_KEYWORD_ID, POST_TYPE, BRAND, ORIGINAL_PRICE, DISCOUNT_PRICE, PRODUCT_LINK, TITLE, CURRENT_PRICE, MEMO, IS_SPEC_PUBLIC, DETAIL_MEMO, REGDATE FROM posts WHERE ID = ? AND POST_TYPE = ?
+[2025-02-22 20:32:11] [DEBUG] [getFashionPostById] - ==> Parameters: 1(Integer), fashion(String)
+[2025-02-22 20:32:11] [DEBUG] [getFashionPostById] - <==      Total: 1
+[2025-02-22 20:32:11] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-22 20:32:11] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-22 20:32:11] [DEBUG] [findById] - <==      Total: 1
+[2025-02-22 20:32:11] [DEBUG] [countJudgementsByPostId] - ==>  Preparing: SELECT SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount, SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount, SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount, SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount FROM judgements j JOIN users u ON j.user_id = u.id WHERE j.post_id = ?
+[2025-02-22 20:32:11] [DEBUG] [countJudgementsByPostId] - ==> Parameters: 1(Integer)
+[2025-02-22 20:32:11] [DEBUG] [countJudgementsByPostId] - <==      Total: 1
+[2025-02-22 20:46:03] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 20:46:03] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:46:03] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 20:46:03] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 20:46:03] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 20:46:03] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:46:03] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 20:46:03] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 20:46:03] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.

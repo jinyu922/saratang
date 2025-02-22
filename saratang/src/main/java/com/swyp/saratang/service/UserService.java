@@ -12,6 +12,8 @@ public interface UserService {
 
     UserDTO getUserBySocialId(String socialId, String provider);
     
+    UserDTO getUserById(Integer id);
+    
     void newProfile(UserDTO user);
     
     void editProfile(UserDTO user); 
