@@ -16,12 +16,15 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.swyp.saratang.data.PeriodType;
 import com.swyp.saratang.data.RequestList;
 import com.swyp.saratang.mapper.BoardMapper;
 import com.swyp.saratang.mapper.JudgeMapper;
 import com.swyp.saratang.model.BoardDTO;
 import com.swyp.saratang.model.PostImageDTO;
 import com.swyp.saratang.session.SessionManager;
+
+import io.netty.handler.codec.AsciiHeadersEncoder.NewlineType;
 
 @Service
 public class BoardService {
@@ -118,13 +121,13 @@ public class BoardService {
 	        
 	        // 응답 맵 구성
 	        Map<String, Object> response = new HashMap<>();
-	        response.put("post", boardDTO);
+	        response.put("content", boardDTO);
 	        response.put("positiveCount", judgementCounts.getOrDefault("positiveCount", 0));
 	        response.put("negativeCount", judgementCounts.getOrDefault("negativeCount", 0));
-	        response.put("negativeCount", judgementCounts.getOrDefault("malePositiveCount", 0));
-	        response.put("negativeCount", judgementCounts.getOrDefault("maleNegativeCount", 0));
-	        response.put("negativeCount", judgementCounts.getOrDefault("femalePositiveCount", 0));
-	        response.put("negativeCount", judgementCounts.getOrDefault("femaleNegativeCount", 0));
+	        response.put("malePositiveCount", judgementCounts.getOrDefault("malePositiveCount", 0));
+	        response.put("maleNegativeCount", judgementCounts.getOrDefault("maleNegativeCount", 0));
+	        response.put("femalePositiveCount", judgementCounts.getOrDefault("femalePositiveCount", 0));
+	        response.put("femaleNegativeCount", judgementCounts.getOrDefault("femaleNegativeCount", 0));
 	        
 	        return response;
 	    } catch (NotFoundException e) {
@@ -174,4 +177,34 @@ public class BoardService {
             }
         }
 	}
+	
+	public Page<BoardDTO> getBest(int userId,Pageable pageable,String postType,int period) {
+		//Mapper 쿼리에 필요한 내용 정의
+		RequestList<?> requestList=RequestList.builder()
+				.requestUserId(userId)
+				.pageable(pageable)
+				.period(period)
+				.build();
+		List<BoardDTO> boardDTOs= new ArrayList<>();
+		
+		if("fashion".equals(postType)) {
+			boardDTOs = boardMapper.getFashionBest(requestList);
+		}
+		else if("discount".equals(postType)) {
+			boardDTOs = boardMapper.getDiscountBest(requestList);
+		}
+		
+		
+		//반환할 게시글 DTO마다 url 정보 추가
+        for (BoardDTO boardDTO : boardDTOs) {
+            List<String> imageUrls = boardMapper.getImagesByPostId(boardDTO.getId());
+            boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
+        }
+		
+		int total = boardMapper.getBoardListCount();
+		
+		return new PageImpl<>(boardDTOs, pageable, total);
+		
+	}
+	
 }

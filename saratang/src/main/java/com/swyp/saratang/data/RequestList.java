@@ -17,4 +17,6 @@ public class RequestList<T> { //패션/할인정보 요청시 필요한 요소�
 	
 	private String judgementType; // 히스토리 조회 시 사라/마라 카테고리 결정
 	private String sortType; //최신순, 과거순
+	
+	private int period; //기간별 베스트 조회 시 
 }

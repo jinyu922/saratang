@@ -18,6 +18,8 @@ public interface BoardMapper {
 	public List<BoardDTO> getFashionListLatest(RequestList<?> requestList); //패션정보 최신순 조회
 	public List<BoardDTO> getFashionListPopular(RequestList<?> requestList); //패션정보 인기순 조회
 	public List<BoardDTO> getFashionListRandom(RequestList<?> requestList); //패션정보 랜덤 조회
+	public List<BoardDTO> getFashionBest(RequestList<?> requestList); //베스트 패션정보 조회
+	public List<BoardDTO> getDiscountBest(RequestList<?> requestList); //베스트 할인정보 조회
 	
 	public BoardDTO getFashionPostById(@Param("id") int id,@Param("postType") String postType);//패션정보 상세조회
 	
