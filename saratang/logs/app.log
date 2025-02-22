@@ -1106,3 +1106,336 @@ java.sql.SQLSyntaxErrorException: Unknown column 'p.REGDATE' in 'order clause'
 [2025-02-22 15:00:13] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
 [2025-02-22 15:00:13] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
 [2025-02-22 15:00:13] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 16:25:44] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 15920 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 16:25:44] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 16:25:44] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 16:25:45] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 16:25:45] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:25:45] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 16:25:45] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 16:25:45] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 16:25:45] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1067 ms
+[2025-02-22 16:25:47] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:25:47] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 16:25:47] [INFO] [SaratangApplication] - Started SaratangApplication in 3.234 seconds (JVM running for 4.308)
+[2025-02-22 16:26:12] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 16:26:12] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 16:26:12] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-22 16:26:13] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 292 ms
+[2025-02-22 16:26:27] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 16:26:27] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 16:26:27] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:26:27] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 8(Integer)
+[2025-02-22 16:26:27] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:26:27] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:26:27] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:26:27] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:26:27] [DEBUG] [addJudgement] - ==>  Preparing: INSERT INTO judgements (user_id, post_id, judgement, regdate) VALUES (?, ?, ?, NOW());
+[2025-02-22 16:26:27] [DEBUG] [addJudgement] - ==> Parameters: 1(Integer), 8(Integer), positive(String)
+[2025-02-22 16:26:27] [DEBUG] [addJudgement] - <==    Updates: 1
+[2025-02-22 16:26:31] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:26:31] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 9(Integer)
+[2025-02-22 16:26:31] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:26:31] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:26:31] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:26:31] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:26:31] [DEBUG] [addJudgement] - ==>  Preparing: INSERT INTO judgements (user_id, post_id, judgement, regdate) VALUES (?, ?, ?, NOW());
+[2025-02-22 16:26:31] [DEBUG] [addJudgement] - ==> Parameters: 1(Integer), 9(Integer), positive(String)
+[2025-02-22 16:26:31] [DEBUG] [addJudgement] - <==    Updates: 1
+[2025-02-22 16:26:35] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:26:35] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 10(Integer)
+[2025-02-22 16:26:35] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:26:35] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:26:35] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:26:35] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:26:35] [DEBUG] [addJudgement] - ==>  Preparing: INSERT INTO judgements (user_id, post_id, judgement, regdate) VALUES (?, ?, ?, NOW());
+[2025-02-22 16:26:35] [DEBUG] [addJudgement] - ==> Parameters: 1(Integer), 10(Integer), positive(String)
+[2025-02-22 16:26:35] [DEBUG] [addJudgement] - <==    Updates: 1
+[2025-02-22 16:26:38] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:26:38] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 11(Integer)
+[2025-02-22 16:26:38] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:26:38] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:26:38] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:26:38] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:26:38] [DEBUG] [addPoint] - ==>  Preparing: INSERT INTO credits (user_id, post_id, type, credits, description) VALUES (?, ?, ?, ?,?);
+[2025-02-22 16:29:21] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 16:29:21] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:29:21] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 16:29:21] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 16:29:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-18] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 16:29:21] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 16:29:21] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:29:21] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:29:21] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 16:29:21] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 16:29:26] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 27448 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 16:29:26] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 16:29:26] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 16:29:27] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 16:29:27] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:29:27] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 16:29:27] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 16:29:27] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 16:29:27] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 942 ms
+[2025-02-22 16:29:28] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:29:29] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 16:29:29] [INFO] [SaratangApplication] - Started SaratangApplication in 2.863 seconds (JVM running for 3.966)
+[2025-02-22 16:30:01] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 16:30:01] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 16:30:01] [INFO] [DispatcherServlet] - Completed initialization in 4 ms
+[2025-02-22 16:30:01] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 16:30:02] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 16:30:02] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:30:02] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 11(Integer)
+[2025-02-22 16:30:02] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:30:02] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:30:02] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:30:02] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:30:02] [DEBUG] [addPoint] - ==>  Preparing: INSERT INTO credits (user_id, post_id, type, credits, description) VALUES (?, ?, ?, ?,?);
+[2025-02-22 16:31:31] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 410 ms
+[2025-02-22 16:32:41] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:32:41] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 11(Integer)
+[2025-02-22 16:32:41] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:32:41] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:32:41] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:32:41] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:32:41] [DEBUG] [addPoint] - ==>  Preparing: INSERT INTO credits (user_id, post_id, type, credits, description) VALUES (?, ?, ?, ?,?);
+[2025-02-22 16:35:50] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 16:35:51] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:35:51] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 16:35:51] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 16:35:51] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 16:35:51] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:35:51] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:35:51] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 16:35:51] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-22 16:36:15] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 29048 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 16:36:15] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 16:36:15] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 16:36:16] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 16:36:16] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:36:16] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 16:36:16] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 16:36:17] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 16:36:17] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1085 ms
+[2025-02-22 16:36:18] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:36:18] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 16:36:18] [INFO] [SaratangApplication] - Started SaratangApplication in 3.043 seconds (JVM running for 4.099)
+[2025-02-22 16:36:24] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 16:36:24] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 16:36:24] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-22 16:36:25] [INFO] [AbstractOpenApiResource] - Init duration for springdoc-openapi is: 282 ms
+[2025-02-22 16:36:29] [ERROR] [[dispatcherServlet]] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.Error: Unresolved compilation problem: 
+	The method points(int) is undefined for the type PointDTO.PointDTOBuilder
+] with root cause
+java.lang.Error: Unresolved compilation problem: 
+	The method points(int) is undefined for the type PointDTO.PointDTOBuilder
+
+	at com.swyp.saratang.service.JudgeService.addJudgement(JudgeService.java:32) ~[classes/:?]
+	at com.swyp.saratang.controller.JudgeController.judge(JudgeController.java:37) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_431]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_431]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_431]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_431]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:528) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.lang.Thread.run(Thread.java:750) ~[?:1.8.0_431]
+[2025-02-22 16:36:54] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 16:36:55] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:36:55] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 16:36:55] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 16:36:55] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-25] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 16:36:55] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-18] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 16:36:55] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-11] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 16:36:55] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-4] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 16:36:55] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-29] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 16:36:55] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-15] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1835)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1704)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
+[2025-02-22 16:36:55] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:36:55] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:36:57] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 28840 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-22 16:36:57] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-22 16:36:57] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-22 16:36:58] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-22 16:36:58] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:36:58] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-22 16:36:58] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-22 16:36:58] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-22 16:36:58] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 995 ms
+[2025-02-22 16:37:00] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:37:00] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-22 16:37:00] [INFO] [SaratangApplication] - Started SaratangApplication in 3.164 seconds (JVM running for 4.204)
+[2025-02-22 16:37:06] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-22 16:37:06] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-22 16:37:06] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-22 16:37:06] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-22 16:37:07] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-22 16:37:07] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:37:07] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 11(Integer)
+[2025-02-22 16:37:07] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:37:07] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:37:07] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:37:07] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:37:07] [DEBUG] [addPoint] - ==>  Preparing: INSERT INTO credits (user_id, post_id, type, credits, description) VALUES (?, ?, ?, ?,?);
+[2025-02-22 16:37:07] [DEBUG] [addPoint] - ==> Parameters: 1(Integer), 11(Integer), earn(String), 10(Integer), 판단 횟수 5회누적 적립(String)
+[2025-02-22 16:37:07] [DEBUG] [addPoint] - <==    Updates: 1
+[2025-02-22 16:37:07] [DEBUG] [addJudgement] - ==>  Preparing: INSERT INTO judgements (user_id, post_id, judgement, regdate) VALUES (?, ?, ?, NOW());
+[2025-02-22 16:37:07] [DEBUG] [addJudgement] - ==> Parameters: 1(Integer), 11(Integer), positive(String)
+[2025-02-22 16:37:07] [DEBUG] [addJudgement] - <==    Updates: 1
+[2025-02-22 16:37:39] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:37:39] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 12(Integer)
+[2025-02-22 16:37:39] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:37:39] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:37:39] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:37:39] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:37:39] [DEBUG] [addJudgement] - ==>  Preparing: INSERT INTO judgements (user_id, post_id, judgement, regdate) VALUES (?, ?, ?, NOW());
+[2025-02-22 16:37:39] [DEBUG] [addJudgement] - ==> Parameters: 1(Integer), 12(Integer), positive(String)
+[2025-02-22 16:37:39] [DEBUG] [addJudgement] - <==    Updates: 1
+[2025-02-22 16:37:41] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:37:41] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 13(Integer)
+[2025-02-22 16:37:41] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:37:41] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:37:41] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:37:41] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:37:41] [DEBUG] [addJudgement] - ==>  Preparing: INSERT INTO judgements (user_id, post_id, judgement, regdate) VALUES (?, ?, ?, NOW());
+[2025-02-22 16:37:41] [DEBUG] [addJudgement] - ==> Parameters: 1(Integer), 13(Integer), positive(String)
+[2025-02-22 16:37:41] [DEBUG] [addJudgement] - <==    Updates: 1
+[2025-02-22 16:37:42] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:37:42] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 14(Integer)
+[2025-02-22 16:37:42] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:37:42] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:37:42] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:37:42] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:37:42] [DEBUG] [addJudgement] - ==>  Preparing: INSERT INTO judgements (user_id, post_id, judgement, regdate) VALUES (?, ?, ?, NOW());
+[2025-02-22 16:37:42] [DEBUG] [addJudgement] - ==> Parameters: 1(Integer), 14(Integer), positive(String)
+[2025-02-22 16:37:42] [DEBUG] [addJudgement] - <==    Updates: 1
+[2025-02-22 16:37:44] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:37:44] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 15(Integer)
+[2025-02-22 16:37:44] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:37:44] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:37:44] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:37:44] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:37:44] [DEBUG] [addJudgement] - ==>  Preparing: INSERT INTO judgements (user_id, post_id, judgement, regdate) VALUES (?, ?, ?, NOW());
+[2025-02-22 16:37:44] [DEBUG] [addJudgement] - ==> Parameters: 1(Integer), 15(Integer), positive(String)
+[2025-02-22 16:37:44] [DEBUG] [addJudgement] - <==    Updates: 1
+[2025-02-22 16:37:47] [DEBUG] [existJudgeByUserIdAndPostId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ? AND post_id = ?
+[2025-02-22 16:37:47] [DEBUG] [existJudgeByUserIdAndPostId] - ==> Parameters: 1(Integer), 16(Integer)
+[2025-02-22 16:37:47] [DEBUG] [existJudgeByUserIdAndPostId] - <==      Total: 1
+[2025-02-22 16:37:47] [DEBUG] [countJudgementsByUserId] - ==>  Preparing: SELECT COUNT(*) FROM judgements WHERE user_id = ?
+[2025-02-22 16:37:47] [DEBUG] [countJudgementsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-22 16:37:47] [DEBUG] [countJudgementsByUserId] - <==      Total: 1
+[2025-02-22 16:37:47] [DEBUG] [addPoint] - ==>  Preparing: INSERT INTO credits (user_id, post_id, type, credits, description) VALUES (?, ?, ?, ?,?);
+[2025-02-22 16:37:47] [DEBUG] [addPoint] - ==> Parameters: 1(Integer), 16(Integer), earn(String), 10(Integer), 판단 횟수 5회누적 적립(String)
+[2025-02-22 16:37:47] [DEBUG] [addPoint] - <==    Updates: 1
+[2025-02-22 16:37:47] [DEBUG] [addJudgement] - ==>  Preparing: INSERT INTO judgements (user_id, post_id, judgement, regdate) VALUES (?, ?, ?, NOW());
+[2025-02-22 16:37:47] [DEBUG] [addJudgement] - ==> Parameters: 1(Integer), 16(Integer), positive(String)
+[2025-02-22 16:37:47] [DEBUG] [addJudgement] - <==    Updates: 1
+[2025-02-22 16:38:09] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-22 16:38:09] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:38:09] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-22 16:38:09] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-22 16:38:09] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-22 16:38:09] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:38:09] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-22 16:38:09] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-22 16:38:09] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.

@@ -27,6 +27,13 @@
 	    JOIN users u ON j.user_id = u.id <!-- 사용자 테이블과 조인하여 성별 정보를 가져옵니다-->
 	    WHERE j.post_id = #{postId}
 	</select>
+	
+	<!--유저 판단횟수 조회-->
+	<select id="countJudgementsByUserId" resultType="int">
+	    SELECT COUNT(*)
+	    FROM judgements
+	    WHERE user_id = #{userId}
+	</select>
 
 
 </mapper>

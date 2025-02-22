@@ -12,4 +12,6 @@ public interface JudgeMapper {
 	public int existJudgeByUserIdAndPostId(@Param("userId") int userId, @Param("postId") int postId);
 
 	public Map<String, Integer> countJudgementsByPostId(@Param("postId") int postId);
+	
+	public int countJudgementsByUserId(@Param("userId") int userId);
 }
