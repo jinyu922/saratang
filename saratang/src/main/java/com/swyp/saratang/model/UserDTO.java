@@ -30,7 +30,8 @@ public class UserDTO {
 	    private String bottomSize;
 	    private Integer footSize;
 	    private Boolean profileYn;
-	    
+	    private String color;
+	    private Integer credits; // 포인트 양
 	    public UserDTO() {}
 	    
 	 // ✅ 모든 필드를 포함한 생성자

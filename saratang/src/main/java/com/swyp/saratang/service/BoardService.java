@@ -1,9 +1,12 @@
 package com.swyp.saratang.service;
 
+import java.math.BigDecimal;
+import java.net.ResponseCache;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,6 +26,8 @@ import com.swyp.saratang.mapper.JudgeMapper;
 import com.swyp.saratang.model.BoardDTO;
 import com.swyp.saratang.model.CommentDTO;
 import com.swyp.saratang.model.PostImageDTO;
+import com.swyp.saratang.model.SafeUserDTO;
+import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.session.SessionManager;
 
 import io.netty.handler.codec.AsciiHeadersEncoder.NewlineType;
@@ -38,6 +43,9 @@ public class BoardService {
 	
 	@Autowired
 	SessionManager sessionManager;
+	
+	@Autowired
+	UserService userService;
 	
 	@Autowired
 	CategoryService categoryService;
@@ -109,33 +117,61 @@ public class BoardService {
 	    try {
 	        // 패션 포스트 상세 조회
 	        BoardDTO boardDTO = boardMapper.getFashionPostById(id,postType);
-	        
 	        if (boardDTO == null) {
 	            throw new NotFoundException("데이터가 없습니다");
 	        }
+	        // 작성자 프로필 조회(프론트요청)
+	        UserDTO userDTO = userService.getUserById(boardDTO.getUserId());
+	        SafeUserDTO safeUserDTO = new SafeUserDTO(userDTO); // 민감한 데이터 제외
 	        
 	        // 판별 결과 조회
-	        Map<String, Integer> judgementCounts = judgeMapper.countJudgementsByPostId(id);
+	        Map<String, BigDecimal> judgementCounts = judgeMapper.countJudgementsByPostId(id);
 	        if (judgementCounts == null) {
 	            judgementCounts = new HashMap<>(); // 빈 맵으로 초기화
 	        }
 	        
+	        
+	        //남여 통계
+	        int positiveCount=judgementCounts.get("positiveCount").intValue();
+	        int negativeCount=judgementCounts.get("negativeCount").intValue();
+	        int malePositiveCount=judgementCounts.get("malePositiveCount").intValue();
+	        int maleNegativeCount=judgementCounts.get("maleNegativeCount").intValue();
+	        int femalePositiveCount=judgementCounts.get("femalePositiveCount").intValue();
+	        int femaleNegativeCount=judgementCounts.get("femaleNegativeCount").intValue();
+	        
+	        // 남자/여자별 총 투표 수
+	        int maleTotal = malePositiveCount + maleNegativeCount;
+	        int femaleTotal = femalePositiveCount + femaleNegativeCount;
+
+	        // 퍼센트 계산 (0으로 나누는 경우 방지)
+	        int positiveRate=(positiveCount==0)?0:(positiveCount*100/(positiveCount+negativeCount));
+	        int negativeRate =(negativeCount==0)?0:(negativeCount*100/(positiveCount+negativeCount));
+	        int malePositiveRate =(maleTotal == 0) ? 0 : (malePositiveCount * 100 / maleTotal);
+	        int maleNegativeRate =(maleTotal == 0) ? 0 : (maleNegativeCount * 100 / maleTotal);
+	        int femalePositiveRate =(femaleTotal == 0) ? 0 : (femalePositiveCount * 100 / femaleTotal);
+	        int femaleNegativeRate =(femaleTotal == 0) ? 0 :(femaleNegativeCount * 100 / femaleTotal);
+	        
+
+
 	        // 응답 맵 구성
-	        Map<String, Object> response = new HashMap<>();
+	        Map<String, Object> response = new LinkedHashMap<>();
 	        response.put("content", boardDTO);
-	        response.put("positiveCount", judgementCounts.getOrDefault("positiveCount", 0));
-	        response.put("negativeCount", judgementCounts.getOrDefault("negativeCount", 0));
-	        response.put("malePositiveCount", judgementCounts.getOrDefault("malePositiveCount", 0));
-	        response.put("maleNegativeCount", judgementCounts.getOrDefault("maleNegativeCount", 0));
-	        response.put("femalePositiveCount", judgementCounts.getOrDefault("femalePositiveCount", 0));
-	        response.put("femaleNegativeCount", judgementCounts.getOrDefault("femaleNegativeCount", 0));
+	        response.put("writerProfile", safeUserDTO);
+	        response.put("positiveCount", positiveCount);
+	        response.put("negativeCount", negativeCount);
+	        response.put("positiveRate", positiveRate);
+	        response.put("negativeRate", negativeRate);
+	        response.put("malePositiveRate",malePositiveRate );
+	        response.put("maleNegativeRate", maleNegativeRate);
+	        response.put("femalePositiveRate", femalePositiveRate);
+	        response.put("femaleNegativeRate", femaleNegativeRate);
 	        
 	        return response;
 	    } catch (NotFoundException e) {
 	        throw e;  // NotFoundException은 그대로 던진다
 	    } catch (Exception e) {
 	        // 일반 예외 처리
-	        throw new RuntimeException("패션정보 상세조회 실패", e);
+	        throw new RuntimeException("패션정보 상세조회 실패"+e.getMessage());
 	    }
 	}
 	

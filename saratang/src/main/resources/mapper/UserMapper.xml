@@ -14,6 +14,11 @@
     SELECT * FROM users WHERE email = #{email}
     and is_active=true
 	</select>
+	
+	<select id="findById" parameterType="int" resultType="com.swyp.saratang.model.UserDTO">
+	    SELECT * FROM users WHERE id = #{id}
+	</select>
+
 
     <!-- 정식 회원 등록 -->
 	<insert id="insertUser">
@@ -58,4 +63,30 @@
         WHERE social_id = #{socialId} AND auth_provider = #{authProvider}
         OR email = #{email}
     </update>
+    
+    
+    
+    
+    
+       <!-- 특정 사용자 크레딧 내역 조회 -->
+    <select id="getCreditHistoryByUserId" resultType="com.swyp.saratang.model.PointDTO">
+        SELECT * FROM credits WHERE user_id = #{userId} ORDER BY regdate DESC;
+    </select>
+
+    <!-- 특정 사용자의 총 크레딧 합계 조회 -->
+    <select id="getTotalCreditsByUserId" resultType="Integer">
+        SELECT COALESCE(SUM(credits), 0) FROM credits WHERE user_id = #{userId};
+    </select>
+    
+     <!-- 닉네임 색상 변경 -->
+    <update id="changeUserColor">
+        UPDATE users SET color = #{newNicknameColor} WHERE id = #{userId};
+    </update>
+
+    <!-- 크레딧 내역 추가 -->
+    <insert id="insertCreditHistory">
+        INSERT INTO credits (user_id, type, credits, description)
+        VALUES (#{userId}, #{type}, #{credits}, #{description});
+    </insert>
+    
 </mapper>

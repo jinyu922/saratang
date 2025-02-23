@@ -17,15 +17,15 @@
     
     <select id="countJudgementsByPostId" resultType="map">
 	    SELECT 
-	        SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount,
-	        SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount,
-	        SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount,
-	        SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount,
-	        SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount,
-	        SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount
+        SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount,
+        SUM(CASE WHEN judgement = 'negative' THEN 1 ELSE 0 END) AS negativeCount,
+        SUM(CASE WHEN judgement = 'positive' AND u.gender = 'male' THEN 1 ELSE 0 END) AS malePositiveCount,
+        SUM(CASE WHEN judgement = 'positive' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femalePositiveCount,
+        SUM(CASE WHEN judgement = 'negative' AND u.gender = 'male' THEN 1 ELSE 0 END) AS maleNegativeCount,
+        SUM(CASE WHEN judgement = 'negative' AND u.gender = 'female' THEN 1 ELSE 0 END) AS femaleNegativeCount
 	    FROM judgements j
 	    JOIN users u ON j.user_id = u.id <!-- 사용자 테이블과 조인하여 성별 정보를 가져옵니다-->
-	    WHERE j.post_id = #{postId}
+	    WHERE j.post_id = #{postId}	
 	</select>
 	
 	<!--유저 판단횟수 조회-->

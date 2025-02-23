@@ -1,5 +1,7 @@
 package com.swyp.saratang.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import com.swyp.saratang.mapper.UserMapper;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.model.ApiResponseDTO;
+import com.swyp.saratang.model.PointDTO;
 
 
 @Service
@@ -26,6 +29,11 @@ public class UserServiceImpl implements UserService {
         return userMapper.findBySocialId(socialId, provider);
     }
     
+    @Override 
+    public UserDTO getUserById(Integer id) {
+    	return userMapper.findById(id);
+    }
+    
     @Override
     public void newProfile(UserDTO user) {
         userMapper.newUserProfile(user);
@@ -39,5 +47,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String socialId, String authProvider, String email) {
         userMapper.deleteUser(socialId, authProvider, email);
+    }
+    
+    @Override
+    public void changeUserColor(int Id, String newNicknameColor, int updatedCredits) {
+        userMapper.changeUserColor(Id, newNicknameColor, updatedCredits);
+    }
+    
+    @Override
+    public List<PointDTO> getCreditHistoryByUserId(Integer userId) {
+        return userMapper.getCreditHistoryByUserId(userId);
+    }
+
+    @Override
+    public Integer getTotalCreditsByUserId(Integer userId) {
+        return userMapper.getTotalCreditsByUserId(userId);
+    }
+    
+    @Override
+    public void changeUserColor(Integer userId, String newNicknameColor) {
+        userMapper.changeUserColor(userId, newNicknameColor);
+    }
+
+    @Override
+    public void insertCreditHistory(Integer userId, String type, Integer credits, String description) {
+        userMapper.insertCreditHistory(userId, type, credits, description);
     }
 }

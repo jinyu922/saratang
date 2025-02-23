@@ -1,5 +1,9 @@
 package com.swyp.saratang.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,6 +22,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.BoardDTO;
 import com.swyp.saratang.model.UserDTO;
+import com.swyp.saratang.model.PointDTO;
 import com.swyp.saratang.service.BoardService;
 import com.swyp.saratang.service.UserService;
 import com.swyp.saratang.session.SessionManager;
@@ -112,7 +118,167 @@ public class ProfileController {
 
         return new ApiResponseDTO<>(200, "프로필 수정 완료", "success");
     }
+    
+    @GetMapping("/credits")
+    @Operation(summary = "사용자 크레딧 조회", description = "현재 로그인한 사용자의 모든 크레딧 내역 및 총 크레딧 반환")
+    @ApiResponse(responseCode = "200", description = "크레딧 조회 성공")
+    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
+    public ApiResponseDTO<Map<String, Object>> getUserCredits(HttpSession session) {
+        // ✅ 세션에서 사용자 정보 가져오기
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
 
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        Integer userId = sessionUser.getId();
+
+        // ✅ 사용자 크레딧 내역 가져오기
+        List<PointDTO> creditHistory = userService.getCreditHistoryByUserId(userId);
+
+        // ✅ 사용자 총 크레딧 합계 조회
+        Integer totalCredits = userService.getTotalCreditsByUserId(userId);
+
+        // ✅ 응답 데이터 생성
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("totalCredits", totalCredits);
+        responseData.put("creditHistory", creditHistory);
+
+        return new ApiResponseDTO<>(200, "크레딧 조회 성공", responseData);
+    }
+    
+    
+    @GetMapping("/credits/test")
+    @Operation(summary = "[TEST] 사용자 크레딧 조회", description = "특정 사용자의 모든 크레딧 내역 및 총 크레딧 반환 (세션 없이 userId 직접 입력)")
+    @ApiResponse(responseCode = "200", description = "크레딧 조회 성공")
+    @ApiResponse(responseCode = "400", description = "유효하지 않은 사용자 ID")
+    public ApiResponseDTO<Map<String, Object>> getUserCreditsForTest(@RequestParam("userId") Integer userId) {
+        if (userId == null) {
+            return new ApiResponseDTO<>(400, "유효하지 않은 요청: userId가 필요합니다.", null);
+        }
+
+        // ✅ 사용자 크레딧 내역 가져오기
+        List<PointDTO> creditHistory = userService.getCreditHistoryByUserId(userId);
+
+        // ✅ 사용자 총 크레딧 합계 조회
+        Integer totalCredits = userService.getTotalCreditsByUserId(userId);
+
+        // ✅ 응답 데이터 생성
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("totalCredits", totalCredits);
+        responseData.put("creditHistory", creditHistory);
+
+        return new ApiResponseDTO<>(200, "크레딧 조회 성공 (테스트 모드)", responseData);
+    }
+
+    
+    @PostMapping("/changeusercolor")
+    @Operation(summary = "닉네임 색상 변경", description = "닉네임 색상을 변경 (3포인트 차감 후 기록)")
+    @ApiResponse(responseCode = "200", description = "변경 완료")
+    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
+    @ApiResponse(responseCode = "402", description = "포인트 부족")
+    @ApiResponse(responseCode = "400", description = "변경할 값이 없음")
+    public ApiResponseDTO<Map<String, Object>> changeUserColor(@RequestBody Map<String, String> requestData, HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        String newNicknameColor = requestData.get("nicknameColor");
+        boolean isColorChange = newNicknameColor != null && !newNicknameColor.trim().isEmpty();
+
+        // ✅ 변경할 값이 없는 경우 예외 반환
+        if (!isColorChange) {
+            return new ApiResponseDTO<>(400, "변경사항 없음", null);
+        }
+
+        Integer userId = sessionUser.getId();
+
+        // ✅ 현재 크레딧 조회 (credits 테이블에서 총합)
+        Integer currentCredits = userService.getTotalCreditsByUserId(userId);
+
+        // ✅ 크레딧 차감 금액
+        int changeCost = 3;
+
+        // ✅ 포인트 부족 시 예외 반환
+        if (currentCredits < changeCost) {
+            return new ApiResponseDTO<>(402, "포인트가 부족합니다.", null);
+        }
+
+        // ✅ 닉네임 색상 변경 적용
+        sessionUser.setColor(newNicknameColor);
+
+        // ✅ DB 업데이트: 닉네임 색상 변경
+        userService.changeUserColor(userId, newNicknameColor);
+
+        // ✅ DB 업데이트: 크레딧 내역 추가 (-3포인트)
+        userService.insertCreditHistory(userId, "spend", -3, "닉네임 색상 변경");
+
+        // ✅ 변경 후 새로운 크레딧 총합 조회
+        Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
+
+        // ✅ 응답 데이터 생성
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("updatedCredits", updatedCredits);
+        responseData.put("nicknameColor", newNicknameColor);
+
+        // ✅ 세션 업데이트 (변경된 크레딧 포함)
+        sessionUser.setCredits(updatedCredits);
+        sessionManager.setSession(session.getId(), sessionUser);
+
+        return new ApiResponseDTO<>(200, "변경 완료 (포인트 3 차감)", responseData);
+    }
+
+    @PostMapping("/changeusercolor/test")
+    @Operation(summary = "[TEST] 닉네임 색상 변경", description = "특정 사용자의 닉네임 색상을 변경 (3포인트 차감 후 기록) - 세션 없이 userId 직접 입력")
+    @ApiResponse(responseCode = "200", description = "변경 완료")
+    @ApiResponse(responseCode = "400", description = "유효하지 않은 사용자 ID")
+    @ApiResponse(responseCode = "402", description = "포인트 부족")
+    public ApiResponseDTO<Map<String, Object>> changeUserColorForTest(
+            @RequestBody Map<String, String> requestData,
+            @RequestParam("userId") Integer userId) {
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(400, "유효하지 않은 요청: userId가 필요합니다.", null);
+        }
+
+        String newNicknameColor = requestData.get("nicknameColor");
+        boolean isColorChange = newNicknameColor != null && !newNicknameColor.trim().isEmpty();
+
+        // ✅ 변경할 값이 없는 경우 예외 반환
+        if (!isColorChange) {
+            return new ApiResponseDTO<>(400, "변경사항 없음", null);
+        }
+
+        // ✅ 현재 크레딧 조회 (credits 테이블에서 총합)
+        Integer currentCredits = userService.getTotalCreditsByUserId(userId);
+
+        // ✅ 크레딧 차감 금액
+        int changeCost = 3;
+
+        // ✅ 포인트 부족 시 예외 반환
+        if (currentCredits < changeCost) {
+            return new ApiResponseDTO<>(402, "포인트가 부족합니다.", null);
+        }
+
+        // ✅ DB 업데이트: 닉네임 색상 변경
+        userService.changeUserColor(userId, newNicknameColor);
+
+        // ✅ DB 업데이트: 크레딧 내역 추가 (-3포인트)
+        userService.insertCreditHistory(userId, "spend", -3, "닉네임 색상 변경");
+
+        // ✅ 변경 후 새로운 크레딧 총합 조회
+        Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
+
+        // ✅ 응답 데이터 생성
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("updatedCredits", updatedCredits);
+        responseData.put("nicknameColor", newNicknameColor);
+
+        return new ApiResponseDTO<>(200, "변경 완료 (포인트 3 차감)", responseData);
+    }
+    
     /**
      * 회원 탈퇴 API
      */
