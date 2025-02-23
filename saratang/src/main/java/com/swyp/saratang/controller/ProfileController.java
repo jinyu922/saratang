@@ -218,7 +218,7 @@ public class ProfileController {
         // ✅ 변경 후 새로운 크레딧 총합 조회
         Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
 
-        // ✅ 응답 데이터 생성
+        // 응답 데이터 생성
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("updatedCredits", updatedCredits);
         responseData.put("nicknameColor", newNicknameColor);
