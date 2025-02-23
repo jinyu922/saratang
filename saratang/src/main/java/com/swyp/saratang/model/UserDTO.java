@@ -26,8 +26,9 @@ public class UserDTO {
 	    private String gender; 
 	    private Boolean isActive;
 	    private Date regDate;
-	    private Integer topSize;
-	    private Integer bottomSize;
+	    private String topSize;
+	    private String bottomSize;
 	    private Integer footSize;
 	    private Boolean profileYn;
+	   
 }

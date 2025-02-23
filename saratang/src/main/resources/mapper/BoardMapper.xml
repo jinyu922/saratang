@@ -2,28 +2,97 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.swyp.saratang.mapper.BoardMapper">
+	
+	<!--최신순 조회 쿼리-->
+	<select id="getFashionListLatest" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+		SELECT 
+	        p.ID, p.USER_ID,p.CATEGORY_ID,p.CONCERN_KEYWORD_ID,p.POST_TYPE,p.BRAND,p.ORIGINAL_PRICE,
+	        p.DISCOUNT_PRICE,p.PRODUCT_LINK,p.TITLE,p.CURRENT_PRICE,p.MEMO,p.IS_SPEC_PUBLIC,p.DETAIL_MEMO,p.REGDATE
+	    FROM posts p
+	    JOIN user_categories uc ON p.CATEGORY_ID = uc.category_id
+	    WHERE p.POST_TYPE = #{postType}
+	      AND uc.user_id = #{requestUserId}
+	      AND p.ID NOT IN (
+	          SELECT j.post_id FROM judgements j 
+	          WHERE j.user_id = #{requestUserId}
+	      )
+	    ORDER BY p.REGDATE DESC
+	    LIMIT #{limitSize} <!-- 요청된 개수만큼 반환 -->
+	</select>
+	
+	<!--인기순 조회 쿼리-->
+	<select id="getFashionListPopular" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+	    SELECT 
+	        p.ID, p.USER_ID, p.CATEGORY_ID, p.CONCERN_KEYWORD_ID, p.POST_TYPE, 
+	        p.BRAND, p.ORIGINAL_PRICE, p.DISCOUNT_PRICE, p.PRODUCT_LINK, p.TITLE, 
+	        p.CURRENT_PRICE, p.MEMO, p.IS_SPEC_PUBLIC, p.DETAIL_MEMO, p.REGDATE,
+	        COALESCE(j.judgement_count, 0) AS popularity  <!-- 판단 횟수를 popularity로 표시 -->
+	    FROM posts p
+	    JOIN user_categories uc ON p.CATEGORY_ID = uc.category_id  <!-- 관심 카테고리 필터링 -->
+	    LEFT JOIN (  <!-- 게시글별 판단 횟수 집계 -->
+	        SELECT post_id, COUNT(*) AS judgement_count
+	        FROM judgements
+	        GROUP BY post_id
+	    ) j ON p.ID = j.post_id
+	    WHERE p.POST_TYPE = #{postType}
+	      AND uc.user_id = #{requestUserId}  <!-- 요청 유저의 관심 카테고리에 해당하는 게시글만 -->
+	      AND p.ID NOT IN (  <!-- 유저가 이미 판단한 게시글 제외 -->
+	          SELECT j.post_id FROM judgements j 
+	          WHERE j.user_id = #{requestUserId}
+	      )
+	    ORDER BY popularity DESC, p.REGDATE DESC  <!-- 판단 횟수 기준 내림차순 + 최신순 정렬 -->
+	    LIMIT #{limitSize}  <!-- 요청된 개수만큼 반환 -->
+	</select>
+	
+	<!--랜덤 조회 쿼리-->
+	<select id="getFashionListRandom" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+		SELECT 
+	        p.ID, p.USER_ID,p.CATEGORY_ID,p.CONCERN_KEYWORD_ID,p.POST_TYPE,p.BRAND,p.ORIGINAL_PRICE,
+	        p.DISCOUNT_PRICE,p.PRODUCT_LINK,p.TITLE,p.CURRENT_PRICE,p.MEMO,p.IS_SPEC_PUBLIC,p.DETAIL_MEMO,p.REGDATE
+	    FROM posts p
+	    JOIN user_categories uc ON p.CATEGORY_ID = uc.category_id
+	    WHERE p.POST_TYPE = #{postType}
+	      AND uc.user_id = #{requestUserId}
+	      AND p.ID NOT IN (
+	          SELECT j.post_id FROM judgements j 
+	          WHERE j.user_id = #{requestUserId}
+	      )
+	    ORDER BY RAND()
+	    LIMIT #{limitSize}	<!-- 요청된 개수만큼 반환 -->
+	</select>
 
-    <!-- 패션정보 리스트 조회 -->
-    <select id="getFashionList" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
-    	SELECT 
-	    	ID, 
-			USER_ID,
-			CATEGORY_ID,
-			CONCERN_KEYWORD_ID,
-			POST_TYPE,
-			BRAND,
-			TITLE,
-			PRODUCT_LINK,
-			CURRENT_PRICE,
-			IS_SPEC_PUBLIC,
-			DETAIL_MEMO,
-			REGDATE
-		FROM posts
-		WHERE POST_TYPE = 'fashion'
-		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
-    </select>
+    <!-- 패션정보 리스트 조회(페이징) -->
+	<select id="getFashionListPaging" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+	    SELECT 
+	        p.ID, 
+	        p.USER_ID,
+	        p.CATEGORY_ID,
+	        p.CONCERN_KEYWORD_ID,
+	        p.POST_TYPE,
+	        p.BRAND,
+	        p.ORIGINAL_PRICE,
+	        p.DISCOUNT_PRICE,
+	        p.PRODUCT_LINK,
+	        p.TITLE,
+	        p.CURRENT_PRICE,
+	        p.MEMO,
+	        p.IS_SPEC_PUBLIC,
+	        p.DETAIL_MEMO,
+	        p.REGDATE
+	    FROM posts p
+	    JOIN user_categories uc ON p.CATEGORY_ID = uc.category_id  <!-- 관심 카테고리 조인 -->
+	    WHERE p.POST_TYPE = #{postType}
+	      AND uc.user_id = #{requestUserId}  <!-- 요청한 유저의 관심 카테고리만 필터링 -->
+	      AND p.ID NOT IN (  <!-- 이미 판단한 게시글 제외 -->
+	          SELECT j.post_id FROM judgements j 
+	          WHERE j.user_id = #{requestUserId}
+	      )
+	    ORDER BY p.REGDATE DESC  <!-- 최신순 정렬 -->
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+
         <!-- 패션정보 리스트 상세 조회 -->
-    <select id="getFashionPostById" parameterType="int" resultType="com.swyp.saratang.model.BoardDTO">
+    <select id="getFashionPostById" resultType="com.swyp.saratang.model.BoardDTO">
     	SELECT 
 	    	ID, 
 			USER_ID,
@@ -31,53 +100,102 @@
 			CONCERN_KEYWORD_ID,
 			POST_TYPE,
 			BRAND,
-			TITLE,
+			ORIGINAL_PRICE,
+			DISCOUNT_PRICE,
 			PRODUCT_LINK,
+			TITLE,
 			CURRENT_PRICE,
+			MEMO,
 			IS_SPEC_PUBLIC,
 			DETAIL_MEMO,
 			REGDATE
 		FROM posts
-		WHERE ID = #{id} AND POST_TYPE = 'fashion'
-    </select>
-    <!-- 할인정보 리스트 조회 -->
-    <select id="getDiscountList" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
-    	SELECT 
-	    	ID, 
-			USER_ID,
-			CATEGORY_ID,
-			CONCERN_KEYWORD_ID,
-			POST_TYPE,
-			BRAND,
-			TITLE,
-			ORIGINAL_PRICE,
-			DISCOUNT_PRICE,
-			PRODUCT_LINK,
-			MEMO,
-			REGDATE
-		FROM posts
-		WHERE POST_TYPE = 'discount' 
-		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
-    </select>
-	<!-- 할인정보 리스트 상세 조회 -->
-    <select id="getDiscountPostById" parameterType="int" resultType="com.swyp.saratang.model.BoardDTO">
-    	SELECT 
-	    	ID, 
-			USER_ID,
-			CATEGORY_ID,
-			CONCERN_KEYWORD_ID,
-			POST_TYPE,
-			BRAND,
-			TITLE,
-			ORIGINAL_PRICE,
-			DISCOUNT_PRICE,
-			PRODUCT_LINK,
-			MEMO,
-			REGDATE
-		FROM posts
-		WHERE ID = #{id} AND POST_TYPE = 'discount'
+		WHERE ID = #{id} AND POST_TYPE = #{postType}
     </select>
     
+    <!--사라/마라 판단한 게시글 히스토리-->
+	<select id="getHistory" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+		SELECT 
+	        p.ID, p.USER_ID,p.CATEGORY_ID,p.CONCERN_KEYWORD_ID,p.POST_TYPE,p.BRAND,p.ORIGINAL_PRICE,
+	        p.DISCOUNT_PRICE,p.PRODUCT_LINK,p.TITLE,p.CURRENT_PRICE,p.MEMO,p.IS_SPEC_PUBLIC,p.DETAIL_MEMO,p.REGDATE
+	    FROM posts p
+	    WHERE p.POST_TYPE = #{postType}
+	      AND p.ID IN (
+	          SELECT j.post_id FROM judgements j 
+	          WHERE j.user_id = #{requestUserId} AND j.judgement = #{judgementType}
+	      )
+	    ORDER BY p.REGDATE ${sortType}
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+	<!--링크 들어간 게시글 히스토리 페이징요 요청변수로 패션/할인정보 최신/오래된순-->
+	
+	<!--기간별 패션 베스트 조회-->
+	<select id="getFashionBest" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+	    SELECT 
+	        p.ID, 
+	        p.USER_ID,
+	        p.CATEGORY_ID,
+	        p.CONCERN_KEYWORD_ID,
+	        p.POST_TYPE,
+	        p.BRAND,
+	        p.ORIGINAL_PRICE,
+	        p.DISCOUNT_PRICE,
+	        p.PRODUCT_LINK,
+	        p.TITLE,
+	        p.CURRENT_PRICE,
+	        p.MEMO,
+	        p.IS_SPEC_PUBLIC,
+	        p.DETAIL_MEMO,
+	        p.REGDATE,
+	        COALESCE(j.judgement_count, 0) AS popularity  <!-- 판단 횟수를 popularity로 표시 -->
+	    FROM posts p
+	    JOIN user_categories uc ON p.CATEGORY_ID = uc.category_id  <!-- 관심 카테고리 조인 -->
+	    LEFT JOIN (  <!-- 게시글별 판단 횟수 집계 -->
+	        SELECT post_id, COUNT(*) AS judgement_count
+	        FROM judgements
+	        GROUP BY post_id
+	    ) j ON p.ID = j.post_id
+	    WHERE p.POST_TYPE = 'fashion'
+	      AND uc.user_id = #{requestUserId}  <!-- 요청한 유저의 관심 카테고리만 필터링 -->
+	      AND p.REGDATE >= DATE_SUB(CURDATE(), INTERVAL #{period} DAY) <!-- 기간별 정렬 -->
+	    ORDER BY popularity DESC <!-- 정렬방식 판단 개수 많은 순으로 -->
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+	
+	<!--기간별 할인 베스트 조회-->
+	<select id="getDiscountBest" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+	    SELECT 
+	        p.ID, 
+	        p.USER_ID,
+	        p.CATEGORY_ID,
+	        p.CONCERN_KEYWORD_ID,
+	        p.POST_TYPE,
+	        p.BRAND,
+	        p.ORIGINAL_PRICE,
+	        p.DISCOUNT_PRICE,
+	        p.PRODUCT_LINK,
+	        p.TITLE,
+	        p.CURRENT_PRICE,
+	        p.MEMO,
+	        p.IS_SPEC_PUBLIC,
+	        p.DETAIL_MEMO,
+	        p.REGDATE,
+	        COALESCE(j.judgement_count, 0) AS popularity  <!-- 판단 횟수를 popularity로 표시 -->
+	    FROM posts p
+	    JOIN user_categories uc ON p.CATEGORY_ID = uc.category_id  <!-- 관심 카테고리 조인 -->
+	    LEFT JOIN (  <!-- 게시글별 판단 횟수 집계 -->
+	        SELECT post_id, COUNT(*) AS judgement_count
+	        FROM judgements
+	        WHERE judgement = 'positive'
+	        GROUP BY post_id
+	    ) j ON p.ID = j.post_id
+	    WHERE p.POST_TYPE = 'discount'
+	      AND uc.user_id = #{requestUserId}  <!-- 요청한 유저의 관심 카테고리만 필터링 -->
+	      AND p.REGDATE >= DATE_SUB(CURDATE(), INTERVAL #{period} DAY) <!-- 기간별 정렬 -->
+	    ORDER BY popularity DESC <!-- 정렬방식 사라판단 개수 많은 순으로 -->
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+	
     <select id="getImagesByPostId" parameterType="Integer" resultType="String">
 	    SELECT 
 	    	image_url
@@ -109,7 +227,31 @@
 			#{brand}, #{originalPrice}, #{discountPrice}, #{productLink}, #{title}, 
 			#{currentPrice}, #{isSpecPublic}, #{memo}, #{detailMemo})
 	</insert>-->
-
 	
+	<!--댓글저장-->
+	<insert id="insertComment" parameterType="com.swyp.saratang.model.CommentDTO">
+		INSERT INTO comments
+			(post_id,user_id,content)
+	    VALUES 
+	    	(#{postId}, #{userId},#{content})
+	</insert>
+	
+	<!--댓글리스트조회-->
+	<select id="getCommentList" resultType="com.swyp.saratang.model.CommentDTO">
+		SELECT 
+			id,post_id,user_id,content,regdate
+		FROM 
+			comments
+		WHERE 
+			post_id=#{postId}
+		ORDER BY regdate DESC  <!-- 최신순 정렬 -->
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+	
+	<!-- 댓글 조회 페이징 -->
+	<select id="getCommentListCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		  FROM comments
+	</select>
 
 </mapper>

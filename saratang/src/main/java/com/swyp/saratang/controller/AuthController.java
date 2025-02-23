@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,8 @@ public class AuthController {
     public ResponseEntity<ApiResponseDTO<UserDTO>> snsLogin(
             @Parameter(description = "로그인 제공자 (naver 또는 kakao)") @PathVariable String provider,
             @RequestBody Map<String, Object> userInfo,
-            HttpSession session) {
+            HttpSession session,
+            HttpServletResponse response) { // ✅ 응답 헤더 추가
 
         logger.info("SNS 로그인 요청 - Provider: {}, Session ID: {}", provider, session.getId());
 
@@ -55,11 +57,16 @@ public class AuthController {
 
             if (!user.getProfileYn()) {
                 logger.info("프로필 입력 필요 - Social ID: {}", user.getSocialId());
+                response.addHeader("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None; Secure"); // ✅ 쿠키 설정
                 return ResponseEntity.status(201)
                         .body(new ApiResponseDTO<>(201, "신규가입, 프로필 입력필요", user));
             }
 
             logger.info("SNS 로그인 성공 - User: {}", user.getEmail());
+
+            // ✅ 로그인 성공 시 쿠키 설정 (세션 ID 전달)
+            response.addHeader("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None; Secure");
+
             return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그인 성공", user));
 
         } catch (IllegalArgumentException e) {
@@ -87,14 +94,20 @@ public class AuthController {
     @Operation(summary = "로그아웃", description = "현재 로그인된 사용자를 로그아웃")
     @ApiResponse(responseCode = "200", description = "로그아웃 완료")
     @ApiResponse(responseCode = "401", description = "이미 로그아웃된 상태")
-    public ApiResponseDTO<String> logout(HttpSession session) {
+    public ResponseEntity<ApiResponseDTO<String>> logout(HttpSession session, HttpServletResponse response) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
 
         if (sessionUser == null) {
-            return new ApiResponseDTO<>(401, "이미 로그아웃된 상태입니다.", null);
+            return ResponseEntity.status(401)
+                    .body(new ApiResponseDTO<>(401, "이미 로그아웃된 상태입니다.", null));
         }
 
+        // 세션 삭제
         sessionManager.removeSession(session.getId());
-        return new ApiResponseDTO<>(200, "로그아웃 완료", "success");
+
+        // ✅ 쿠키 삭제
+        response.addHeader("Set-Cookie", "JSESSIONID=; Path=/; HttpOnly; SameSite=None; Secure; Max-Age=0");
+
+        return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그아웃 완료", "success"));
     }
 }

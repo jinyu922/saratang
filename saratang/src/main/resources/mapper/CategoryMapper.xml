@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swyp.saratang.mapper.CategoryMapper">
+
+    <!-- 유저 선호 카테고리 id 리스트 조회 -->
+    <select id="getCategoryList"  resultType="int">
+    	SELECT 
+	    	category_id
+		FROM user_categories
+		WHERE user_id=#{userId}
+    </select>
+
+	
+	<!-- 유저 선호 카테고리 등록   -->
+	<insert id="saveCategory">
+        INSERT INTO user_categories
+	        (user_id,category_id)
+        VALUES
+			(#{userId}, #{categoryId})
+	</insert>
+	
+	<!-- 유저 선호 카테고리 삭제 -->
+    <delete id="deleteCategoryByUserId">
+        DELETE FROM user_categories
+        WHERE user_id=#{userId}
+    </delete>
+
+	
+
+</mapper>
