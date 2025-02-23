@@ -706,3 +706,21 @@ org.springframework.web.client.HttpClientErrorException$BadRequest: 400 : "{"err
 [2025-02-24 01:09:07] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
 [2025-02-24 01:09:07] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
 [2025-02-24 01:09:07] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 01:23:02] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 01:23:02] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 01:23:02] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 01:23:02] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 01:23:02] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 01:23:02] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 01:23:03] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 01:23:03] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 01:23:03] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
