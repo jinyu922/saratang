@@ -18,6 +18,6 @@ public class PointController {
 	@PostMapping("/point")
 	public ApiResponseDTO<?> addPoint(PointDTO pointDTO) {
 		pointService.addPoint(pointDTO);
-		return new ApiResponseDTO<>(200, "포인트 추가 성공", null);
+		return new ApiResponseDTO<>(200, "포인트추가 성공", null);
 	}
 }
