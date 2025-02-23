@@ -2156,3 +2156,24 @@ java.lang.Error: Unresolved compilation problem:
  java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:172)
 [2025-02-22 21:26:59] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
 [2025-02-22 21:26:59] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-23 21:12:05] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_431 on GramPro17JH with PID 28860 (C:\Users\user\Desktop\sara0214\saratang\saratang\target\classes started by user in C:\Users\user\Desktop\sara0214\saratang\saratang)
+[2025-02-23 21:12:05] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-23 21:12:05] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-23 21:12:06] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-23 21:12:06] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-23 21:12:06] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-23 21:12:06] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-23 21:12:06] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-23 21:12:06] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1258 ms
+[2025-02-23 21:12:09] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-23 21:12:09] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-23 21:12:09] [INFO] [SaratangApplication] - Started SaratangApplication in 4.277 seconds (JVM running for 5.304)
+[2025-02-23 21:12:45] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-23 21:12:45] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-23 21:12:45] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-23 21:15:34] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-23 21:15:34] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-23 21:15:34] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-23 21:15:34] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-23 21:15:34] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-23 21:15:34] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
