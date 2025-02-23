@@ -1,0 +1,708 @@
+[2025-02-24 00:11:31] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:11:31] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:11:31] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:11:31] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:11:31] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 00:11:31] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:11:31] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:11:31] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 00:11:31] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 00:11:36] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 16360 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:11:36] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:11:36] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:11:37] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:11:37] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:11:37] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:11:37] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:11:37] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:11:37] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1196 ms
+[2025-02-24 00:11:39] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:11:39] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:11:39] [INFO] [SaratangApplication] - Started SaratangApplication in 3.621 seconds (JVM running for 4.673)
+[2025-02-24 00:12:07] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:12:07] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:12:07] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-24 00:12:07] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://223.130.162.183:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:12:07] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://223.130.162.183:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:12:23] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:12:24] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:12:24] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:12:24] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:12:24] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:12:24] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:12:26] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 16148 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:12:26] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:12:26] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:12:27] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:12:27] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:12:27] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:12:27] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:12:27] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:12:27] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1258 ms
+[2025-02-24 00:12:29] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:12:29] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:12:29] [INFO] [SaratangApplication] - Started SaratangApplication in 3.822 seconds (JVM running for 4.924)
+[2025-02-24 00:12:39] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:12:39] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:12:39] [INFO] [DispatcherServlet] - Completed initialization in 3 ms
+[2025-02-24 00:12:39] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:12:39] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:12:39] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[wZsLFWQnseOvYI3ZH_hOLYJF4VHU6W4yyGMN1RW2xh0uOYJTLQmKrwAAAAQKPXNNAAABlTNeGSSkJA3lYdtGWQ], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:12:40] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: ToJJibte9y86apq9CXJiuH0CkB661zVVAAAAAQorDR8AAAGVM14apcYNwJ_muSR4
+[2025-02-24 00:12:40] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 00:12:40] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 00:12:40] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:12:40] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:12:41] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:12:41] [INFO] [AuthController] - kakao 로그인 성공 - 프론트엔드로 리디렉트: http://http://localhost:8080/login/oauth/success?id=36&nickname=김진유&email=wls92fdsffdsfsd2@naver.com&socialId=3919432960&provider=kakao&role=regular&profileYn=true
+[2025-02-24 00:12:41] [WARN] [Http11Processor] - The HTTP response header [Location] with value [http://http://localhost:8080/login/oauth/success?id=36&nickname=김진유&email=wls92fdsffdsfsd2@naver.com&socialId=3919432960&provider=kakao&role=regular&profileYn=true] has been removed from the response because it is invalid
+java.lang.IllegalArgumentException: The Unicode character [김] at code point [44,608] cannot be encoded as it is outside the permitted range of 0 to 255
+	at org.apache.tomcat.util.buf.MessageBytes.toBytesSimple(MessageBytes.java:290) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.buf.MessageBytes.toBytes(MessageBytes.java:261) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11OutputBuffer.write(Http11OutputBuffer.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11OutputBuffer.sendHeader(Http11OutputBuffer.java:368) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.prepareResponse(Http11Processor.java:1048) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessor.action(AbstractProcessor.java:374) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.Response.action(Response.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.Response.sendHeaders(Response.java:434) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:291) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:250) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.Response.finishResponse(Response.java:436) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:372) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.lang.Thread.run(Thread.java:750) ~[?:1.8.0_401]
+[2025-02-24 00:12:54] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:12:54] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:12:54] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:12:54] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:12:54] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 00:12:54] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:12:54] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:12:54] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 00:12:54] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 00:12:56] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 1600 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:12:56] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:12:56] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:12:58] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:12:58] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:12:58] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:12:58] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:12:58] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:12:58] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1199 ms
+[2025-02-24 00:13:00] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:13:00] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:13:00] [INFO] [SaratangApplication] - Started SaratangApplication in 3.748 seconds (JVM running for 4.859)
+[2025-02-24 00:13:16] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:13:16] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:13:16] [INFO] [DispatcherServlet] - Completed initialization in 16 ms
+[2025-02-24 00:13:16] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:13:16] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:13:16] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[MSj4YhflpXAsKvHrQusG3cPZxrcu1sERTKYeeFufwMz5BqErE25iBgAAAAQKPXMYAAABlTNeqQwSmUam6ZdnFg], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:13:16] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: vZJKrkyu2K0JMpT4ZVw7TvsNkul7jsgbAAAAAQorDNQAAAGVM16pz8YNwJ_muSR4
+[2025-02-24 00:13:16] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 00:13:17] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 00:13:17] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:13:17] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:13:17] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:13:17] [INFO] [AuthController] - kakao 로그인 성공 - 프론트엔드로 리디렉트: http://http://localhost:8080/login/oauth/success?id=36&nickname=김진유&email=wls92fdsffdsfsd2@naver.com&socialId=3919432960&provider=kakao&role=regular&profileYn=true
+[2025-02-24 00:13:17] [WARN] [Http11Processor] - The HTTP response header [Location] with value [http://http://localhost:8080/login/oauth/success?id=36&nickname=김진유&email=wls92fdsffdsfsd2@naver.com&socialId=3919432960&provider=kakao&role=regular&profileYn=true] has been removed from the response because it is invalid
+java.lang.IllegalArgumentException: The Unicode character [김] at code point [44,608] cannot be encoded as it is outside the permitted range of 0 to 255
+	at org.apache.tomcat.util.buf.MessageBytes.toBytesSimple(MessageBytes.java:290) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.buf.MessageBytes.toBytes(MessageBytes.java:261) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11OutputBuffer.write(Http11OutputBuffer.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11OutputBuffer.sendHeader(Http11OutputBuffer.java:368) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.prepareResponse(Http11Processor.java:1048) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessor.action(AbstractProcessor.java:374) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.Response.action(Response.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.Response.sendHeaders(Response.java:434) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:291) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:250) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.Response.finishResponse(Response.java:436) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:372) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.lang.Thread.run(Thread.java:750) ~[?:1.8.0_401]
+[2025-02-24 00:17:23] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:17:23] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:17:23] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:17:23] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:17:23] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 00:17:23] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:17:23] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:17:23] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 00:17:23] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 00:17:25] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 21552 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:17:25] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:17:25] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:17:27] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:17:27] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:17:27] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:17:27] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:17:27] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:17:27] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1262 ms
+[2025-02-24 00:17:29] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:17:29] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:17:29] [INFO] [SaratangApplication] - Started SaratangApplication in 3.649 seconds (JVM running for 4.712)
+[2025-02-24 00:17:42] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:17:42] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:17:42] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-24 00:17:42] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:17:43] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:17:43] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[5xudxSIyedpqKQFs72-5AaUEfoj7RuqcKz6i-vjhdPDkKY_Uj3mfZwAAAAQKPXOaAAABlTNiu-O37mS5Kc-sjw], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:17:43] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: U3m_XGlDQwswgcr5MXGakRMRt7vDnXGtAAAAAQoqJZEAAAGVM2K8p8YNwJ_muSR4
+[2025-02-24 00:17:43] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 00:17:44] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 00:17:44] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:17:44] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:17:44] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:19:43] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:19:44] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:19:44] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[3HEzo589IbuOo1SfkCG5iJF-bHSCNjNiVhpgpfO-gphL2zIBud40mQAAAAQKKiWRAAABlTNklDnE017PSiBv1Q], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:19:44] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: KU9DkHij0YR6J8z1rrMqOFCOWTHGi9zBAAAAAQoqJQ4AAAGVM2SUpsYNwJ_muSR4
+[2025-02-24 00:19:44] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:19:44] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:19:44] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:19:51] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:19:51] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:19:51] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:19:51] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:19:51] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 00:19:51] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:19:51] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:19:51] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 00:19:51] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 00:19:53] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 16996 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:19:53] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:19:53] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:19:54] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:19:54] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:19:54] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:19:54] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:19:55] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:19:55] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1237 ms
+[2025-02-24 00:19:57] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:19:57] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:19:57] [INFO] [SaratangApplication] - Started SaratangApplication in 3.643 seconds (JVM running for 4.769)
+[2025-02-24 00:20:01] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:20:01] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:20:01] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-24 00:20:01] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:20:02] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:20:02] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[VM8--UXOIPawAXOsWFMDxZ5KMcOSG04shBqAOl9IqJdKjUwsFIoBZwAAAAQKKiWRAAABlTNk26khI_W2iNNaeg], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:20:03] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: bXEfB4w20MXFTI0LFg_swYixQUu3PiFdAAAAAQorDSAAAAGVM2TcpMYNwJ_muSR4
+[2025-02-24 00:20:03] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 00:20:03] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 00:20:03] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:20:03] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:20:03] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:20:07] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[VM8--UXOIPawAXOsWFMDxZ5KMcOSG04shBqAOl9IqJdKjUwsFIoBZwAAAAQKKiWRAAABlTNk26khI_W2iNNaeg], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:20:07] [ERROR] [AuthServiceImpl] - OAuth Access Token 요청 중 오류 발생: 400 : "{"error":"invalid_grant","error_description":"authorization code not found for code=VM8--UXOIPawAXOsWFMDxZ5KMcOSG04shBqAOl9IqJdKjUwsFIoBZwAAAAQKKiWRAAABlTNk26khI_W2iNNaeg","error_code":"KOE320"}"
+org.springframework.web.client.HttpClientErrorException$BadRequest: 400 : "{"error":"invalid_grant","error_description":"authorization code not found for code=VM8--UXOIPawAXOsWFMDxZ5KMcOSG04shBqAOl9IqJdKjUwsFIoBZwAAAAQKKiWRAAABlTNk26khI_W2iNNaeg","error_code":"KOE320"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:101) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:168) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:122) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:825) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:783) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:717) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:608) ~[spring-web-5.3.26.jar:5.3.26]
+	at com.swyp.saratang.service.AuthServiceImpl.getAccessToken(AuthServiceImpl.java:93) ~[classes/:?]
+	at com.swyp.saratang.service.AuthServiceImpl.processOAuthLogin(AuthServiceImpl.java:72) ~[classes/:?]
+	at com.swyp.saratang.controller.AuthController.handleLoginCallback(AuthController.java:113) ~[classes/:?]
+	at com.swyp.saratang.controller.AuthController.kakaoLoginCallback(AuthController.java:82) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_401]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_401]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_401]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_401]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.lang.Thread.run(Thread.java:750) ~[?:1.8.0_401]
+[2025-02-24 00:20:14] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:20:14] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:20:15] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[VOtkgT2ngEyfcOIuSmoVRJ0U_SgNi5Ex4vpb2vTAtckKhOvUGnzpzQAAAAQKKiWRAAABlTNlDCvRDLJpR7eCqA], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:20:15] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: i43CtTyH72aY876tZiQXvCZEV3Vr4LbPAAAAAQoqJVMAAAGVM2UMeMYNwJ_muSR4
+[2025-02-24 00:20:15] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:20:15] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:20:15] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:24:09] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:24:10] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:24:10] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:24:10] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:24:10] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 00:24:10] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:24:10] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:24:10] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 00:24:10] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 00:24:12] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 21176 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:24:12] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:24:12] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:24:13] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:24:13] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:24:13] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:24:13] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:24:13] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:24:13] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1396 ms
+[2025-02-24 00:24:15] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:24:15] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:24:15] [INFO] [SaratangApplication] - Started SaratangApplication in 3.972 seconds (JVM running for 5.059)
+[2025-02-24 00:24:55] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:24:55] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:24:55] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-24 00:24:55] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:24:56] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:24:56] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[t06mZbOxvgaFtLuqsJ7S40Ux6RgmT07UAJOrSAqP8SajUGgJJuvzKgAAAAQKPXNNAAABlTNpVk8Bl6J2VXah6g], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:24:56] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: BWSBJCEVtia63XAeYBrEcNhRiSu3WG_xAAAAAQo9c00AAAGVM2lXG8YNwJ_muSR4
+[2025-02-24 00:24:56] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 00:24:56] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 00:24:56] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:24:56] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:24:56] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:35:42] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[t06mZbOxvgaFtLuqsJ7S40Ux6RgmT07UAJOrSAqP8SajUGgJJuvzKgAAAAQKPXNNAAABlTNpVk8Bl6J2VXah6g], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:35:42] [ERROR] [AuthServiceImpl] - OAuth Access Token 요청 중 오류 발생: 400 : "{"error":"invalid_grant","error_description":"authorization code not found for code=t06mZbOxvgaFtLuqsJ7S40Ux6RgmT07UAJOrSAqP8SajUGgJJuvzKgAAAAQKPXNNAAABlTNpVk8Bl6J2VXah6g","error_code":"KOE320"}"
+org.springframework.web.client.HttpClientErrorException$BadRequest: 400 : "{"error":"invalid_grant","error_description":"authorization code not found for code=t06mZbOxvgaFtLuqsJ7S40Ux6RgmT07UAJOrSAqP8SajUGgJJuvzKgAAAAQKPXNNAAABlTNpVk8Bl6J2VXah6g","error_code":"KOE320"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:101) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:168) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:122) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:825) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:783) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:717) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:608) ~[spring-web-5.3.26.jar:5.3.26]
+	at com.swyp.saratang.service.AuthServiceImpl.getAccessToken(AuthServiceImpl.java:93) ~[classes/:?]
+	at com.swyp.saratang.service.AuthServiceImpl.processOAuthLogin(AuthServiceImpl.java:72) ~[classes/:?]
+	at com.swyp.saratang.controller.AuthController.handleLoginCallback(AuthController.java:113) ~[classes/:?]
+	at com.swyp.saratang.controller.AuthController.kakaoLoginCallback(AuthController.java:82) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_401]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_401]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_401]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_401]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.lang.Thread.run(Thread.java:750) ~[?:1.8.0_401]
+[2025-02-24 00:42:21] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:42:22] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:42:22] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:42:22] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:42:22] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 00:42:22] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:42:22] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:42:22] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 00:42:22] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 00:42:24] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 10996 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:42:24] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:42:24] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:42:25] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:42:25] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:42:25] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:42:25] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:42:26] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:42:26] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1460 ms
+[2025-02-24 00:42:28] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:42:28] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:42:28] [INFO] [SaratangApplication] - Started SaratangApplication in 4.435 seconds (JVM running for 5.536)
+[2025-02-24 00:42:40] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:42:40] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:42:40] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-24 00:42:40] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:42:40] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:42:41] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[5QWp4fDUIlk-hJDtkvV-lw2V47-Xs6uNqosrOF54E0AXWsBfyOcWLAAAAAQKPCQfAAABlTN5ld4icpf3YNJZ6g], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:42:41] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: 8Aw4Yz4WMHQ9DSe_bcJWygs1mAhV8KICAAAAAQorDNQAAAGVM3mXXMYNwJ_muSR4
+[2025-02-24 00:42:41] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 00:42:42] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 00:42:42] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:42:42] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:42:42] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:51:27] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:51:28] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:51:28] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:51:28] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:51:28] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 00:51:28] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:51:28] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:51:28] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 00:51:29] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 00:51:51] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 19968 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:51:51] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:51:51] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:51:52] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:51:52] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:51:52] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:51:52] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:51:52] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:51:52] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1214 ms
+[2025-02-24 00:51:54] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:51:54] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:51:54] [INFO] [SaratangApplication] - Started SaratangApplication in 3.685 seconds (JVM running for 4.737)
+[2025-02-24 00:52:19] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:52:19] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:52:19] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-24 00:52:19] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:52:20] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:52:20] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[JbmPnNBT_4AvCCsoujyJgM7LpuO3YUsDW7uVJ7pJmAv4goxB31ikcgAAAAQKPCSbAAABlTOCbIP_A_o_BVb6-Q], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:52:20] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: RvA1Cjiw49SIBJmXf4FW6qdanZKO5UGBAAAAAQopyWAAAAGVM4JtR8YNwJ_muSR4
+[2025-02-24 00:52:20] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 00:52:20] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 00:52:20] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:52:20] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:52:20] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:52:43] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:52:43] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:52:43] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:54:06] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=af038dc9-dcb6-4612-aeb6-e5784457a41c&auth_type=reprompt
+[2025-02-24 00:54:07] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=e1d92c0c-1c90-4c40-a648-ab0eaaf0ccd0&auth_type=reprompt
+[2025-02-24 00:54:12] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[R5qQ8XjVqw2doZAb2C], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-24 00:54:12] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAANmE2P3Q8x2qibf4UbjDtj1KZiZOBwcJtUsU1fJhzc-NN0bvfk70uvsqoQFK8Ub-fTvwAH0xTK-HPRMuLL5kpYKo
+[2025-02-24 00:54:12] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:54:12] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-24 00:54:12] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:55:24] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:55:25] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:55:25] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:55:25] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:55:25] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 00:55:25] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:55:25] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:55:25] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 00:55:25] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 00:55:27] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 1240 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:55:27] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:55:27] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:55:28] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:55:28] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:55:28] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:55:28] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:55:28] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:55:28] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1236 ms
+[2025-02-24 00:55:30] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:55:30] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:55:30] [INFO] [SaratangApplication] - Started SaratangApplication in 3.763 seconds (JVM running for 4.844)
+[2025-02-24 00:55:58] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:55:58] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:55:58] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-24 00:55:58] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=c610395c-33ad-449e-98cc-60d2acdaf1ca&auth_type=reprompt
+[2025-02-24 00:55:59] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=b33ad129-92af-4c3e-b44d-7b140ffea944&auth_type=reprompt
+[2025-02-24 00:56:02] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[bYzC6Al0YYVR0Pve1x], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-24 00:56:02] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAANmE2P3Q8x2qibf4UbjDtj1KZiZOBwcJtUsU1fJhzc-NN0bvfk70uvsqoQFK8Ub-fTvwAH0xTK-HPRMuLL5kpYKo
+[2025-02-24 00:56:02] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 00:56:03] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 00:56:03] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:56:03] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-24 00:56:03] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:56:30] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:56:31] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 00:56:31] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[ezfLXt2-A3In0dWtgOlUZ00mCLIV0tQwmlPIMpEJcABUbDQ0KqLb3AAAAAQKPXRoAAABlTOGQKH_A_o_BVb6-Q], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 00:56:31] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: NXsylSJqIbX1FMTKE1rKcvdoRBwLiIPZAAAAAQopyWAAAAGVM4ZA_8YNwJ_muSR4
+[2025-02-24 00:56:31] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:56:31] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 00:56:31] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:57:13] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=3ae5cb82-2fab-45b3-a991-9f278f82a430&auth_type=reprompt
+[2025-02-24 00:57:14] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=f65f243d-76bf-4300-8dbd-d9f5a17a6d1f&auth_type=reprompt
+[2025-02-24 00:57:17] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[BulNhSfmL2XIP5GBW4], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-24 00:57:17] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAANmE2P3Q8x2qibf4UbjDtj1KZiZOBwcJtUsU1fJhzc-NN0bvfk70uvsqoQFK8Ub-fTvwAH0xTK-HPRMuLL5kpYKo
+[2025-02-24 00:57:18] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:57:18] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-24 00:57:18] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 00:57:54] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=0d1bd672-5287-49cd-871a-8682114a2d9b&auth_type=reprompt
+[2025-02-24 00:57:55] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=f1903600-fc15-4270-8b80-8ada4f072e77&auth_type=reprompt
+[2025-02-24 00:57:58] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[mWRdnM1T5YHcI89pNe], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-24 00:57:58] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAANmE2P3Q8x2qibf4UbjDtj1KZiZOBwcJtUsU1fJhzc-NN0bvfk70uvsqoQFK8Ub-fTvwAH0xTK-HPRMuLL5kpYKo
+[2025-02-24 00:57:58] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:57:58] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-24 00:57:58] [DEBUG] [findBySocialId] - <==      Total: 0
+[2025-02-24 00:57:58] [DEBUG] [findByEmail] - ==>  Preparing: SELECT * FROM users WHERE email = ? and is_active=true
+[2025-02-24 00:57:58] [DEBUG] [findByEmail] - ==> Parameters: wls922@naver.com(String)
+[2025-02-24 00:57:58] [DEBUG] [findByEmail] - <==      Total: 1
+[2025-02-24 00:58:22] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 00:58:22] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:58:22] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 00:58:22] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 00:58:22] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 00:58:22] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:58:22] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:58:22] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 00:58:23] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 00:58:25] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 13376 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 00:58:25] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 00:58:25] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 00:58:26] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 00:58:26] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:58:26] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 00:58:26] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 00:58:26] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 00:58:26] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1253 ms
+[2025-02-24 00:58:28] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 00:58:28] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 00:58:28] [INFO] [SaratangApplication] - Started SaratangApplication in 3.928 seconds (JVM running for 5.126)
+[2025-02-24 00:58:35] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 00:58:35] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 00:58:35] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-24 00:58:35] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=4bda3158-b87b-48a5-ae7a-0bba0bbcade5&auth_type=reprompt
+[2025-02-24 00:58:35] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=8e0fe25f-0e71-4456-8083-47fe15af6387&auth_type=reprompt
+[2025-02-24 00:58:38] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[GZRNiFMOzJxtu7kDFA], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-24 00:58:38] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAANmE2P3Q8x2qibf4UbjDtj1KZiZOBwcJtUsU1fJhzc-NN0bvfk70uvsqoQFK8Ub-fTvwAH0xTK-HPRMuLL5kpYKo
+[2025-02-24 00:58:38] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 00:58:38] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 00:58:38] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:58:38] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-24 00:58:38] [DEBUG] [findBySocialId] - <==      Total: 0
+[2025-02-24 00:58:38] [DEBUG] [findByEmail] - ==>  Preparing: SELECT * FROM users WHERE email = ? and is_active=true
+[2025-02-24 00:58:38] [DEBUG] [findByEmail] - ==> Parameters: wls922@naver.com(String)
+[2025-02-24 00:58:38] [DEBUG] [findByEmail] - <==      Total: 1
+[2025-02-24 00:59:24] [WARN] [AuthController] - 잘못된 provider 요청: naver4
+[2025-02-24 00:59:27] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=d1a2777a-7663-4cf4-979a-8401ad56ad29&auth_type=reprompt
+[2025-02-24 00:59:30] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[yjDEyuwGxCxEliYGr3], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-24 00:59:30] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAANmE2P3Q8x2qibf4UbjDtj1KZiZOBwcJtUsU1fJhzc-NN0bvfk70uvsqoQFK8Ub-fTvwAH0xTK-HPRMuLL5kpYKo
+[2025-02-24 00:59:30] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 00:59:30] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-24 00:59:30] [DEBUG] [findBySocialId] - <==      Total: 0
+[2025-02-24 00:59:30] [DEBUG] [findByEmail] - ==>  Preparing: SELECT * FROM users WHERE email = ? and is_active=true
+[2025-02-24 00:59:30] [DEBUG] [findByEmail] - ==> Parameters: wls922@naver.com(String)
+[2025-02-24 00:59:30] [DEBUG] [findByEmail] - <==      Total: 1
+[2025-02-24 01:07:40] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 01:07:40] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 01:07:40] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 01:07:40] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 01:07:40] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 01:07:40] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 01:07:40] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 01:07:40] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 01:07:40] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 01:07:43] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 9840 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 01:07:43] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 01:07:43] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 01:07:44] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 01:07:44] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 01:07:44] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 01:07:44] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 01:07:44] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 01:07:44] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1240 ms
+[2025-02-24 01:07:46] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 01:07:46] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 01:07:46] [INFO] [SaratangApplication] - Started SaratangApplication in 3.887 seconds (JVM running for 5.09)
+[2025-02-24 01:08:01] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 01:08:01] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 01:08:01] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-24 01:08:01] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=b4394d51-eb91-44ef-86bc-8af56cc90ab0&auth_type=reprompt
+[2025-02-24 01:08:01] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=eefc44b1-48b1-486e-80a9-7d7a7dde6b59&auth_type=reprompt
+[2025-02-24 01:08:03] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[GlskeLXZWn4dQekIrh], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-24 01:08:04] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAANmE2P3Q8x2qibf4UbjDtj1KZiZOBwcJtUsU1fJhzc-NN0bvfk70uvsqoQFK8Ub-fTvwAH0xTK-HPRMuLL5kpYKo
+[2025-02-24 01:08:04] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 01:08:04] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 01:08:04] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 01:08:04] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-24 01:08:04] [DEBUG] [findBySocialId] - <==      Total: 0
+[2025-02-24 01:08:04] [DEBUG] [findByEmail] - ==>  Preparing: SELECT * FROM users WHERE email = ? and is_active=true
+[2025-02-24 01:08:04] [DEBUG] [findByEmail] - ==> Parameters: wls922@naver.com(String)
+[2025-02-24 01:08:04] [DEBUG] [findByEmail] - <==      Total: 1
+[2025-02-24 01:08:21] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 01:08:21] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 01:08:21] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[JGdQGcmCvgI3IryHOfcckKYXmEb1-c2J5jUOzMMdr7CCusr9D9l4-QAAAAQKPXLrAAABlTORF6CQgW3aWXatGQ], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 01:08:21] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: vcdZkZr0kziXTlKtykmxqor1fj3dSkLeAAAAAQo9cpcAAAGVM5EX_MYNwJ_muSR4
+[2025-02-24 01:08:21] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 01:08:21] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 01:08:21] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 01:08:39] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 01:08:39] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: kakao, Redirecting to: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dba231231832a414beeb0b61c0fe45d6&redirect_uri=http://localhost:8080/auth/callback/kakao&prompt=consent
+[2025-02-24 01:08:40] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://kauth.kakao.com/oauth/token, Params: {grant_type=[authorization_code], client_id=[dba231231832a414beeb0b61c0fe45d6], client_secret=[ì¹´ì¹´ì¤ì± Client Secret], code=[omNN3O4DD4UnC33i423VDztQlcpkbFKa-USAVVc2whkMxOiiM3agAgAAAAQKPXLrAAABlTORX_tUdd9ffL_GXA], redirect_uri=[http://localhost:8080/auth/callback/kakao]}
+[2025-02-24 01:08:40] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: feQGf75JpK41sBm6O6kwXnNZ4IB_sxbeAAAAAQo9c5sAAAGVM5FgSsYNwJ_muSR4
+[2025-02-24 01:08:40] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 01:08:40] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 01:08:40] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 01:09:07] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-24 01:09:07] [DEBUG] [findBySocialId] - ==> Parameters: 3919432960(String), kakao(String)
+[2025-02-24 01:09:07] [DEBUG] [findBySocialId] - <==      Total: 1
