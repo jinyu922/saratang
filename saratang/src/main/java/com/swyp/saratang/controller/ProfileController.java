@@ -15,7 +15,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import com.swyp.saratang.model.ApiResponseDTO;
+import com.swyp.saratang.model.BoardDTO;
 import com.swyp.saratang.model.UserDTO;
+import com.swyp.saratang.service.BoardService;
 import com.swyp.saratang.service.UserService;
 import com.swyp.saratang.session.SessionManager;
 
@@ -26,6 +28,10 @@ public class ProfileController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private BoardService boardService;
+    
     
 
     @Autowired
@@ -81,6 +87,8 @@ public class ProfileController {
         UserDTO user = userService.getUserBySocialId(sessionUser.getSocialId(), sessionUser.getAuthProvider());
         return new ApiResponseDTO<>(200, "프로필 조회 성공", user);
     }
+    
+   
 
     /**
      * 프로필 수정 API

@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -35,58 +36,110 @@ public class AuthController {
     @Autowired
     private SessionManager sessionManager;
     
-    
+    /**
+     * ✅ 프론트엔드에서 API 하나만 호출하면, 백엔드에서 로그인 페이지로 자동 이동
+     */
+    @GetMapping("/login")
+    @Operation(summary = "OAuth 로그인 요청", description = "네이버 또는 카카오 로그인 페이지로 리디렉트")
+    @ApiResponse(responseCode = "302", description = "로그인 페이지로 리디렉트")
+    @ApiResponse(responseCode = "400", description = "잘못된 provider 요청")
+    @ApiResponse(responseCode = "500", description = "서버 오류 발생")
+    public ResponseEntity<ApiResponseDTO<String>> redirectToOAuthProvider(
+            @RequestParam("provider") String provider,
+            HttpServletResponse response) {
 
-    @PostMapping("/{provider}/login")
-    @Operation(summary = "SNS 로그인", description = "네이버 또는 카카오로 로그인 provider 값은 naver or kakao")
-    @ApiResponse(responseCode = "200", description = "로그인 성공")
-    @ApiResponse(responseCode = "201", description = "신규가입, 프로필 입력필요")
-    @ApiResponse(responseCode = "400", description = "이미 존재하는 이메일")
-    @ApiResponse(responseCode = "410", description = "토큰 요청 오류")
-    @ApiResponse(responseCode = "500", description = "서버 오류")
-    public ResponseEntity<ApiResponseDTO<UserDTO>> snsLogin(
-            @Parameter(description = "로그인 제공자 (naver 또는 kakao)") @PathVariable String provider,
-            @RequestBody Map<String, Object> userInfo,
-            HttpSession session,
-            HttpServletResponse response) { // ✅ 응답 헤더 추가
-
-        logger.info("SNS 로그인 요청 - Provider: {}, Session ID: {}", provider, session.getId());
+        // ✅ provider 값 검증
+        if (!"naver".equals(provider) && !"kakao".equals(provider)) {
+            logger.warn("잘못된 provider 요청: {}", provider);
+            return ResponseEntity.status(400)
+                    .body(new ApiResponseDTO<>(400, "지원되지 않는 provider 값입니다. (naver 또는 kakao만 허용)", null));
+        }
 
         try {
-            UserDTO user = authService.snsLogin(provider, userInfo, session.getId());
+            // ✅ OAuth 로그인 URL 생성
+            String authUrl = authService.getAuthUrl(provider);
+            logger.info("OAuth 로그인 요청 - Provider: {}, Redirecting to: {}", provider, authUrl);
 
-            if (!user.getProfileYn()) {
-                logger.info("프로필 입력 필요 - Social ID: {}", user.getSocialId());
-                response.addHeader("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None; Secure"); // ✅ 쿠키 설정
-                return ResponseEntity.status(201)
-                        .body(new ApiResponseDTO<>(201, "신규가입, 프로필 입력필요", user));
-            }
-
-            logger.info("SNS 로그인 성공 - User: {}", user.getEmail());
-
-            // ✅ 로그인 성공 시 쿠키 설정 (세션 ID 전달)
-            response.addHeader("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None; Secure");
-
-            return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그인 성공", user));
-
-        } catch (IllegalArgumentException e) {
-            logger.warn("이미 존재하는 이메일: {}", e.getMessage());
-            return ResponseEntity.status(400)
-                    .body(new ApiResponseDTO<>(400, "이미 존재하는 이메일입니다.", null));
-
-        } catch (RuntimeException e) {
-            logger.error("SNS 로그인 중 오류 발생: {}", e.getMessage(), e);
-            return ResponseEntity.status(410)
-                    .body(new ApiResponseDTO<>(410, "토큰 요청 중 오류", null));
+            // ✅ 302 리디렉트 수행
+            response.sendRedirect(authUrl);
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그인 페이지로 리디렉트 완료", authUrl));
 
         } catch (Exception e) {
-            logger.error("서버 오류 발생: {}", e.getMessage(), e);
+            logger.error("OAuth 로그인 URL 생성 중 오류 발생: {}", e.getMessage(), e);
             return ResponseEntity.status(500)
-                    .body(new ApiResponseDTO<>(500, "서버 오류 발생", null));
+                    .body(new ApiResponseDTO<>(500, "OAuth 로그인 URL 생성 중 오류 발생", null));
         }
     }
 
+    
+    @GetMapping("/callback/kakao")
+    public void kakaoLoginCallback(
+            @RequestParam(value = "error", required = false) String error,
+            @RequestParam(value = "error_description", required = false) String errorDescription,
+            @RequestParam(value = "code", required = false) String code,
+            HttpSession session,
+            HttpServletResponse response) throws IOException {
+    	handleLoginCallback("kakao", error, errorDescription, code, session, response);
+    }
 
+    @GetMapping("/callback/naver")
+    public void naverLoginCallback(
+            @RequestParam(value = "error", required = false) String error,
+            @RequestParam(value = "error_description", required = false) String errorDescription,
+            @RequestParam(value = "code", required = false) String code,
+            HttpSession session,
+            HttpServletResponse response) throws IOException {
+    	handleLoginCallback("naver", error, errorDescription, code, session, response);
+    }
+
+
+    private ResponseEntity<Void> handleLoginCallback(
+            String provider, 
+            @RequestParam(value = "error", required = false) String error, 
+            @RequestParam(value = "error_description", required = false) String errorDescription,
+            @RequestParam(value = "code", required = false) String code, 
+            HttpSession session, 
+            HttpServletResponse response) throws IOException {
+
+        if ("access_denied".equals(error)) {
+            logger.warn("사용자가 {} 로그인 취소 - 이유: {}", provider, errorDescription);
+            response.sendRedirect("http://localhost:8080/login/oauth/success?error=access_denied&status=400");
+            return ResponseEntity.status(400).build();
+        }
+
+        try {
+            UserDTO user = authService.processOAuthLogin(provider, code, session.getId());
+
+            // ✅ 세션 유지
+            sessionManager.setSession(session.getId(), user);
+            response.addHeader("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None; Secure");
+
+           
+
+            // ✅ 프로필이 미완성된 경우 (201 응답)
+            if (!user.getProfileYn()) {
+                response.sendRedirect("http://localhost:8080/login/oauth/success?status=201");
+                return ResponseEntity.status(201).build();
+            }
+
+            // ✅ 로그인 성공 후 `/login/oauth/success` 리디렉트
+            response.sendRedirect("http://localhost:8080/login/oauth/success?status=200");
+            return ResponseEntity.ok().build();
+
+        } catch (IllegalArgumentException e) {
+        	// ✅ "이미 존재하는 이메일입니다." 예외 발생 시 402 응답 처리
+            if (e.getMessage().contains("이미 존재하는 이메일")) {
+                response.sendRedirect("http://localhost:8080/login/oauth/success?error=email_exists&status=402");
+                return ResponseEntity.status(402).build();
+            }
+            response.sendRedirect("http://localhost:8080/login/oauth/success?error=bad_request&status=400");
+            return ResponseEntity.status(400).build();
+        } catch (Exception e) {
+            response.sendRedirect("http://localhost:8080/login/oauth/success?error=server_error&status=500");
+            return ResponseEntity.status(500).build();
+        }
+    }
+    
     /**
      * 로그아웃 API
      */
@@ -105,7 +158,7 @@ public class AuthController {
         // 세션 삭제
         sessionManager.removeSession(session.getId());
 
-        // ✅ 쿠키 삭제
+        // 쿠키 삭제
         response.addHeader("Set-Cookie", "JSESSIONID=; Path=/; HttpOnly; SameSite=None; Secure; Max-Age=0");
 
         return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그아웃 완료", "success"));
