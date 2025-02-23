@@ -23,8 +23,8 @@ public class SafeUserDTO {//응답 시, UserDTO에서 패스워드같은 민감�
 	    private Date birthDate;
 	    private String gender; 
 	    private Date regDate;
-	    private Integer topSize;
-	    private Integer bottomSize;
+	    private String topSize;
+	    private String bottomSize;
 	    private Integer footSize;
 	    
 	    public SafeUserDTO(UserDTO user) {
