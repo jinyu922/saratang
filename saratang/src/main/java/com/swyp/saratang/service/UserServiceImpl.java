@@ -26,6 +26,11 @@ public class UserServiceImpl implements UserService {
         return userMapper.findBySocialId(socialId, provider);
     }
     
+    @Override 
+    public UserDTO getUserById(Integer id) {
+    	return userMapper.findById(id);
+    }
+    
     @Override
     public void newProfile(UserDTO user) {
         userMapper.newUserProfile(user);

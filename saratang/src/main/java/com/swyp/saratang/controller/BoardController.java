@@ -182,13 +182,13 @@ public class BoardController {
 		Pageable pageable = PageRequest.of(page, size);
 		return new ApiResponseDTO<>(200, "성공적으로 베스트정보를 상세 조회했습니다", boardService.getBest(userId, pageable, postType, period));
 	}
-	
+	@Operation(summary = "댓글저장", description = "어떤 유저가 어떤 post에 저장하는지 입력받습니다. id는 입력안해도됩니다")
 	@PostMapping("/comment")
 	public ApiResponseDTO<?> insertComment(@RequestBody CommentDTO commentDTO,HttpSession session){
 		boardService.insertComment(commentDTO);
 		return new ApiResponseDTO<>(200, "성공적으로 댓글 정보를 저장하였습니다.", null);
 	}
-	
+	@Operation(summary = "댓글조회", description = "게시글의 댓글 목록 최신순 조회, 페이징 지원합니다")
 	@GetMapping("/comment/{postId}")
 	public ApiResponseDTO<?> getCommentList(
 			@PathVariable int postId,

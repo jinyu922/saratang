@@ -14,6 +14,11 @@
     SELECT * FROM users WHERE email = #{email}
     and is_active=true
 	</select>
+	
+	<select id="findById" parameterType="int" resultType="com.swyp.saratang.model.UserDTO">
+	    SELECT * FROM users WHERE id = #{id}
+	</select>
+
 
     <!-- 정식 회원 등록 -->
 	<insert id="insertUser">

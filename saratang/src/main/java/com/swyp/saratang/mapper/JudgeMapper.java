@@ -1,5 +1,6 @@
 package com.swyp.saratang.mapper;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -11,7 +12,7 @@ public interface JudgeMapper {
 	
 	public int existJudgeByUserIdAndPostId(@Param("userId") int userId, @Param("postId") int postId);
 
-	public Map<String, Integer> countJudgementsByPostId(@Param("postId") int postId);
+	public Map<String, BigDecimal> countJudgementsByPostId(@Param("postId") int postId);
 	
 	public int countJudgementsByUserId(@Param("userId") int userId);
 }
