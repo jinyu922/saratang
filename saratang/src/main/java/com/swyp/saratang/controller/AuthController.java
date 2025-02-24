@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,10 @@ public class AuthController {
     @Autowired
     private SessionManager sessionManager;
     
+
+    @Value("${oauth.success.redirect.url}")
+    private String oauthSuccessRedirectUrl;
+    
     /**
      * ✅ 프론트엔드에서 API 하나만 호출하면, 백엔드에서 로그인 페이지로 자동 이동
      */
@@ -48,7 +53,6 @@ public class AuthController {
             @RequestParam("provider") String provider,
             HttpServletResponse response) {
 
-        // ✅ provider 값 검증
         if (!"naver".equals(provider) && !"kakao".equals(provider)) {
             logger.warn("잘못된 provider 요청: {}", provider);
             return ResponseEntity.status(400)
@@ -56,11 +60,9 @@ public class AuthController {
         }
 
         try {
-            // ✅ OAuth 로그인 URL 생성
             String authUrl = authService.getAuthUrl(provider);
             logger.info("OAuth 로그인 요청 - Provider: {}, Redirecting to: {}", provider, authUrl);
 
-            // ✅ 302 리디렉트 수행
             response.sendRedirect(authUrl);
             return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그인 페이지로 리디렉트 완료", authUrl));
 
@@ -71,7 +73,6 @@ public class AuthController {
         }
     }
 
-    
     @GetMapping("/callback/kakao")
     public void kakaoLoginCallback(
             @RequestParam(value = "error", required = false) String error,
@@ -79,7 +80,7 @@ public class AuthController {
             @RequestParam(value = "code", required = false) String code,
             HttpSession session,
             HttpServletResponse response) throws IOException {
-    	handleLoginCallback("kakao", error, errorDescription, code, session, response);
+        handleLoginCallback("kakao", error, errorDescription, code, session, response);
     }
 
     @GetMapping("/callback/naver")
@@ -89,21 +90,20 @@ public class AuthController {
             @RequestParam(value = "code", required = false) String code,
             HttpSession session,
             HttpServletResponse response) throws IOException {
-    	handleLoginCallback("naver", error, errorDescription, code, session, response);
+        handleLoginCallback("naver", error, errorDescription, code, session, response);
     }
 
-
     private ResponseEntity<Void> handleLoginCallback(
-            String provider, 
-            @RequestParam(value = "error", required = false) String error, 
+            String provider,
+            @RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "error_description", required = false) String errorDescription,
-            @RequestParam(value = "code", required = false) String code, 
-            HttpSession session, 
+            @RequestParam(value = "code", required = false) String code,
+            HttpSession session,
             HttpServletResponse response) throws IOException {
 
         if ("access_denied".equals(error)) {
             logger.warn("사용자가 {} 로그인 취소 - 이유: {}", provider, errorDescription);
-            response.sendRedirect("http://localhost:8080/login/oauth/success?error=access_denied&status=400");
+            response.sendRedirect(oauthSuccessRedirectUrl + "?error=access_denied&status=400");
             return ResponseEntity.status(400).build();
         }
 
@@ -114,28 +114,25 @@ public class AuthController {
             sessionManager.setSession(session.getId(), user);
             response.addHeader("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None; Secure");
 
-           
-
             // ✅ 프로필이 미완성된 경우 (201 응답)
             if (!user.getProfileYn()) {
-                response.sendRedirect("http://localhost:8080/login/oauth/success?status=201");
+                response.sendRedirect(oauthSuccessRedirectUrl + "?status=201");
                 return ResponseEntity.status(201).build();
             }
 
-            // ✅ 로그인 성공 후 `/login/oauth/success` 리디렉트
-            response.sendRedirect("http://localhost:8080/login/oauth/success?status=200");
+            // ✅ 로그인 성공 후 OAuth 성공 리디렉트 URL 사용
+            response.sendRedirect(oauthSuccessRedirectUrl + "?status=200");
             return ResponseEntity.ok().build();
 
         } catch (IllegalArgumentException e) {
-        	// ✅ "이미 존재하는 이메일입니다." 예외 발생 시 402 응답 처리
             if (e.getMessage().contains("이미 존재하는 이메일")) {
-                response.sendRedirect("http://localhost:8080/login/oauth/success?error=email_exists&status=402");
+                response.sendRedirect(oauthSuccessRedirectUrl + "?error=email_exists&status=402");
                 return ResponseEntity.status(402).build();
             }
-            response.sendRedirect("http://localhost:8080/login/oauth/success?error=bad_request&status=400");
+            response.sendRedirect(oauthSuccessRedirectUrl + "?error=bad_request&status=400");
             return ResponseEntity.status(400).build();
         } catch (Exception e) {
-            response.sendRedirect("http://localhost:8080/login/oauth/success?error=server_error&status=500");
+            response.sendRedirect(oauthSuccessRedirectUrl + "?error=server_error&status=500");
             return ResponseEntity.status(500).build();
         }
     }
