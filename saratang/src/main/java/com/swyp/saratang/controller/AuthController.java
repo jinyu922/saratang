@@ -42,7 +42,7 @@ public class AuthController {
     private String oauthSuccessRedirectUrl;
     
     /**
-     * ✅ 프론트엔드에서 API 하나만 호출하면, 백엔드에서 로그인 페이지로 자동 이동
+     * 프론트엔드에서 API 하나만 호출하면, 백엔드에서 로그인 페이지로 자동 이동
      */
     @GetMapping("/login")
     @Operation(summary = "OAuth 로그인 요청", description = "네이버 또는 카카오 로그인 페이지로 리디렉트")
@@ -110,17 +110,17 @@ public class AuthController {
         try {
             UserDTO user = authService.processOAuthLogin(provider, code, session.getId());
 
-            // ✅ 세션 유지
+            // 세션 유지
             sessionManager.setSession(session.getId(), user);
             response.addHeader("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None; Secure");
 
-            // ✅ 프로필이 미완성된 경우 (201 응답)
+            // 프로필이 미완성된 경우 (201 응답)
             if (!user.getProfileYn()) {
                 response.sendRedirect(oauthSuccessRedirectUrl + "?status=201");
                 return ResponseEntity.status(201).build();
             }
 
-            // ✅ 로그인 성공 후 OAuth 성공 리디렉트 URL 사용
+            // 로그인 성공 후 OAuth 성공 리디렉트 URL 사용
             response.sendRedirect(oauthSuccessRedirectUrl + "?status=200");
             return ResponseEntity.ok().build();
 

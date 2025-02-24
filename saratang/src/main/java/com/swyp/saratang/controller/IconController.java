@@ -45,7 +45,7 @@ public class IconController {
     public ResponseEntity<ApiResponseDTO<IconDTO>> getUserIcon(HttpSession session) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
 
-        // ✅ 세션이 없으면 401 Unauthorized 반환
+        // 세션이 없으면 401 Unauthorized 반환
         if (sessionUser == null) {
             logger.warn("❌ 세션이 만료됨: 아이콘 정보 제공 불가");
             return ResponseEntity.status(401)
@@ -55,7 +55,7 @@ public class IconController {
         Integer userId = sessionUser.getId();
         logger.info("📌 현재 로그인한 사용자의 아이콘 조회 요청: userId={}", userId);
 
-        // ✅ 사용자의 icon_id 조회
+        // 사용자의 icon_id 조회
         Integer iconId = iconService.getUserIconId(userId);
 
         if (iconId == null) {
@@ -64,7 +64,7 @@ public class IconController {
                     .body(new ApiResponseDTO<>(404, "사용자의 아이콘이 설정되지 않았습니다.", null));
         }
 
-        // ✅ 해당 아이콘 ID로 아이콘 정보 조회
+        // 해당 아이콘 ID로 아이콘 정보 조회
         IconDTO icon = iconService.getIconById(iconId);
 
         if (icon == null) {
@@ -73,7 +73,7 @@ public class IconController {
                     .body(new ApiResponseDTO<>(404, "해당 아이콘 정보가 존재하지 않습니다.", null));
         }
 
-        // ✅ 파일 URL 설정
+        // 파일 URL 설정
         icon.setFileUrl(serverBaseUrl + "/icons/" + icon.getFilename());
 
         logger.info("✅ 현재 로그인한 사용자의 아이콘 정보 반환: {}", icon);
@@ -85,14 +85,14 @@ public class IconController {
     public ResponseEntity<ApiResponseDTO<IconDTO>> getUserIconTest(@PathVariable Integer userId) {
         logger.info("📌 특정 사용자 아이콘 조회 요청 (테스트용): userId={}", userId);
 
-        // ✅ 유효하지 않은 userId 입력 시 400 Bad Request 반환
+        // 유효하지 않은 userId 입력 시 400 Bad Request 반환
         if (userId == null || userId <= 0) {
             logger.warn("❌ 잘못된 사용자 ID 입력: userId={}", userId);
             return ResponseEntity.badRequest()
                     .body(new ApiResponseDTO<>(400, "잘못된 사용자 ID입니다.", null));
         }
 
-        // ✅ 사용자의 icon_id 조회
+        // 사용자의 icon_id 조회
         Integer iconId = iconService.getUserIconId(userId);
 
         if (iconId == null) {
@@ -101,7 +101,7 @@ public class IconController {
                     .body(new ApiResponseDTO<>(404, "사용자의 아이콘이 설정되지 않았습니다.", null));
         }
 
-        // ✅ 해당 아이콘 ID로 아이콘 정보 조회
+        // 해당 아이콘 ID로 아이콘 정보 조회
         IconDTO icon = iconService.getIconById(iconId);
 
         if (icon == null) {
@@ -110,7 +110,7 @@ public class IconController {
                     .body(new ApiResponseDTO<>(404, "해당 아이콘 정보가 존재하지 않습니다.", null));
         }
 
-        // ✅ 파일 URL 설정
+        // 파일 URL 설정
         icon.setFileUrl(serverBaseUrl + "/icons/" + icon.getFilename());
 
         logger.info("✅ 특정 사용자의 아이콘 정보 반환 (테스트용): {}", icon);

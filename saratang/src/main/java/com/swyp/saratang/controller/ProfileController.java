@@ -124,7 +124,7 @@ public class ProfileController {
     @ApiResponse(responseCode = "200", description = "크레딧 조회 성공")
     @ApiResponse(responseCode = "401", description = "세션이 만료됨")
     public ApiResponseDTO<Map<String, Object>> getUserCredits(HttpSession session) {
-        // ✅ 세션에서 사용자 정보 가져오기
+        //  세션에서 사용자 정보 가져오기
         UserDTO sessionUser = sessionManager.getSession(session.getId());
 
         if (sessionUser == null) {
@@ -133,13 +133,13 @@ public class ProfileController {
 
         Integer userId = sessionUser.getId();
 
-        // ✅ 사용자 크레딧 내역 가져오기
+        //  사용자 크레딧 내역 가져오기
         List<PointDTO> creditHistory = userService.getCreditHistoryByUserId(userId);
 
-        // ✅ 사용자 총 크레딧 합계 조회
+        //  사용자 총 크레딧 합계 조회
         Integer totalCredits = userService.getTotalCreditsByUserId(userId);
 
-        // ✅ 응답 데이터 생성
+        //  응답 데이터 생성
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("totalCredits", totalCredits);
         responseData.put("creditHistory", creditHistory);
@@ -157,13 +157,13 @@ public class ProfileController {
             return new ApiResponseDTO<>(400, "유효하지 않은 요청: userId가 필요합니다.", null);
         }
 
-        // ✅ 사용자 크레딧 내역 가져오기
+        //  사용자 크레딧 내역 가져오기
         List<PointDTO> creditHistory = userService.getCreditHistoryByUserId(userId);
 
-        // ✅ 사용자 총 크레딧 합계 조회
+        //  사용자 총 크레딧 합계 조회
         Integer totalCredits = userService.getTotalCreditsByUserId(userId);
 
-        // ✅ 응답 데이터 생성
+        //  응답 데이터 생성
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("totalCredits", totalCredits);
         responseData.put("creditHistory", creditHistory);
@@ -188,34 +188,34 @@ public class ProfileController {
         Integer newIconId = requestData.get("iconId");
         boolean isIconChange = newIconId != null && newIconId > 0;
 
-        // ✅ 변경할 값이 없는 경우 예외 반환
+        //  변경할 값이 없는 경우 예외 반환
         if (!isIconChange) {
             return new ApiResponseDTO<>(400, "변경할 아이콘 값이 없습니다.", null);
         }
 
         Integer userId = sessionUser.getId();
 
-        // ✅ 현재 크레딧 조회 (credits 테이블에서 총합)
+        //  현재 크레딧 조회 (credits 테이블에서 총합)
         Integer currentCredits = userService.getTotalCreditsByUserId(userId);
 
-        // ✅ 크레딧 차감 금액
+        //  크레딧 차감 금액
         int changeCost = 3;
 
-        // ✅ 포인트 부족 시 예외 반환
+        //  포인트 부족 시 예외 반환
         if (currentCredits < changeCost) {
             return new ApiResponseDTO<>(402, "포인트가 부족합니다.", null);
         }
 
-        // ✅ 아이콘 변경 적용
+        //  아이콘 변경 적용
         sessionUser.setIcon(newIconId);
 
-        // ✅ DB 업데이트: 아이콘 변경
+        //  DB 업데이트: 아이콘 변경
         userService.changeUserIcon(userId, newIconId);
 
-        // ✅ DB 업데이트: 크레딧 내역 추가 (-3포인트)
+        //  DB 업데이트: 크레딧 내역 추가 (-3포인트)
         userService.insertCreditHistory(userId, "spend", -3, "아이콘 변경");
 
-        // ✅ 변경 후 새로운 크레딧 총합 조회
+        //  변경 후 새로운 크레딧 총합 조회
         Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
 
         // 응답 데이터 생성
@@ -223,7 +223,7 @@ public class ProfileController {
         responseData.put("updatedCredits", updatedCredits);
         responseData.put("iconId", newIconId);
 
-        // ✅ 세션 업데이트 (변경된 크레딧 포함)
+        //  세션 업데이트 (변경된 크레딧 포함)
         sessionUser.setCredits(updatedCredits);
         sessionManager.setSession(session.getId(), sessionUser);
 
@@ -246,38 +246,38 @@ public class ProfileController {
 
         boolean isIconChange = newIconId != null && newIconId > 0;
 
-        // ✅ 변경할 값이 없는 경우 예외 반환
+        //  변경할 값이 없는 경우 예외 반환
         if (!isIconChange) {
             return new ApiResponseDTO<>(400, "변경할 아이콘 값이 없습니다.", null);
         }
 
-        // ✅ 현재 사용자 정보 조회
+        //  현재 사용자 정보 조회
         UserDTO user = userService.getUserById(userId);
         if (user == null) {
             return new ApiResponseDTO<>(401, "유효하지 않은 사용자 ID입니다.", null);
         }
 
-        // ✅ 현재 크레딧 조회 (credits 테이블에서 총합)
+        //  현재 크레딧 조회 (credits 테이블에서 총합)
         Integer currentCredits = userService.getTotalCreditsByUserId(userId);
 
-        // ✅ 크레딧 차감 금액
+        //  크레딧 차감 금액
         int changeCost = 3;
 
-        // ✅ 포인트 부족 시 예외 반환
+        // 포인트 부족 시 예외 반환
         if (currentCredits < changeCost) {
             return new ApiResponseDTO<>(402, "포인트가 부족합니다.", null);
         }
 
-        // ✅ 아이콘 변경 적용
+        //  아이콘 변경 적용
         user.setIcon(newIconId);
 
-        // ✅ DB 업데이트: 아이콘 변경
+        //  DB 업데이트: 아이콘 변경
         userService.changeUserIcon(userId, newIconId);
 
-        // ✅ DB 업데이트: 크레딧 내역 추가 (-3포인트)
+        //  DB 업데이트: 크레딧 내역 추가 (-3포인트)
         userService.insertCreditHistory(userId, "spend", -3, "아이콘 변경 (테스트)");
 
-        // ✅ 변경 후 새로운 크레딧 총합 조회
+        //  변경 후 새로운 크레딧 총합 조회
         Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
 
         // 응답 데이터 생성
@@ -304,34 +304,34 @@ public class ProfileController {
         String newNicknameColor = requestData.get("nicknameColor");
         boolean isColorChange = newNicknameColor != null && !newNicknameColor.trim().isEmpty();
 
-        // ✅ 변경할 값이 없는 경우 예외 반환
+        //  변경할 값이 없는 경우 예외 반환
         if (!isColorChange) {
             return new ApiResponseDTO<>(400, "변경사항 없음", null);
         }
 
         Integer userId = sessionUser.getId();
 
-        // ✅ 현재 크레딧 조회 (credits 테이블에서 총합)
+        //  현재 크레딧 조회 (credits 테이블에서 총합)
         Integer currentCredits = userService.getTotalCreditsByUserId(userId);
 
-        // ✅ 크레딧 차감 금액
+        //  크레딧 차감 금액
         int changeCost = 3;
 
-        // ✅ 포인트 부족 시 예외 반환
+        //  포인트 부족 시 예외 반환
         if (currentCredits < changeCost) {
             return new ApiResponseDTO<>(402, "포인트가 부족합니다.", null);
         }
 
-        // ✅ 닉네임 색상 변경 적용
+        //  닉네임 색상 변경 적용
         sessionUser.setColor(newNicknameColor);
 
-        // ✅ DB 업데이트: 닉네임 색상 변경
+        //  DB 업데이트: 닉네임 색상 변경
         userService.changeUserColor(userId, newNicknameColor);
 
-        // ✅ DB 업데이트: 크레딧 내역 추가 (-3포인트)
+        //  DB 업데이트: 크레딧 내역 추가 (-3포인트)
         userService.insertCreditHistory(userId, "spend", -3, "닉네임 색상 변경");
 
-        // ✅ 변경 후 새로운 크레딧 총합 조회
+        //  변경 후 새로운 크레딧 총합 조회
         Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
 
         // 응답 데이터 생성
@@ -339,7 +339,7 @@ public class ProfileController {
         responseData.put("updatedCredits", updatedCredits);
         responseData.put("nicknameColor", newNicknameColor);
 
-        // ✅ 세션 업데이트 (변경된 크레딧 포함)
+        //  세션 업데이트 (변경된 크레딧 포함)
         sessionUser.setCredits(updatedCredits);
         sessionManager.setSession(session.getId(), sessionUser);
 
@@ -362,32 +362,32 @@ public class ProfileController {
         String newNicknameColor = requestData.get("nicknameColor");
         boolean isColorChange = newNicknameColor != null && !newNicknameColor.trim().isEmpty();
 
-        // ✅ 변경할 값이 없는 경우 예외 반환
+        //  변경할 값이 없는 경우 예외 반환
         if (!isColorChange) {
             return new ApiResponseDTO<>(400, "변경사항 없음", null);
         }
 
-        // ✅ 현재 크레딧 조회 (credits 테이블에서 총합)
+        //  현재 크레딧 조회 (credits 테이블에서 총합)
         Integer currentCredits = userService.getTotalCreditsByUserId(userId);
 
-        // ✅ 크레딧 차감 금액
+        //  크레딧 차감 금액
         int changeCost = 3;
 
-        // ✅ 포인트 부족 시 예외 반환
+        //  포인트 부족 시 예외 반환
         if (currentCredits < changeCost) {
             return new ApiResponseDTO<>(402, "포인트가 부족합니다.", null);
         }
 
-        // ✅ DB 업데이트: 닉네임 색상 변경
+        // DB 업데이트: 닉네임 색상 변경
         userService.changeUserColor(userId, newNicknameColor);
 
-        // ✅ DB 업데이트: 크레딧 내역 추가 (-3포인트)
+        // DB 업데이트: 크레딧 내역 추가 (-3포인트)
         userService.insertCreditHistory(userId, "spend", -3, "닉네임 색상 변경");
 
-        // ✅ 변경 후 새로운 크레딧 총합 조회
+        // 변경 후 새로운 크레딧 총합 조회
         Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
 
-        // ✅ 응답 데이터 생성
+        // 응답 데이터 생성
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("updatedCredits", updatedCredits);
         responseData.put("nicknameColor", newNicknameColor);
