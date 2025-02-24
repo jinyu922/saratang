@@ -73,4 +73,10 @@ public class UserServiceImpl implements UserService {
     public void insertCreditHistory(Integer userId, String type, Integer credits, String description) {
         userMapper.insertCreditHistory(userId, type, credits, description);
     }
+    
+    
+    @Override
+    public void changeUserIcon(Integer userId, Integer newIconId) {
+        userMapper.updateUserIcon(userId, newIconId);
+    }
 }

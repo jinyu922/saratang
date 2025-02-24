@@ -32,6 +32,8 @@ public class UserDTO {
 	    private Boolean profileYn;
 	    private String color;
 	    private Integer credits; // 포인트 양
+	    private Integer Icon;
+	    
 	    public UserDTO() {}
 	    
 	 // ✅ 모든 필드를 포함한 생성자

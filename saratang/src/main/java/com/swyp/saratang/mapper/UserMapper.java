@@ -39,5 +39,7 @@ public interface UserMapper {
     
     void changeUserColor(@Param("userId") Integer userId, @Param("newNicknameColor") String newNicknameColor);
     
+    void updateUserIcon(@Param("userId") Integer userId, @Param("iconId") Integer iconId);
+    
     
 }

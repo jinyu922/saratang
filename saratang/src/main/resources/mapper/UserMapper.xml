@@ -82,6 +82,12 @@
     <update id="changeUserColor">
         UPDATE users SET color = #{newNicknameColor} WHERE id = #{userId};
     </update>
+    
+    <update id="updateUserIcon">
+        UPDATE users 
+        SET icon = #{iconId}
+        WHERE id = #{userId}
+    </update>
 
     <!-- 크레딧 내역 추가 -->
     <insert id="insertCreditHistory">

@@ -170,8 +170,124 @@ public class ProfileController {
 
         return new ApiResponseDTO<>(200, "크레딧 조회 성공 (테스트 모드)", responseData);
     }
-
     
+    
+    @PostMapping("/changeusericon")
+    @Operation(summary = "아이콘 변경", description = "아이콘을 변경 (3포인트 차감 후 기록)")
+    @ApiResponse(responseCode = "200", description = "변경 완료")
+    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
+    @ApiResponse(responseCode = "402", description = "포인트 부족")
+    @ApiResponse(responseCode = "400", description = "변경할 값이 없음")
+    public ApiResponseDTO<Map<String, Object>> changeUserIcon(@RequestBody Map<String, Integer> requestData, HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        Integer newIconId = requestData.get("iconId");
+        boolean isIconChange = newIconId != null && newIconId > 0;
+
+        // ✅ 변경할 값이 없는 경우 예외 반환
+        if (!isIconChange) {
+            return new ApiResponseDTO<>(400, "변경할 아이콘 값이 없습니다.", null);
+        }
+
+        Integer userId = sessionUser.getId();
+
+        // ✅ 현재 크레딧 조회 (credits 테이블에서 총합)
+        Integer currentCredits = userService.getTotalCreditsByUserId(userId);
+
+        // ✅ 크레딧 차감 금액
+        int changeCost = 3;
+
+        // ✅ 포인트 부족 시 예외 반환
+        if (currentCredits < changeCost) {
+            return new ApiResponseDTO<>(402, "포인트가 부족합니다.", null);
+        }
+
+        // ✅ 아이콘 변경 적용
+        sessionUser.setIcon(newIconId);
+
+        // ✅ DB 업데이트: 아이콘 변경
+        userService.changeUserIcon(userId, newIconId);
+
+        // ✅ DB 업데이트: 크레딧 내역 추가 (-3포인트)
+        userService.insertCreditHistory(userId, "spend", -3, "아이콘 변경");
+
+        // ✅ 변경 후 새로운 크레딧 총합 조회
+        Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
+
+        // 응답 데이터 생성
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("updatedCredits", updatedCredits);
+        responseData.put("iconId", newIconId);
+
+        // ✅ 세션 업데이트 (변경된 크레딧 포함)
+        sessionUser.setCredits(updatedCredits);
+        sessionManager.setSession(session.getId(), sessionUser);
+
+        return new ApiResponseDTO<>(200, "아이콘 변경 완료 (포인트 3 차감)", responseData);
+    }
+    
+    @PostMapping("/changeusericon/test")
+    @Operation(summary = "아이콘 변경 (테스트용)", description = "아이콘을 변경 (3포인트 차감 후 기록) - 테스트 버전")
+    @ApiResponse(responseCode = "200", description = "변경 완료")
+    @ApiResponse(responseCode = "401", description = "유효하지 않은 사용자 ID")
+    @ApiResponse(responseCode = "402", description = "포인트 부족")
+    @ApiResponse(responseCode = "400", description = "변경할 값이 없음")
+    public ApiResponseDTO<Map<String, Object>> changeUserIconTest(@RequestBody Map<String, Integer> requestData) {
+        Integer userId = requestData.get("userId");
+        Integer newIconId = requestData.get("iconId");
+
+        if (userId == null || userId <= 0) {
+            return new ApiResponseDTO<>(401, "유효하지 않은 사용자 ID입니다.", null);
+        }
+
+        boolean isIconChange = newIconId != null && newIconId > 0;
+
+        // ✅ 변경할 값이 없는 경우 예외 반환
+        if (!isIconChange) {
+            return new ApiResponseDTO<>(400, "변경할 아이콘 값이 없습니다.", null);
+        }
+
+        // ✅ 현재 사용자 정보 조회
+        UserDTO user = userService.getUserById(userId);
+        if (user == null) {
+            return new ApiResponseDTO<>(401, "유효하지 않은 사용자 ID입니다.", null);
+        }
+
+        // ✅ 현재 크레딧 조회 (credits 테이블에서 총합)
+        Integer currentCredits = userService.getTotalCreditsByUserId(userId);
+
+        // ✅ 크레딧 차감 금액
+        int changeCost = 3;
+
+        // ✅ 포인트 부족 시 예외 반환
+        if (currentCredits < changeCost) {
+            return new ApiResponseDTO<>(402, "포인트가 부족합니다.", null);
+        }
+
+        // ✅ 아이콘 변경 적용
+        user.setIcon(newIconId);
+
+        // ✅ DB 업데이트: 아이콘 변경
+        userService.changeUserIcon(userId, newIconId);
+
+        // ✅ DB 업데이트: 크레딧 내역 추가 (-3포인트)
+        userService.insertCreditHistory(userId, "spend", -3, "아이콘 변경 (테스트)");
+
+        // ✅ 변경 후 새로운 크레딧 총합 조회
+        Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
+
+        // 응답 데이터 생성
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("updatedCredits", updatedCredits);
+        responseData.put("iconId", newIconId);
+
+        return new ApiResponseDTO<>(200, "아이콘 변경 완료 (포인트 3 차감) - 테스트 모드", responseData);
+    }
+
     @PostMapping("/changeusercolor")
     @Operation(summary = "닉네임 색상 변경", description = "닉네임 색상을 변경 (3포인트 차감 후 기록)")
     @ApiResponse(responseCode = "200", description = "변경 완료")
@@ -278,6 +394,11 @@ public class ProfileController {
 
         return new ApiResponseDTO<>(200, "변경 완료 (포인트 3 차감)", responseData);
     }
+    
+    
+    
+    
+    
     
     /**
      * 회원 탈퇴 API

@@ -3148,3 +3148,556 @@ java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'where clause'
 [2025-02-24 18:44:54] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
 [2025-02-24 18:44:54] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
 [2025-02-24 18:44:54] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-24 18:46:33] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 18:46:34] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 18:46:34] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 18:46:34] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 18:46:34] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 18:46:34] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 18:46:34] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 18:46:34] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 18:46:34] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 20:51:54] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 24088 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 20:51:54] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 20:51:54] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 20:51:55] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 20:51:55] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 20:51:55] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 20:51:55] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 20:51:56] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 20:51:56] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1972 ms
+[2025-02-24 20:52:00] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 20:52:00] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 20:52:00] [INFO] [SaratangApplication] - Started SaratangApplication in 7.078 seconds (JVM running for 8.624)
+[2025-02-24 20:55:43] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 20:55:44] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 20:55:44] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 20:55:44] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 20:55:44] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 20:55:46] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 1688 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 20:55:46] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 20:55:46] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 20:55:47] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 20:55:47] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 20:55:47] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 20:55:47] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 20:55:47] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 20:55:47] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1089 ms
+[2025-02-24 20:55:48] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 20:55:48] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 20:55:48] [INFO] [SaratangApplication] - Started SaratangApplication in 3.036 seconds (JVM running for 3.927)
+[2025-02-24 20:56:54] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 20:56:54] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 20:56:54] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-24 20:57:11] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 20:57:12] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 20:57:12] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-24 20:57:12] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-24 20:57:12] [DEBUG] [findById] - <==      Total: 1
+[2025-02-24 20:57:12] [DEBUG] [getTotalCreditsByUserId] - ==>  Preparing: SELECT COALESCE(SUM(credits), 0) FROM credits WHERE user_id = ?;
+[2025-02-24 20:57:12] [DEBUG] [getTotalCreditsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-24 20:57:12] [DEBUG] [getTotalCreditsByUserId] - <==      Total: 1
+[2025-02-24 20:57:12] [DEBUG] [updateUserIcon] - ==>  Preparing: UPDATE users SET icon = ? WHERE id = ?
+[2025-02-24 20:57:12] [DEBUG] [updateUserIcon] - ==> Parameters: 3(Integer), 1(Integer)
+[2025-02-24 20:57:12] [DEBUG] [updateUserIcon] - <==    Updates: 1
+[2025-02-24 20:57:12] [DEBUG] [insertCreditHistory] - ==>  Preparing: INSERT INTO credits (user_id, type, credits, description) VALUES (?, ?, ?, ?);
+[2025-02-24 20:57:12] [DEBUG] [insertCreditHistory] - ==> Parameters: 1(Integer), spend(String), -3(Integer), 아이콘 변경 (테스트)(String)
+[2025-02-24 20:57:12] [DEBUG] [insertCreditHistory] - <==    Updates: 1
+[2025-02-24 20:57:12] [DEBUG] [getTotalCreditsByUserId] - ==>  Preparing: SELECT COALESCE(SUM(credits), 0) FROM credits WHERE user_id = ?;
+[2025-02-24 20:57:12] [DEBUG] [getTotalCreditsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-24 20:57:12] [DEBUG] [getTotalCreditsByUserId] - <==      Total: 1
+[2025-02-24 21:12:57] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 21:12:58] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:12:58] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 21:12:58] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 21:12:58] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 21:12:58] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:12:58] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:12:58] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 21:12:58] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 21:13:00] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 3820 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 21:13:00] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 21:13:00] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 21:13:01] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 21:13:01] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:13:01] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 21:13:01] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 21:13:01] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 21:13:01] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 929 ms
+[2025-02-24 21:13:01] [WARN] [AnnotationConfigServletWebServerApplicationContext] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'iconController': Unsatisfied dependency expressed through field 'iconService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.swyp.saratang.service.IconService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+[2025-02-24 21:13:01] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 21:13:01] [INFO] [ConditionEvaluationReportLoggingListener] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[2025-02-24 21:13:01] [ERROR] [LoggingFailureAnalysisReporter] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field iconService in com.swyp.saratang.controller.IconController required a bean of type 'com.swyp.saratang.service.IconService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.swyp.saratang.service.IconService' in your configuration.
+
+[2025-02-24 21:13:37] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 10424 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 21:13:37] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 21:13:37] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 21:13:38] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 21:13:38] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:13:38] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 21:13:38] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 21:13:38] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 21:13:38] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 911 ms
+[2025-02-24 21:13:38] [WARN] [AnnotationConfigServletWebServerApplicationContext] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'iconController': Unsatisfied dependency expressed through field 'iconService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.swyp.saratang.service.IconService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+[2025-02-24 21:13:38] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 21:13:38] [INFO] [ConditionEvaluationReportLoggingListener] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[2025-02-24 21:13:38] [ERROR] [LoggingFailureAnalysisReporter] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field iconService in com.swyp.saratang.controller.IconController required a bean of type 'com.swyp.saratang.service.IconService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.swyp.saratang.service.IconService' in your configuration.
+
+[2025-02-24 21:14:15] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 19036 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 21:14:15] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 21:14:15] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 21:14:16] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 21:14:16] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:14:16] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 21:14:16] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 21:14:16] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 21:14:16] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 902 ms
+[2025-02-24 21:14:18] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:14:18] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 21:14:18] [INFO] [SaratangApplication] - Started SaratangApplication in 2.779 seconds (JVM running for 3.662)
+[2025-02-24 21:14:23] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 21:14:23] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 21:14:23] [INFO] [DispatcherServlet] - Completed initialization in 2 ms
+[2025-02-24 21:14:23] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=1
+[2025-02-24 21:14:23] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 21:14:23] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 21:14:23] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon_id FROM users WHERE id = ?
+[2025-02-24 21:14:23] [DEBUG] [getUserIconId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:14:23] [ERROR] [[dispatcherServlet]] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'icon_id' in 'field list'
+### The error may exist in file [C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes\mapper\IconMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT icon_id FROM users WHERE id = ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'icon_id' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'icon_id' in 'field list'] with root cause
+java.sql.SQLSyntaxErrorException: Unknown column 'icon_id' in 'field list'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:354) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-4.0.3.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_401]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_401]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_401]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_401]
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58) ~[mybatis-3.5.13.jar:3.5.13]
+	at com.sun.proxy.$Proxy118.execute(Unknown Source) ~[?:?]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:333) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:75) ~[mybatis-3.5.13.jar:3.5.13]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_401]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_401]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_401]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_401]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at com.sun.proxy.$Proxy90.selectOne(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:87) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.13.jar:3.5.13]
+	at com.sun.proxy.$Proxy95.getUserIconId(Unknown Source) ~[?:?]
+	at com.swyp.saratang.service.IconServiceImpl.getUserIconId(IconServiceImpl.java:26) ~[classes/:?]
+	at com.swyp.saratang.controller.IconController.getUserIconTest(IconController.java:84) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_401]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_401]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_401]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_401]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.lang.Thread.run(Thread.java:750) ~[?:1.8.0_401]
+[2025-02-24 21:14:48] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 21:14:49] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:14:49] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 21:14:49] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 21:14:49] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 21:14:49] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:14:49] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:14:49] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 21:14:49] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 21:14:50] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 14460 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 21:14:50] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 21:14:50] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 21:14:51] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 21:14:51] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:14:51] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 21:14:51] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 21:14:51] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 21:14:51] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 899 ms
+[2025-02-24 21:14:53] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:14:53] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 21:14:53] [INFO] [SaratangApplication] - Started SaratangApplication in 2.782 seconds (JVM running for 3.605)
+[2025-02-24 21:15:00] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 21:15:01] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:15:01] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 21:15:01] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:15:01] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:15:03] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 7504 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 21:15:03] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 21:15:03] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 21:15:03] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 21:15:03] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:15:03] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 21:15:03] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 21:15:03] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 21:15:03] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 892 ms
+[2025-02-24 21:15:05] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:15:05] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 21:15:05] [INFO] [SaratangApplication] - Started SaratangApplication in 2.819 seconds (JVM running for 3.717)
+[2025-02-24 21:15:10] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 21:15:10] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 21:15:10] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-24 21:15:10] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=1
+[2025-02-24 21:15:10] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 21:15:10] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 21:15:10] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:15:10] [DEBUG] [getUserIconId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:15:10] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:15:10] [DEBUG] [getIconById] - ==>  Preparing: SELECT id, name, filename FROM icons WHERE id = ?
+[2025-02-24 21:15:10] [DEBUG] [getIconById] - ==> Parameters: 3(Integer)
+[2025-02-24 21:15:10] [DEBUG] [getIconById] - <==      Total: 0
+[2025-02-24 21:15:10] [WARN] [IconController] - ❌ 아이콘 정보가 존재하지 않음: iconId=3
+[2025-02-24 21:15:46] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=1
+[2025-02-24 21:15:46] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:15:46] [DEBUG] [getUserIconId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:15:46] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:15:46] [DEBUG] [getIconById] - ==>  Preparing: SELECT id, name, filename FROM icons WHERE id = ?
+[2025-02-24 21:15:46] [DEBUG] [getIconById] - ==> Parameters: 3(Integer)
+[2025-02-24 21:15:46] [DEBUG] [getIconById] - <==      Total: 0
+[2025-02-24 21:15:46] [WARN] [IconController] - ❌ 아이콘 정보가 존재하지 않음: iconId=3
+[2025-02-24 21:16:03] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=1
+[2025-02-24 21:16:03] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:16:03] [DEBUG] [getUserIconId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:16:03] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:16:03] [DEBUG] [getIconById] - ==>  Preparing: SELECT id, name, filename FROM icons WHERE id = ?
+[2025-02-24 21:16:03] [DEBUG] [getIconById] - ==> Parameters: 3(Integer)
+[2025-02-24 21:16:03] [DEBUG] [getIconById] - <==      Total: 0
+[2025-02-24 21:16:03] [WARN] [IconController] - ❌ 아이콘 정보가 존재하지 않음: iconId=3
+[2025-02-24 21:17:11] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=1
+[2025-02-24 21:17:11] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:17:11] [DEBUG] [getUserIconId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:17:11] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:17:11] [DEBUG] [getIconById] - ==>  Preparing: SELECT id, name, filename FROM icons WHERE id = ?
+[2025-02-24 21:17:11] [DEBUG] [getIconById] - ==> Parameters: 3(Integer)
+[2025-02-24 21:17:11] [DEBUG] [getIconById] - <==      Total: 0
+[2025-02-24 21:17:11] [WARN] [IconController] - ❌ 아이콘 정보가 존재하지 않음: iconId=3
+[2025-02-24 21:17:34] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=3
+[2025-02-24 21:17:34] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:17:34] [DEBUG] [getUserIconId] - ==> Parameters: 3(Integer)
+[2025-02-24 21:17:34] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:17:34] [WARN] [IconController] - ❌ 사용자의 아이콘이 설정되지 않음: userId=3
+[2025-02-24 21:17:48] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=5
+[2025-02-24 21:17:48] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:17:48] [DEBUG] [getUserIconId] - ==> Parameters: 5(Integer)
+[2025-02-24 21:17:48] [DEBUG] [getUserIconId] - <==      Total: 0
+[2025-02-24 21:17:48] [WARN] [IconController] - ❌ 사용자의 아이콘이 설정되지 않음: userId=5
+[2025-02-24 21:17:57] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=1
+[2025-02-24 21:17:57] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:17:57] [DEBUG] [getUserIconId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:17:57] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:17:57] [DEBUG] [getIconById] - ==>  Preparing: SELECT id, name, filename FROM icons WHERE id = ?
+[2025-02-24 21:17:57] [DEBUG] [getIconById] - ==> Parameters: 3(Integer)
+[2025-02-24 21:17:57] [DEBUG] [getIconById] - <==      Total: 0
+[2025-02-24 21:17:57] [WARN] [IconController] - ❌ 아이콘 정보가 존재하지 않음: iconId=3
+[2025-02-24 21:18:02] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=3
+[2025-02-24 21:18:02] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:18:02] [DEBUG] [getUserIconId] - ==> Parameters: 3(Integer)
+[2025-02-24 21:18:02] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:18:02] [WARN] [IconController] - ❌ 사용자의 아이콘이 설정되지 않음: userId=3
+[2025-02-24 21:20:35] [WARN] [DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+[2025-02-24 21:20:58] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-24 21:20:58] [DEBUG] [findById] - ==> Parameters: 2(Integer)
+[2025-02-24 21:20:58] [DEBUG] [findById] - <==      Total: 1
+[2025-02-24 21:20:58] [DEBUG] [getTotalCreditsByUserId] - ==>  Preparing: SELECT COALESCE(SUM(credits), 0) FROM credits WHERE user_id = ?;
+[2025-02-24 21:20:58] [DEBUG] [getTotalCreditsByUserId] - ==> Parameters: 2(Integer)
+[2025-02-24 21:20:58] [DEBUG] [getTotalCreditsByUserId] - <==      Total: 1
+[2025-02-24 21:21:12] [DEBUG] [findById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-24 21:21:12] [DEBUG] [findById] - ==> Parameters: 1(Integer)
+[2025-02-24 21:21:12] [DEBUG] [findById] - <==      Total: 1
+[2025-02-24 21:21:12] [DEBUG] [getTotalCreditsByUserId] - ==>  Preparing: SELECT COALESCE(SUM(credits), 0) FROM credits WHERE user_id = ?;
+[2025-02-24 21:21:12] [DEBUG] [getTotalCreditsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:21:12] [DEBUG] [getTotalCreditsByUserId] - <==      Total: 1
+[2025-02-24 21:21:12] [DEBUG] [updateUserIcon] - ==>  Preparing: UPDATE users SET icon = ? WHERE id = ?
+[2025-02-24 21:21:12] [DEBUG] [updateUserIcon] - ==> Parameters: 1(Integer), 1(Integer)
+[2025-02-24 21:21:12] [DEBUG] [updateUserIcon] - <==    Updates: 1
+[2025-02-24 21:21:12] [DEBUG] [insertCreditHistory] - ==>  Preparing: INSERT INTO credits (user_id, type, credits, description) VALUES (?, ?, ?, ?);
+[2025-02-24 21:21:12] [DEBUG] [insertCreditHistory] - ==> Parameters: 1(Integer), spend(String), -3(Integer), 아이콘 변경 (테스트)(String)
+[2025-02-24 21:21:12] [DEBUG] [insertCreditHistory] - <==    Updates: 1
+[2025-02-24 21:21:13] [DEBUG] [getTotalCreditsByUserId] - ==>  Preparing: SELECT COALESCE(SUM(credits), 0) FROM credits WHERE user_id = ?;
+[2025-02-24 21:21:13] [DEBUG] [getTotalCreditsByUserId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:21:13] [DEBUG] [getTotalCreditsByUserId] - <==      Total: 1
+[2025-02-24 21:21:31] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=1
+[2025-02-24 21:21:31] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:21:31] [DEBUG] [getUserIconId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:21:31] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:21:31] [DEBUG] [getIconById] - ==>  Preparing: SELECT id, name, filename FROM icons WHERE id = ?
+[2025-02-24 21:21:31] [DEBUG] [getIconById] - ==> Parameters: 1(Integer)
+[2025-02-24 21:21:31] [DEBUG] [getIconById] - <==      Total: 1
+[2025-02-24 21:21:31] [INFO] [IconController] - ✅ 특정 사용자의 아이콘 정보 반환 (테스트용): IconDTO(id=1, name=ai, filename=ai.png, FileUrl=http://localhost:8080/icons/ai.png)
+[2025-02-24 21:23:04] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=2
+[2025-02-24 21:23:04] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:23:04] [DEBUG] [getUserIconId] - ==> Parameters: 2(Integer)
+[2025-02-24 21:23:04] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:23:04] [WARN] [IconController] - ❌ 사용자의 아이콘이 설정되지 않음: userId=2
+[2025-02-24 21:23:11] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=3
+[2025-02-24 21:23:11] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:23:11] [DEBUG] [getUserIconId] - ==> Parameters: 3(Integer)
+[2025-02-24 21:23:11] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:23:11] [WARN] [IconController] - ❌ 사용자의 아이콘이 설정되지 않음: userId=3
+[2025-02-24 21:25:43] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 21:25:44] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:25:44] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 21:25:44] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 21:25:44] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 21:25:44] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:25:44] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:25:44] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 21:25:44] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 21:25:46] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 22960 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 21:25:46] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 21:25:46] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 21:25:47] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 21:25:47] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:25:47] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 21:25:47] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 21:25:47] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 21:25:47] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1158 ms
+[2025-02-24 21:25:49] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:25:49] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 21:25:49] [INFO] [SaratangApplication] - Started SaratangApplication in 3.399 seconds (JVM running for 4.37)
+[2025-02-24 21:25:51] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-24 21:25:51] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-24 21:25:51] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-24 21:25:51] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=3
+[2025-02-24 21:25:51] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-24 21:25:51] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-24 21:25:51] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:25:51] [DEBUG] [getUserIconId] - ==> Parameters: 3(Integer)
+[2025-02-24 21:25:51] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:25:51] [WARN] [IconController] - ❌ 사용자의 아이콘이 설정되지 않음: userId=3
+[2025-02-24 21:25:55] [INFO] [IconController] - 📌 특정 사용자 아이콘 조회 요청 (테스트용): userId=1
+[2025-02-24 21:25:55] [DEBUG] [getUserIconId] - ==>  Preparing: SELECT icon FROM users WHERE id = ?
+[2025-02-24 21:25:55] [DEBUG] [getUserIconId] - ==> Parameters: 1(Integer)
+[2025-02-24 21:25:55] [DEBUG] [getUserIconId] - <==      Total: 1
+[2025-02-24 21:25:55] [DEBUG] [getIconById] - ==>  Preparing: SELECT id, name, filename FROM icons WHERE id = ?
+[2025-02-24 21:25:55] [DEBUG] [getIconById] - ==> Parameters: 1(Integer)
+[2025-02-24 21:25:55] [DEBUG] [getIconById] - <==      Total: 1
+[2025-02-24 21:25:55] [INFO] [IconController] - ✅ 특정 사용자의 아이콘 정보 반환 (테스트용): IconDTO(id=1, name=ai, filename=ai.png, FileUrl=http://localhost:8080/icons/ai.png)
+[2025-02-24 21:27:35] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[null], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-24 21:27:35] [ERROR] [AuthServiceImpl] - Access Token 요청 실패 - 응답: {error=invalid_request, error_description=code is missing.}
+[2025-02-24 21:27:35] [ERROR] [AuthServiceImpl] - OAuth Access Token 요청 중 오류 발생: Access Token 요청 실패
+java.lang.RuntimeException: Access Token 요청 실패
+	at com.swyp.saratang.service.AuthServiceImpl.getAccessToken(AuthServiceImpl.java:97) ~[classes/:?]
+	at com.swyp.saratang.service.AuthServiceImpl.processOAuthLogin(AuthServiceImpl.java:72) ~[classes/:?]
+	at com.swyp.saratang.controller.AuthController.handleLoginCallback(AuthController.java:111) ~[classes/:?]
+	at com.swyp.saratang.controller.AuthController.naverLoginCallback(AuthController.java:93) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_401]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_401]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_401]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_401]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.lang.Thread.run(Thread.java:750) ~[?:1.8.0_401]
+[2025-02-24 21:29:54] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-24 21:29:54] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:29:54] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-24 21:29:54] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-24 21:29:54] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-24 21:29:54] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:29:54] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:29:54] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-24 21:29:54] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-24 21:29:56] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 12232 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-24 21:29:56] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-24 21:29:56] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-24 21:29:57] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-24 21:29:57] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:29:57] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-24 21:29:57] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-24 21:29:57] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-24 21:29:57] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1053 ms
+[2025-02-24 21:29:59] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-24 21:29:59] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-24 21:29:59] [INFO] [SaratangApplication] - Started SaratangApplication in 3.038 seconds (JVM running for 3.928)

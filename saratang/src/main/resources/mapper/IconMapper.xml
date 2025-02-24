@@ -7,5 +7,14 @@
     <select id="getAllIcons" resultType="com.swyp.saratang.model.IconDTO">
         SELECT id, name, filename FROM icons
     </select>
+	
+	   <!-- ✅ 특정 사용자 아이콘 ID 조회 -->
+    <select id="getUserIconId" resultType="int">
+        SELECT icon FROM users WHERE id = #{userId}
+    </select>
 
+    <!-- ✅ 특정 아이콘 정보 조회 -->
+    <select id="getIconById" resultType="com.swyp.saratang.model.IconDTO">
+        SELECT id, name, filename FROM icons WHERE id = #{iconId}
+    </select>
 </mapper>

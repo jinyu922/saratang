@@ -29,6 +29,8 @@ public interface UserService {
     
     void changeUserColor(Integer userId, String newNicknameColor);
     
+    void changeUserIcon(Integer userId, Integer newIconId);
+    
     void insertCreditHistory(Integer userId, String type, Integer credits, String description);
 
 }

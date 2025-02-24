@@ -7,14 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@Service
-public class IconService {
 
-    @Autowired
-    private IconMapper iconMapper;
+public interface IconService {
 
-    // ✅ 모든 아이콘 조회
-    public List<IconDTO> getAllIcons() {
-        return iconMapper.getAllIcons();
-    }
+	
+
+
+    public List<IconDTO> getAllIcons();
+   
+
+    public Integer getUserIconId(Integer userId);
+
+
+    public IconDTO getIconById(Integer iconId);
 }

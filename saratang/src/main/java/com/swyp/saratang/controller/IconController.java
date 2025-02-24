@@ -9,8 +9,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.IconDTO;
+import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.service.IconService;
+import com.swyp.saratang.session.SessionManager;
 
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -18,18 +21,101 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @RestController
 @RequestMapping("/icons")
 public class IconController {
-
+	
+	
+	@Autowired
+    private SessionManager sessionManager;
+	
 	private static final Logger logger = LogManager.getLogger(IconController.class);
 
 	//  환경 변수에서 아이콘 저장 디렉토리 가져오기
     @Value("${icon.directory}")
     private String iconDirectory;
+
+    @GetMapping("/me")
+    public ResponseEntity<ApiResponseDTO<IconDTO>> getUserIcon(HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+
+        // ✅ 세션이 없으면 401 Unauthorized 반환
+        if (sessionUser == null) {
+            logger.warn("❌ 세션이 만료됨: 아이콘 정보 제공 불가");
+            return ResponseEntity.status(401)
+                    .body(new ApiResponseDTO<>(401, "세션이 만료되었습니다.", null));
+        }
+
+        Integer userId = sessionUser.getId();
+        logger.info("📌 현재 로그인한 사용자의 아이콘 조회 요청: userId={}", userId);
+
+        // ✅ 사용자의 icon_id 조회
+        Integer iconId = iconService.getUserIconId(userId);
+
+        if (iconId == null) {
+            logger.warn("❌ 사용자의 아이콘이 설정되지 않음: userId={}", userId);
+            return ResponseEntity.status(404)
+                    .body(new ApiResponseDTO<>(404, "사용자의 아이콘이 설정되지 않았습니다.", null));
+        }
+
+        // ✅ 해당 아이콘 ID로 아이콘 정보 조회
+        IconDTO icon = iconService.getIconById(iconId);
+
+        if (icon == null) {
+            logger.warn("❌ 아이콘 정보가 존재하지 않음: iconId={}", iconId);
+            return ResponseEntity.status(404)
+                    .body(new ApiResponseDTO<>(404, "해당 아이콘 정보가 존재하지 않습니다.", null));
+        }
+
+        // ✅ 파일 URL 설정
+        icon.setFileUrl(serverBaseUrl + "/icons/" + icon.getFilename());
+
+        logger.info("✅ 현재 로그인한 사용자의 아이콘 정보 반환: {}", icon);
+        return ResponseEntity.ok(new ApiResponseDTO<>(200, "아이콘 정보 조회 성공", icon));
+    }
+
+    
+    @GetMapping("/test/{userId}")
+    public ResponseEntity<ApiResponseDTO<IconDTO>> getUserIconTest(@PathVariable Integer userId) {
+        logger.info("📌 특정 사용자 아이콘 조회 요청 (테스트용): userId={}", userId);
+
+        // ✅ 유효하지 않은 userId 입력 시 400 Bad Request 반환
+        if (userId == null || userId <= 0) {
+            logger.warn("❌ 잘못된 사용자 ID 입력: userId={}", userId);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponseDTO<>(400, "잘못된 사용자 ID입니다.", null));
+        }
+
+        // ✅ 사용자의 icon_id 조회
+        Integer iconId = iconService.getUserIconId(userId);
+
+        if (iconId == null) {
+            logger.warn("❌ 사용자의 아이콘이 설정되지 않음: userId={}", userId);
+            return ResponseEntity.status(404)
+                    .body(new ApiResponseDTO<>(404, "사용자의 아이콘이 설정되지 않았습니다.", null));
+        }
+
+        // ✅ 해당 아이콘 ID로 아이콘 정보 조회
+        IconDTO icon = iconService.getIconById(iconId);
+
+        if (icon == null) {
+            logger.warn("❌ 아이콘 정보가 존재하지 않음: iconId={}", iconId);
+            return ResponseEntity.status(404)
+                    .body(new ApiResponseDTO<>(404, "해당 아이콘 정보가 존재하지 않습니다.", null));
+        }
+
+        // ✅ 파일 URL 설정
+        icon.setFileUrl(serverBaseUrl + "/icons/" + icon.getFilename());
+
+        logger.info("✅ 특정 사용자의 아이콘 정보 반환 (테스트용): {}", icon);
+        return ResponseEntity.ok(new ApiResponseDTO<>(200, "아이콘 정보 조회 성공", icon));
+    }
 
 
     @GetMapping("/{filename}")
