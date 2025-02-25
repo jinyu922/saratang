@@ -26,6 +26,13 @@ public class SafeUserDTO {//응답 시, UserDTO에서 패스워드같은 민감�
 	    private String topSize;
 	    private String bottomSize;
 	    private Integer footSize;
+	    private String color;
+	    private Integer credits; 
+	    private Integer icon;
+	    
+
+	    public SafeUserDTO() {}
+	    
 	    
 	    public SafeUserDTO(UserDTO user) {
 	        this.id = user.getId();

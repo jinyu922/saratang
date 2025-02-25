@@ -31,14 +31,14 @@ public class AuthServiceImpl implements AuthService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    // ✅ 네이버 API 설정
+    // 네이버 API 설정
     @Value("${naver.client.id}") private String NAVER_CLIENT_ID;
     @Value("${naver.client.secret}") private String NAVER_CLIENT_SECRET;
     @Value("${naver.token.url}") private String NAVER_TOKEN_URL;
     @Value("${naver.profile.url}") private String NAVER_PROFILE_URL;
     @Value("${naver.redirect.uri}") private String NAVER_REDIRECT_URI;
 
-    // ✅ 카카오 API 설정
+    // 카카오 API 설정
     @Value("${kakao.client.id}") private String KAKAO_CLIENT_ID;
     @Value("${kakao.client.secret}") private String KAKAO_CLIENT_SECRET;
     @Value("${kakao.token.url}") private String KAKAO_TOKEN_URL;
@@ -50,14 +50,12 @@ public class AuthServiceImpl implements AuthService {
         if ("naver".equals(provider)) {
             return "https://nid.naver.com/oauth2.0/authorize?response_type=code"
                     + "&client_id=" + NAVER_CLIENT_ID
-                    + "&redirect_uri=" + NAVER_REDIRECT_URI  // ✅ provider 추가 X
-                    + "&state=" + UUID.randomUUID()
-                    + "&auth_type=reprompt";
+                    + "&redirect_uri=" + NAVER_REDIRECT_URI  // provider 추가 X
+                    + "&state=" + UUID.randomUUID();
         } else if ("kakao".equals(provider)) {
             return "https://kauth.kakao.com/oauth/authorize?response_type=code"
                     + "&client_id=" + KAKAO_CLIENT_ID
-                    + "&redirect_uri=" + KAKAO_REDIRECT_URI // ✅ provider 추가 X
-            		+ "&prompt=consent";
+                    + "&redirect_uri=" + KAKAO_REDIRECT_URI; //  provider 추가 X
         } else {
             throw new IllegalArgumentException("지원되지 않는 provider: " + provider);
         }
@@ -139,9 +137,12 @@ public class AuthServiceImpl implements AuthService {
             nickname = (String) properties.get("nickname");
         }
 
-        // ✅ 1. 기존 사용자 조회
+        //  1. 기존 사용자 조회
         UserDTO existingUser = userMapper.findBySocialId(socialId, provider);
         if (existingUser != null) {
+        	if (!existingUser.getIsActive()) {
+                throw new IllegalArgumentException("탈퇴한 회원입니다.");
+            }
             return existingUser;  // ✅ 로그인 성공 시 그대로 반환
         }
 
@@ -151,7 +152,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
 
-        // ✅ 3. 신규 회원 가입 (프로필 미작성 상태)
+        //  3. 신규 회원 가입 (프로필 미작성 상태)
         UserDTO newUser = new UserDTO();
         newUser.setSocialId(socialId);
         newUser.setAuthProvider(provider);
@@ -162,6 +163,6 @@ public class AuthServiceImpl implements AuthService {
         newUser.setRole("regular");
 
         userMapper.insertUser(newUser);
-        return newUser;  // ✅ 컨트롤러에서 201 응답 처리
+        return newUser;  //  컨트롤러에서 201 응답 처리
     }
 }

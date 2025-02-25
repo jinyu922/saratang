@@ -254,4 +254,8 @@ public class BoardService {
 		return new PageImpl<>(commentDTOs, pageable, total);
 	}
 	
+	public BoardDTO getBoardById(Integer boardId) {
+	        return boardMapper.getBoardById(boardId);
+	    }
+	
 }

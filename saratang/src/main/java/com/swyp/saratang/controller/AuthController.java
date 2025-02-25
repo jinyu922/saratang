@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.service.AuthService;
+import com.swyp.saratang.service.UserService;
 import com.swyp.saratang.session.SessionManager;
 
 import org.apache.logging.log4j.LogManager;
@@ -41,13 +42,17 @@ public class AuthController {
     @Value("${oauth.success.redirect.url}")
     private String oauthSuccessRedirectUrl;
     
+    @Autowired
+    private UserService userService;
     /**
      * 프론트엔드에서 API 하나만 호출하면, 백엔드에서 로그인 페이지로 자동 이동
      */
     @GetMapping("/login")
     @Operation(summary = "OAuth 로그인 요청", description = "네이버 또는 카카오 로그인 페이지로 리디렉트")
-    @ApiResponse(responseCode = "302", description = "로그인 페이지로 리디렉트")
-    @ApiResponse(responseCode = "400", description = "잘못된 provider 요청")
+    @ApiResponse(responseCode = "200", description = "로그인성공")
+    @ApiResponse(responseCode = "201", description = "프로필 입력필요")
+    @ApiResponse(responseCode = "402", description = "다른 provider에 존재하는 이메일")
+    @ApiResponse(responseCode = "410", description = "탈퇴 계정이 있는 회원")
     @ApiResponse(responseCode = "500", description = "서버 오류 발생")
     public ResponseEntity<ApiResponseDTO<String>> redirectToOAuthProvider(
             @RequestParam("provider") String provider,
@@ -113,7 +118,9 @@ public class AuthController {
             // 세션 유지
             sessionManager.setSession(session.getId(), user);
             response.addHeader("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None; Secure");
-
+            
+           
+            
             // 프로필이 미완성된 경우 (201 응답)
             if (!user.getProfileYn()) {
                 response.sendRedirect(oauthSuccessRedirectUrl + "?status=201");
@@ -128,6 +135,10 @@ public class AuthController {
             if (e.getMessage().contains("이미 존재하는 이메일")) {
                 response.sendRedirect(oauthSuccessRedirectUrl + "?error=email_exists&status=402");
                 return ResponseEntity.status(402).build();
+            }
+            if (e.getMessage().contains("탈퇴한 회원입니다.")) {
+                response.sendRedirect(oauthSuccessRedirectUrl + "?error=account_disabled&status=410");
+                return ResponseEntity.status(410).build();
             }
             response.sendRedirect(oauthSuccessRedirectUrl + "?error=bad_request&status=400");
             return ResponseEntity.status(400).build();
@@ -159,5 +170,21 @@ public class AuthController {
         response.addHeader("Set-Cookie", "JSESSIONID=; Path=/; HttpOnly; SameSite=None; Secure; Max-Age=0");
 
         return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그아웃 완료", "success"));
+    }
+    
+    @PostMapping("/delete")
+    @Operation(summary = "회원 탈퇴", description = "회원 탈퇴")
+    @ApiResponse(responseCode = "200", description = "회원 탈퇴 완료")
+    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
+    public ApiResponseDTO<String> deleteProfile(HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        userService.deleteUser(sessionUser.getSocialId(), sessionUser.getAuthProvider(), sessionUser.getEmail());
+        sessionManager.removeSession(session.getId());
+
+        return new ApiResponseDTO<>(200, "회원 탈퇴 완료", "success");
     }
 }

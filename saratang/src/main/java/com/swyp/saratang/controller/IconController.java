@@ -47,13 +47,13 @@ public class IconController {
 
         // 세션이 없으면 401 Unauthorized 반환
         if (sessionUser == null) {
-            logger.warn("❌ 세션이 만료됨: 아이콘 정보 제공 불가");
+            logger.warn("세션이 만료됨: 아이콘 정보 제공 불가");
             return ResponseEntity.status(401)
                     .body(new ApiResponseDTO<>(401, "세션이 만료되었습니다.", null));
         }
 
         Integer userId = sessionUser.getId();
-        logger.info("📌 현재 로그인한 사용자의 아이콘 조회 요청: userId={}", userId);
+        logger.info("현재 로그인한 사용자의 아이콘 조회 요청: userId={}", userId);
 
         // 사용자의 icon_id 조회
         Integer iconId = iconService.getUserIconId(userId);

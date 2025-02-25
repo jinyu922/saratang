@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.BoardDTO;
 import com.swyp.saratang.model.UserDTO;
+import com.swyp.saratang.model.SafeUserDTO;
 import com.swyp.saratang.model.PointDTO;
 import com.swyp.saratang.service.BoardService;
 import com.swyp.saratang.service.UserService;
@@ -38,8 +39,6 @@ public class ProfileController {
     @Autowired
     private BoardService boardService;
     
-    
-
     @Autowired
     private SessionManager sessionManager;
 
@@ -84,13 +83,13 @@ public class ProfileController {
     @Operation(summary = "프로필 조회", description = "현재 로그인한 사용자의 프로필 정보 확인")
     @ApiResponse(responseCode = "200", description = "프로필 조회 성공")
     @ApiResponse(responseCode = "401", description = "세션이 만료됨")
-    public ApiResponseDTO<UserDTO> getProfile(HttpSession session) {
+    public ApiResponseDTO<SafeUserDTO> getProfile(HttpSession session) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
         if (sessionUser == null) {
             return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
         }
 
-        UserDTO user = userService.getUserBySocialId(sessionUser.getSocialId(), sessionUser.getAuthProvider());
+        SafeUserDTO user = userService.getSafeUserById(sessionUser.getId());
         return new ApiResponseDTO<>(200, "프로필 조회 성공", user);
     }
     
@@ -142,33 +141,75 @@ public class ProfileController {
         //  응답 데이터 생성
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("totalCredits", totalCredits);
-        responseData.put("creditHistory", creditHistory);
 
         return new ApiResponseDTO<>(200, "크레딧 조회 성공", responseData);
     }
+    /**
+     * 사용자 크레딧 내역 조회
+     */
+    @GetMapping("/credits/history")
+    @Operation(summary = "사용자 크레딧 내역 조회", description = "현재 로그인한 사용자의 모든 크레딧 내역 반환")
+    @ApiResponse(responseCode = "200", description = "크레딧 내역 조회 성공")
+    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
+    public ApiResponseDTO<List<PointDTO>> getUserCreditHistory(HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        List<PointDTO> creditHistory = userService.getCreditHistoryByUserId(sessionUser.getId());
+        return new ApiResponseDTO<>(200, "크레딧 내역 조회 성공", creditHistory);
+    }
+
+    /**
+     * 사용자 총 크레딧 조회
+     */
+    @GetMapping("/credit/total")
+    @Operation(summary = "사용자 총 크레딧 조회", description = "현재 로그인한 사용자의 총 크레딧 반환")
+    @ApiResponse(responseCode = "200", description = "총 크레딧 조회 성공")
+    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
+    public ApiResponseDTO<Integer> getUserTotalCredits(HttpSession session) {
+        UserDTO sessionUser = sessionManager.getSession(session.getId());
+
+        if (sessionUser == null) {
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+        }
+
+        Integer totalCredits = userService.getTotalCreditsByUserId(sessionUser.getId());
+        return new ApiResponseDTO<>(200, "총 크레딧 조회 성공", totalCredits);
+    }
     
-    
-    @GetMapping("/credits/test")
-    @Operation(summary = "[TEST] 사용자 크레딧 조회", description = "특정 사용자의 모든 크레딧 내역 및 총 크레딧 반환 (세션 없이 userId 직접 입력)")
-    @ApiResponse(responseCode = "200", description = "크레딧 조회 성공")
+    /**
+     * [TEST] 사용자 크레딧 내역 조회
+     */
+    @GetMapping("/credits/test/history")
+    @Operation(summary = "[TEST] 사용자 크레딧 내역 조회", description = "특정 사용자의 모든 크레딧 내역 반환 (세션 없이 userId 직접 입력)")
+    @ApiResponse(responseCode = "200", description = "크레딧 내역 조회 성공")
     @ApiResponse(responseCode = "400", description = "유효하지 않은 사용자 ID")
-    public ApiResponseDTO<Map<String, Object>> getUserCreditsForTest(@RequestParam("userId") Integer userId) {
+    public ApiResponseDTO<List<PointDTO>> getUserCreditHistoryForTest(@RequestParam("userId") Integer userId) {
         if (userId == null) {
             return new ApiResponseDTO<>(400, "유효하지 않은 요청: userId가 필요합니다.", null);
         }
 
-        //  사용자 크레딧 내역 가져오기
         List<PointDTO> creditHistory = userService.getCreditHistoryByUserId(userId);
+        return new ApiResponseDTO<>(200, "크레딧 내역 조회 성공 (테스트 모드)", creditHistory);
+    }
 
-        //  사용자 총 크레딧 합계 조회
+    /**
+     * [TEST] 사용자 총 크레딧 조회
+     */
+    @GetMapping("/credit/test/total")
+    @Operation(summary = "[TEST] 사용자 총 크레딧 조회", description = "특정 사용자의 총 크레딧 반환 (세션 없이 userId 직접 입력)")
+    @ApiResponse(responseCode = "200", description = "총 크레딧 조회 성공")
+    @ApiResponse(responseCode = "400", description = "유효하지 않은 사용자 ID")
+    public ApiResponseDTO<Integer> getUserTotalCreditsForTest(@RequestParam("userId") Integer userId) {
+        if (userId == null) {
+            return new ApiResponseDTO<>(400, "유효하지 않은 요청: userId가 필요합니다.", null);
+        }
+
         Integer totalCredits = userService.getTotalCreditsByUserId(userId);
-
-        //  응답 데이터 생성
-        Map<String, Object> responseData = new HashMap<>();
-        responseData.put("totalCredits", totalCredits);
-        responseData.put("creditHistory", creditHistory);
-
-        return new ApiResponseDTO<>(200, "크레딧 조회 성공 (테스트 모드)", responseData);
+        return new ApiResponseDTO<>(200, "총 크레딧 조회 성공 (테스트 모드)", totalCredits);
     }
     
     
@@ -397,25 +438,4 @@ public class ProfileController {
     
     
     
-    
-    
-    
-    /**
-     * 회원 탈퇴 API
-     */
-    @PostMapping("/delete")
-    @Operation(summary = "회원 탈퇴", description = "회원 탈퇴")
-    @ApiResponse(responseCode = "200", description = "회원 탈퇴 완료")
-    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
-    public ApiResponseDTO<String> deleteProfile(HttpSession session) {
-        UserDTO sessionUser = sessionManager.getSession(session.getId());
-        if (sessionUser == null) {
-            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
-        }
-
-        userService.deleteUser(sessionUser.getSocialId(), sessionUser.getAuthProvider(), sessionUser.getEmail());
-        sessionManager.removeSession(session.getId());
-
-        return new ApiResponseDTO<>(200, "회원 탈퇴 완료", "success");
-    }
 }

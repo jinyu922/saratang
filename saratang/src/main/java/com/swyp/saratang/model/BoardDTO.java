@@ -63,6 +63,8 @@ public class BoardDTO {
     @Schema(description = "이미지 URL 리스트", example = "[\"https://example.com/image1.jpg\"]")
     private List<String> imageUrls; // 이미지 URL 리스트
     
+    
+    	
     //게시물 랜덤 출력 메소드에서 중복 제거를 위해 해시맵을 이용합니다, 그때 id 기준으로만 중복데이터를 제거하기 위해 비교 객체를 분명히 명시했습니다
     //BoardService부분을 참고해주세요
     // equals() 메소드: id만 비교하여 객체의 동일성 판단
@@ -74,7 +76,7 @@ public class BoardDTO {
         BoardDTO boardDTO = (BoardDTO) o; // 비교할 객체를 BoardDTO로 변환
         return Objects.equals(id, boardDTO.id); // id만 비교
     }
-
+    
     // hashCode() 메소드: id만 기반으로 해시코드 계산
     @Override
     public int hashCode() {

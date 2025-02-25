@@ -254,4 +254,10 @@
 		  FROM comments
 	</select>
 
+	<!-- url가져오기 -->
+	<select id="getBoardById" parameterType="int" resultType="com.swyp.saratang.model.BoardDTO">
+        SELECT id, product_link AS productLink
+        FROM posts
+        WHERE id = #{boardId}
+    </select>
 </mapper>

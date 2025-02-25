@@ -10,6 +10,7 @@ import com.swyp.saratang.mapper.UserMapper;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.PointDTO;
+import com.swyp.saratang.model.SafeUserDTO;
 
 
 @Service
@@ -32,6 +33,11 @@ public class UserServiceImpl implements UserService {
     @Override 
     public UserDTO getUserById(Integer id) {
     	return userMapper.findById(id);
+    }
+    
+    @Override 
+    public SafeUserDTO getSafeUserById(Integer id) {
+    	return userMapper.findSafeById(id);
     }
     
     @Override

@@ -18,7 +18,10 @@
 	<select id="findById" parameterType="int" resultType="com.swyp.saratang.model.UserDTO">
 	    SELECT * FROM users WHERE id = #{id}
 	</select>
-
+	
+	<select id="findSafeById" parameterType="int" resultType="com.swyp.saratang.model.SafeUserDTO">
+	    SELECT * FROM users WHERE id = #{id}
+	</select>
 
     <!-- 정식 회원 등록 -->
 	<insert id="insertUser">
@@ -57,11 +60,11 @@
 	
 	<update id="deleteUser">
     UPDATE users
-    SET social_id = NULL,
-        email = CONCAT('deleted-', UNIX_TIMESTAMP(), '-', email),  
-            is_active = 0
-        WHERE social_id = #{socialId} AND auth_provider = #{authProvider}
-        OR email = #{email}
+	SET 
+    is_active = 0,
+    email = CONCAT('Delete', email, 'Delete'),
+    social_id = CONCAT('Delete', social_id, 'Delete')
+	WHERE social_id = #{socialId} AND auth_provider = #{authProvider};
     </update>
     
     

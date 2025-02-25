@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.PointDTO;
+import com.swyp.saratang.model.SafeUserDTO;
 import com.swyp.saratang.model.UserDTO;
 
 public interface UserService {
@@ -14,6 +15,8 @@ public interface UserService {
     UserDTO getUserBySocialId(String socialId, String provider);
     
     UserDTO getUserById(Integer id);
+    
+    SafeUserDTO getSafeUserById(Integer id);
     
     void newProfile(UserDTO user);
     
@@ -33,5 +36,6 @@ public interface UserService {
     
     void insertCreditHistory(Integer userId, String type, Integer credits, String description);
 
+    
 }
 

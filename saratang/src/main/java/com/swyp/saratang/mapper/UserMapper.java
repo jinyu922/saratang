@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.swyp.saratang.model.PointDTO;
+import com.swyp.saratang.model.SafeUserDTO;
 import com.swyp.saratang.model.UserDTO;
 
 import io.swagger.v3.oas.annotations.Parameter;
@@ -19,6 +20,8 @@ public interface UserMapper {
     UserDTO findByEmail(@Param("email") String email);
     
     UserDTO findById(@Param("id") Integer id);
+    
+    SafeUserDTO findSafeById(@Param("id") Integer id);
  
     void insertUser(UserDTO user);
     
