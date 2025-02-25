@@ -41,4 +41,7 @@ public interface BoardMapper {
 	public void insertComment(CommentDTO commentDTO);//댓글 저장
 	public List<CommentDTO> getCommentList(@Param("postId") int postId,Pageable pageable);//댓글 조회
 	public int getCommentListCount(); //댓글정보 페이징
+	
+	
+	public BoardDTO getBoardById(Integer boardId); //url가져오기
 }

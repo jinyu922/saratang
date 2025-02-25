@@ -30,5 +30,25 @@ public class UserDTO {
 	    private String bottomSize;
 	    private Integer footSize;
 	    private Boolean profileYn;
-	   
+	    private String color;
+	    private Integer credits; // 포인트 양
+	    private Integer Icon;
+	    
+	    public UserDTO() {}
+	    
+	 // ✅ 모든 필드를 포함한 생성자
+	    public UserDTO(String socialId, String authProvider, String email, String nickname, 
+	                   Date regDate, boolean profileYn, String role, boolean emailVerified) {
+	        this.socialId = socialId;
+	        this.authProvider = authProvider;
+	        this.email = email;
+	        this.nickname = nickname;
+	        this.regDate = regDate;
+	        this.profileYn = profileYn;
+	        this.role = role;
+	        this.emailVerified = emailVerified;
+	    }
+ 
 }
+
+

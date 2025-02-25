@@ -18,7 +18,10 @@
 	<select id="findById" parameterType="int" resultType="com.swyp.saratang.model.UserDTO">
 	    SELECT * FROM users WHERE id = #{id}
 	</select>
-
+	
+	<select id="findSafeById" parameterType="int" resultType="com.swyp.saratang.model.SafeUserDTO">
+	    SELECT * FROM users WHERE id = #{id}
+	</select>
 
     <!-- 정식 회원 등록 -->
 	<insert id="insertUser">
@@ -57,10 +60,42 @@
 	
 	<update id="deleteUser">
     UPDATE users
-    SET social_id = NULL,
-        email = CONCAT('deleted-', UNIX_TIMESTAMP(), '-', email),  
-            is_active = 0
-        WHERE social_id = #{socialId} AND auth_provider = #{authProvider}
-        OR email = #{email}
+	SET 
+    is_active = 0,
+    email = CONCAT('Delete', email, 'Delete'),
+    social_id = CONCAT('Delete', social_id, 'Delete')
+	WHERE social_id = #{socialId} AND auth_provider = #{authProvider};
     </update>
+    
+    
+    
+    
+    
+       <!-- 특정 사용자 크레딧 내역 조회 -->
+    <select id="getCreditHistoryByUserId" resultType="com.swyp.saratang.model.PointDTO">
+        SELECT * FROM credits WHERE user_id = #{userId} ORDER BY regdate DESC;
+    </select>
+
+    <!-- 특정 사용자의 총 크레딧 합계 조회 -->
+    <select id="getTotalCreditsByUserId" resultType="Integer">
+        SELECT COALESCE(SUM(credits), 0) FROM credits WHERE user_id = #{userId};
+    </select>
+    
+     <!-- 닉네임 색상 변경 -->
+    <update id="changeUserColor">
+        UPDATE users SET color = #{newNicknameColor} WHERE id = #{userId};
+    </update>
+    
+    <update id="updateUserIcon">
+        UPDATE users 
+        SET icon = #{iconId}
+        WHERE id = #{userId}
+    </update>
+
+    <!-- 크레딧 내역 추가 -->
+    <insert id="insertCreditHistory">
+        INSERT INTO credits (user_id, type, credits, description)
+        VALUES (#{userId}, #{type}, #{credits}, #{description});
+    </insert>
+    
 </mapper>

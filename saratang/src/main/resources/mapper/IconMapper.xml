@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swyp.saratang.mapper.IconMapper">
+
+    <!-- ✅ 모든 아이콘 조회 -->
+    <select id="getAllIcons" resultType="com.swyp.saratang.model.IconDTO">
+        SELECT id, name, filename FROM icons
+    </select>
+	
+	   <!-- ✅ 특정 사용자 아이콘 ID 조회 -->
+    <select id="getUserIconId" resultType="int">
+        SELECT icon FROM users WHERE id = #{userId}
+    </select>
+
+    <!-- ✅ 특정 아이콘 정보 조회 -->
+    <select id="getIconById" resultType="com.swyp.saratang.model.IconDTO">
+        SELECT id, name, filename FROM icons WHERE id = #{iconId}
+    </select>
+</mapper>
