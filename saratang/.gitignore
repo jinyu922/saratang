@@ -19,8 +19,11 @@ target/
 *.iml
 *.ipr
 
-##로그
-.log
+# 로그 파일 제외
+*.log
+*.log.*
+logs/
+**/logs/
 
 ### NetBeans ###
 /nbproject/private/
