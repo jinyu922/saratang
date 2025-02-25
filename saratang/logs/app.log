@@ -3221,3 +3221,196 @@ com.swyp.saratang.controller.PointController#usePointsForProductLink(Map) mapped
 [2025-02-25 18:59:43] [DEBUG] [findSafeById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
 [2025-02-25 18:59:43] [DEBUG] [findSafeById] - ==> Parameters: 40(Integer)
 [2025-02-25 18:59:43] [DEBUG] [findSafeById] - <==      Total: 1
+[2025-02-25 19:00:33] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-25 19:00:33] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:00:33] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-25 19:00:34] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-25 19:00:34] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-25 19:00:34] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:00:34] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:00:34] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-25 19:00:34] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-25 19:11:34] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 11184 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-25 19:11:34] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-25 19:11:34] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-25 19:11:35] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-25 19:11:35] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:11:35] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-25 19:11:35] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-25 19:11:36] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-25 19:11:36] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 976 ms
+[2025-02-25 19:11:37] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:11:37] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-25 19:11:37] [INFO] [SaratangApplication] - Started SaratangApplication in 3.221 seconds (JVM running for 4.125)
+[2025-02-25 19:11:39] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-25 19:11:39] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-25 19:11:39] [INFO] [DispatcherServlet] - Completed initialization in 1 ms
+[2025-02-25 19:11:46] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=2adbbfcc-df58-46c9-a633-2f4d6dd140e8
+[2025-02-25 19:11:46] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=a5b838ab-3924-4f04-ad10-fff477cbbaad
+[2025-02-25 19:11:46] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[RYy38SnfULdOalf08K], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-25 19:11:47] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAAN5cfYDOmSY3IjVuB2FhnC86aJ029FWG-cq82TcuvueTeFhMq-yhxtWe8ptV-t94shBb3CYBHT1LJaMLBvwjOakU
+[2025-02-25 19:11:47] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-25 19:11:47] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-25 19:11:47] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-25 19:11:47] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-25 19:11:47] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-25 19:12:18] [DEBUG] [getCreditHistoryByUserId] - ==>  Preparing: SELECT * FROM credits WHERE user_id = ? ORDER BY regdate DESC;
+[2025-02-25 19:12:18] [DEBUG] [getCreditHistoryByUserId] - ==> Parameters: 40(Integer)
+[2025-02-25 19:12:18] [DEBUG] [getCreditHistoryByUserId] - <==      Total: 0
+[2025-02-25 19:12:48] [DEBUG] [getCreditHistoryByUserId] - ==>  Preparing: SELECT * FROM credits WHERE user_id = ? ORDER BY regdate DESC;
+[2025-02-25 19:12:48] [DEBUG] [getCreditHistoryByUserId] - ==> Parameters: 40(Integer)
+[2025-02-25 19:12:48] [DEBUG] [getCreditHistoryByUserId] - <==      Total: 0
+[2025-02-25 19:12:48] [DEBUG] [getTotalCreditsByUserId] - ==>  Preparing: SELECT COALESCE(SUM(credits), 0) FROM credits WHERE user_id = ?;
+[2025-02-25 19:12:48] [DEBUG] [getTotalCreditsByUserId] - ==> Parameters: 40(Integer)
+[2025-02-25 19:12:48] [DEBUG] [getTotalCreditsByUserId] - <==      Total: 1
+[2025-02-25 19:12:59] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-25 19:12:59] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:12:59] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-25 19:12:59] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-25 19:12:59] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-25 19:12:59] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:12:59] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:12:59] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-25 19:12:59] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-25 19:13:01] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 10076 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-25 19:13:01] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-25 19:13:01] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-25 19:13:02] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-25 19:13:02] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:13:02] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-25 19:13:02] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-25 19:13:02] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-25 19:13:02] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 927 ms
+[2025-02-25 19:13:04] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:13:04] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-25 19:13:04] [INFO] [SaratangApplication] - Started SaratangApplication in 3.006 seconds (JVM running for 3.956)
+[2025-02-25 19:13:19] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-25 19:13:19] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-25 19:13:19] [INFO] [DispatcherServlet] - Completed initialization in 0 ms
+[2025-02-25 19:13:28] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=7c1145ad-7df0-493b-a718-bf4f6b534311
+[2025-02-25 19:13:28] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=2b515454-1c41-4f63-aad7-77ff8ff06550
+[2025-02-25 19:13:28] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[Egj1EijqHv4h2f670z], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-25 19:13:29] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAAN5cfYDOmSY3IjVuB2FhnC86aJ029FWG-cq82TcuvueTeFhMq-yhxtWe8ptV-t94shBb3CYBHT1LJaMLBvwjOakU
+[2025-02-25 19:13:29] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-25 19:13:29] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-25 19:13:29] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-25 19:13:29] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-25 19:13:29] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-25 19:13:48] [DEBUG] [getCreditHistoryByUserId] - ==>  Preparing: SELECT * FROM credits WHERE user_id = ? ORDER BY regdate DESC;
+[2025-02-25 19:13:48] [DEBUG] [getCreditHistoryByUserId] - ==> Parameters: 40(Integer)
+[2025-02-25 19:13:48] [DEBUG] [getCreditHistoryByUserId] - <==      Total: 0
+[2025-02-25 19:13:48] [DEBUG] [getTotalCreditsByUserId] - ==>  Preparing: SELECT COALESCE(SUM(credits), 0) FROM credits WHERE user_id = ?;
+[2025-02-25 19:13:48] [DEBUG] [getTotalCreditsByUserId] - ==> Parameters: 40(Integer)
+[2025-02-25 19:13:48] [DEBUG] [getTotalCreditsByUserId] - <==      Total: 1
+[2025-02-25 19:13:55] [DEBUG] [getCreditHistoryByUserId] - ==>  Preparing: SELECT * FROM credits WHERE user_id = ? ORDER BY regdate DESC;
+[2025-02-25 19:13:55] [DEBUG] [getCreditHistoryByUserId] - ==> Parameters: 40(Integer)
+[2025-02-25 19:13:55] [DEBUG] [getCreditHistoryByUserId] - <==      Total: 0
+[2025-02-25 19:14:53] [DEBUG] [findSafeById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-25 19:14:53] [DEBUG] [findSafeById] - ==> Parameters: 40(Integer)
+[2025-02-25 19:14:53] [DEBUG] [findSafeById] - <==      Total: 1
+[2025-02-25 19:17:01] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-25 19:17:01] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:17:01] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-25 19:17:02] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-25 19:17:02] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-25 19:17:02] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:17:02] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:17:02] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-25 19:17:02] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-25 19:17:03] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 8872 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-25 19:17:03] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-25 19:17:03] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-25 19:17:04] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-25 19:17:04] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:17:04] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-25 19:17:04] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-25 19:17:04] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-25 19:17:04] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 946 ms
+[2025-02-25 19:17:06] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:17:06] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-25 19:17:06] [INFO] [SaratangApplication] - Started SaratangApplication in 3.073 seconds (JVM running for 3.986)
+[2025-02-25 19:17:15] [INFO] [[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-02-25 19:17:15] [INFO] [DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[2025-02-25 19:17:15] [INFO] [DispatcherServlet] - Completed initialization in 4 ms
+[2025-02-25 19:17:15] [INFO] [AuthController] - OAuth 로그인 요청 - Provider: naver, Redirecting to: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=d7r7ASi4RskTw3s1VVdp&redirect_uri=http://localhost:8080/auth/callback/naver&state=37baf6ae-87cf-4c3d-b41e-ebfebb9b50e8
+[2025-02-25 19:17:15] [INFO] [AuthServiceImpl] - OAuth 토큰 요청 시작 - URL: https://nid.naver.com/oauth2.0/token, Params: {grant_type=[authorization_code], client_id=[d7r7ASi4RskTw3s1VVdp], client_secret=[k0ZvxiXh0_], code=[k6pQKSNGxwBrMKydaO], redirect_uri=[http://localhost:8080/auth/callback/naver]}
+[2025-02-25 19:17:16] [INFO] [AuthServiceImpl] - Access Token 요청 성공 - Token: AAAAN5cfYDOmSY3IjVuB2FhnC86aJ029FWG-cq82TcuvueTeFhMq-yhxtWe8ptV-t94shBb3CYBHT1LJaMLBvwjOakU
+[2025-02-25 19:17:16] [INFO] [HikariDataSource] - HikariPool-1 - Starting...
+[2025-02-25 19:17:16] [INFO] [HikariDataSource] - HikariPool-1 - Start completed.
+[2025-02-25 19:17:16] [DEBUG] [findBySocialId] - ==>  Preparing: SELECT * FROM users WHERE social_id = ? AND auth_provider = ?
+[2025-02-25 19:17:16] [DEBUG] [findBySocialId] - ==> Parameters: 5F2NigD2ts7TaJmq6SyVOp7IRa1CpdzW0M_3Q-Rd6w4(String), naver(String)
+[2025-02-25 19:17:16] [DEBUG] [findBySocialId] - <==      Total: 1
+[2025-02-25 19:17:21] [DEBUG] [findSafeById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-25 19:17:21] [DEBUG] [findSafeById] - ==> Parameters: 40(Integer)
+[2025-02-25 19:17:21] [DEBUG] [findSafeById] - <==      Total: 1
+[2025-02-25 19:17:55] [DEBUG] [findSafeById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-25 19:17:55] [DEBUG] [findSafeById] - ==> Parameters: 40(Integer)
+[2025-02-25 19:17:55] [DEBUG] [findSafeById] - <==      Total: 1
+[2025-02-25 19:17:58] [DEBUG] [findSafeById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-25 19:17:58] [DEBUG] [findSafeById] - ==> Parameters: 40(Integer)
+[2025-02-25 19:17:58] [DEBUG] [findSafeById] - <==      Total: 1
+[2025-02-25 19:18:13] [DEBUG] [findSafeById] - ==>  Preparing: SELECT * FROM users WHERE id = ?
+[2025-02-25 19:18:13] [DEBUG] [findSafeById] - ==> Parameters: 40(Integer)
+[2025-02-25 19:18:13] [DEBUG] [findSafeById] - <==      Total: 1
+[2025-02-25 19:19:52] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-25 19:19:52] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:19:52] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-25 19:19:52] [INFO] [[/]] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2025-02-25 19:19:52] [WARN] [WebappClassLoaderBase] - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+[2025-02-25 19:19:52] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:19:52] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:19:52] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown initiated...
+[2025-02-25 19:19:52] [INFO] [HikariDataSource] - HikariPool-1 - Shutdown completed.
+[2025-02-25 19:19:54] [INFO] [SaratangApplication] - Starting SaratangApplication using Java 1.8.0_401 on 24정보전략부노트북1 with PID 19376 (C:\Users\SAC_IT(1)\git\saratang\saratang\target\classes started by 2024정보전략부노트북1 in C:\Users\SAC_IT(1)\git\saratang\saratang)
+[2025-02-25 19:19:54] [DEBUG] [SaratangApplication] - Running with Spring Boot v2.7.10, Spring v5.3.26
+[2025-02-25 19:19:54] [INFO] [SaratangApplication] - No active profile set, falling back to 1 default profile: "default"
+[2025-02-25 19:19:55] [INFO] [TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+[2025-02-25 19:19:55] [INFO] [Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:19:55] [INFO] [StandardService] - Starting service [Tomcat]
+[2025-02-25 19:19:55] [INFO] [StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[2025-02-25 19:19:55] [INFO] [[/]] - Initializing Spring embedded WebApplicationContext
+[2025-02-25 19:19:55] [INFO] [ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 972 ms
+[2025-02-25 19:19:57] [INFO] [Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:19:57] [INFO] [TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+[2025-02-25 19:19:57] [INFO] [SaratangApplication] - Started SaratangApplication in 3.125 seconds (JVM running for 3.969)
+[2025-02-25 19:20:01] [INFO] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] - Application shutdown requested.
+[2025-02-25 19:20:01] [INFO] [Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:20:01] [INFO] [StandardService] - Stopping service [Tomcat]
+[2025-02-25 19:20:01] [INFO] [Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8080"]
+[2025-02-25 19:20:01] [INFO] [Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8080"]

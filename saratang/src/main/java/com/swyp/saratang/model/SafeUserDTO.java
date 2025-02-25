@@ -27,7 +27,6 @@ public class SafeUserDTO {//응답 시, UserDTO에서 패스워드같은 민감�
 	    private String bottomSize;
 	    private Integer footSize;
 	    private String color;
-	    private Integer credits; 
 	    private Integer icon;
 	    
 
@@ -50,5 +49,7 @@ public class SafeUserDTO {//응답 시, UserDTO에서 패스워드같은 민감�
 	        this.topSize = user.getTopSize();
 	        this.bottomSize = user.getBottomSize();
 	        this.footSize = user.getFootSize();
+	        this.color = user.getColor();
+	        this.icon = user.getIcon();
 	    }
 }

@@ -119,7 +119,7 @@ public class ProfileController {
     }
     
     @GetMapping("/credits")
-    @Operation(summary = "사용자 크레딧 조회", description = "현재 로그인한 사용자의 모든 크레딧 내역 및 총 크레딧 반환")
+    @Operation(summary = "사용자 크레딧 조회", description = "현재 로그인한 사용자의 총 크레딧 반환")
     @ApiResponse(responseCode = "200", description = "크레딧 조회 성공")
     @ApiResponse(responseCode = "401", description = "세션이 만료됨")
     public ApiResponseDTO<Map<String, Object>> getUserCredits(HttpSession session) {
@@ -162,23 +162,6 @@ public class ProfileController {
         return new ApiResponseDTO<>(200, "크레딧 내역 조회 성공", creditHistory);
     }
 
-    /**
-     * 사용자 총 크레딧 조회
-     */
-    @GetMapping("/credit/total")
-    @Operation(summary = "사용자 총 크레딧 조회", description = "현재 로그인한 사용자의 총 크레딧 반환")
-    @ApiResponse(responseCode = "200", description = "총 크레딧 조회 성공")
-    @ApiResponse(responseCode = "401", description = "세션이 만료됨")
-    public ApiResponseDTO<Integer> getUserTotalCredits(HttpSession session) {
-        UserDTO sessionUser = sessionManager.getSession(session.getId());
-
-        if (sessionUser == null) {
-            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
-        }
-
-        Integer totalCredits = userService.getTotalCreditsByUserId(sessionUser.getId());
-        return new ApiResponseDTO<>(200, "총 크레딧 조회 성공", totalCredits);
-    }
     
     /**
      * [TEST] 사용자 크레딧 내역 조회
