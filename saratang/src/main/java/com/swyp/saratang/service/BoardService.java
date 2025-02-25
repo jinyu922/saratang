@@ -1,7 +1,6 @@
 package com.swyp.saratang.service;
 
 import java.math.BigDecimal;
-import java.net.ResponseCache;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,14 +11,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.ibatis.javassist.NotFoundException;
-import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.swyp.saratang.data.PeriodType;
 import com.swyp.saratang.data.RequestList;
 import com.swyp.saratang.mapper.BoardMapper;
 import com.swyp.saratang.mapper.JudgeMapper;
@@ -37,16 +34,12 @@ public class BoardService {
 	
 	@Autowired
 	BoardMapper boardMapper;
-	
 	@Autowired
 	JudgeMapper judgeMapper;
-	
 	@Autowired
 	SessionManager sessionManager;
-	
 	@Autowired
 	UserService userService;
-	
 	@Autowired
 	CategoryService categoryService;
 	
@@ -199,7 +192,7 @@ public class BoardService {
 		return new PageImpl<>(boardDTOs, pageable, total);
 	}
 	
-	public void createPost(BoardDTO boardDTO, List<String> imageUrls) {
+	public Integer createPost(BoardDTO boardDTO, List<String> imageUrls) {
 	
 		boardMapper.createPost(boardDTO);
 		//그림자료 저장
@@ -209,6 +202,7 @@ public class BoardService {
             	boardMapper.insertPostImage(postImageDTO);
             }
         }
+        return boardDTO.getId();
 	}
 	
 	public Page<BoardDTO> getBest(int userId,Pageable pageable,String postType,int period) {
