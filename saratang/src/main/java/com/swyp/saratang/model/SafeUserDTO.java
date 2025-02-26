@@ -14,10 +14,8 @@ public class SafeUserDTO {//응답 시, UserDTO에서 패스워드같은 민감�
 	    private String username;
 	    private String nickname;
 	    private String email;
-	    private String socialId; 
 	    private String authProvider;
 	    private String role; 
-	    private String bio;
 	    private Integer weight;
 	    private Integer height;
 	    private Date birthDate;
@@ -40,7 +38,6 @@ public class SafeUserDTO {//응답 시, UserDTO에서 패스워드같은 민감�
 	        this.email = user.getEmail();
 	        this.authProvider = user.getAuthProvider();
 	        this.role = user.getRole();
-	        this.bio = user.getBio();
 	        this.weight = user.getWeight();
 	        this.height = user.getHeight();
 	        this.birthDate = user.getBirthDate();

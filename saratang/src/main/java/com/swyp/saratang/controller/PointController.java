@@ -19,6 +19,9 @@ import com.swyp.saratang.service.PointService;
 import com.swyp.saratang.service.UserService;
 import com.swyp.saratang.session.SessionManager;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestController
 public class PointController {
 
@@ -44,6 +47,13 @@ public class PointController {
 	
 	
 	@PostMapping("/viewurl")
+	@Operation(summary = "포인트 사용하여 상품 링크 조회",
+		       description = "포인트 3점을 사용하여 상품 링크를 조회합니다. 현재 사용자의 크레딧 정보를 업데이트합니다.")
+		    @ApiResponse(responseCode = "200", description = "상품 링크 조회 완료 (포인트 3 차감)")
+		    @ApiResponse(responseCode = "400", description = "유효하지 않은 boardId 값")
+		    @ApiResponse(responseCode = "401", description = "세션 만료")
+		    @ApiResponse(responseCode = "402", description = "포인트 부족")
+		    @ApiResponse(responseCode = "404", description = "해당 게시글을 찾을 수 없음")
     public ApiResponseDTO<Map<String, Object>> usePointsForProductLink(@RequestBody Map<String, Integer> requestData, HttpSession session) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
 

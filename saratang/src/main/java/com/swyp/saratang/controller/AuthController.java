@@ -1,6 +1,9 @@
 package com.swyp.saratang.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -15,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.UserDTO;
@@ -114,10 +119,25 @@ public class AuthController {
 
         try {
             UserDTO user = authService.processOAuthLogin(provider, code, session.getId());
-
+            
+            
             // 세션 유지
             sessionManager.setSession(session.getId(), user);
-            response.addHeader("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None; Secure");
+            
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+            
+            // ✅ 개발 환경 감지 (localhost 또는 127.0.0.1)
+            boolean isLocalEnv = request.getServerName().equals("localhost") || request.getServerName().startsWith("127.0.0.1");
+
+            // ✅ 쿠키 설정 (SameSite=None 유지, 개발 환경에서는 Secure 제거)
+            String cookie = "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None";
+            
+            if (!isLocalEnv) { 
+                cookie += "; Secure"; // 운영 환경(HTTPS)에서는 Secure 속성 추가
+            }
+
+            // ✅ 쿠키 설정 적용
+            response.addHeader("Set-Cookie", cookie);
             
            
             
@@ -155,7 +175,7 @@ public class AuthController {
     @Operation(summary = "로그아웃", description = "현재 로그인된 사용자를 로그아웃")
     @ApiResponse(responseCode = "200", description = "로그아웃 완료")
     @ApiResponse(responseCode = "401", description = "이미 로그아웃된 상태")
-    public ResponseEntity<ApiResponseDTO<String>> logout(HttpSession session, HttpServletResponse response) {
+    public ResponseEntity<ApiResponseDTO<String>> logout(HttpSession session,HttpServletRequest request,  HttpServletResponse response) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
 
         if (sessionUser == null) {
@@ -166,8 +186,19 @@ public class AuthController {
         // 세션 삭제
         sessionManager.removeSession(session.getId());
 
+        // 개발 환경 여부 감지
+        boolean isLocalEnv = request.getServerName().equals("localhost") || request.getServerName().startsWith("127.0.0.1");
+
+        // 기본 쿠키 설정
+        String cookie = "JSESSIONID=; Path=/; HttpOnly; SameSite=None; Max-Age=0";
+        
+        // 운영 환경에서는 Secure 속성 추가
+        if (!isLocalEnv) {
+            cookie += "; Secure";
+        }
+
         // 쿠키 삭제
-        response.addHeader("Set-Cookie", "JSESSIONID=; Path=/; HttpOnly; SameSite=None; Secure; Max-Age=0");
+        response.addHeader("Set-Cookie", cookie);
 
         return ResponseEntity.ok(new ApiResponseDTO<>(200, "로그아웃 완료", "success"));
     }

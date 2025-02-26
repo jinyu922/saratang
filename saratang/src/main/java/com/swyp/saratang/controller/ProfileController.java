@@ -137,6 +137,8 @@ public class ProfileController {
 
         //  사용자 총 크레딧 합계 조회
         Integer totalCredits = userService.getTotalCreditsByUserId(userId);
+        
+        totalCredits = (totalCredits == null) ? 0 : totalCredits;
 
         //  응답 데이터 생성
         Map<String, Object> responseData = new HashMap<>();

@@ -15,6 +15,9 @@ import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.service.IconService;
 import com.swyp.saratang.session.SessionManager;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -42,6 +45,13 @@ public class IconController {
     private String iconDirectory;
 
     @GetMapping("/me")
+    @Operation(
+            summary = "현재 로그인한 사용자의 아이콘 조회",
+            description = "세션 정보를 이용하여 현재 로그인한 사용자의 아이콘 정보를 반환합니다."
+        )
+        @ApiResponse(responseCode = "200", description = "아이콘 정보 조회 성공")
+        @ApiResponse(responseCode = "401", description = "세션 만료로 인한 인증 오류")
+        @ApiResponse(responseCode = "404", description = "사용자의 아이콘이 설정되지 않음")
     public ResponseEntity<ApiResponseDTO<IconDTO>> getUserIcon(HttpSession session) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
 
@@ -164,6 +174,11 @@ public class IconController {
 
     // 모든 아이콘 정보 가져오기 (파일 URL 포함)
     @GetMapping("/all")
+    @Operation(
+            summary = "모든 아이콘 조회",
+            description = "서버에 저장된 모든 아이콘 정보를 반환합니다."
+        )
+    @ApiResponse(responseCode = "200", description = "아이콘 목록 조회 성공")
     public List<IconDTO> getAllIcons() {
         List<IconDTO> icons = iconService.getAllIcons();
 
