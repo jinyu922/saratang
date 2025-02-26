@@ -1,17 +1,9 @@
 package com.swyp.saratang.session;
 
-import java.util.HashMap;
 import java.util.Map;
-
-import java.util.zip.ZipEntry;
-
 import java.util.concurrent.ConcurrentHashMap;
-
 import javax.servlet.http.HttpSession;
-
-import org.springframework.aop.ThrowsAdvice;
 import org.springframework.stereotype.Component;
-
 import com.swyp.saratang.model.UserDTO;
 
 @Component

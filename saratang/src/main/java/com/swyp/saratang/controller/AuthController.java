@@ -130,6 +130,7 @@ public class AuthController {
 
             // ✅ 쿠키 설정 (SameSite=None 유지, 개발 환경에서는 Secure 제거)
             String cookie = "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None";
+            // Debug - 준혁
             System.out.println("session.getId(): "+session.getId());
             System.out.println("cookie: "+cookie);
             
