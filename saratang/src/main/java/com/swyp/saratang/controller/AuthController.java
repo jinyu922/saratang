@@ -120,7 +120,6 @@ public class AuthController {
         try {
             UserDTO user = authService.processOAuthLogin(provider, code, session.getId());
             
-            
             // 세션 유지
             sessionManager.setSession(session.getId(), user);
             
@@ -131,6 +130,8 @@ public class AuthController {
 
             // ✅ 쿠키 설정 (SameSite=None 유지, 개발 환경에서는 Secure 제거)
             String cookie = "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly; SameSite=None";
+            System.out.println("session.getId(): "+session.getId());
+            System.out.println("cookie: "+cookie);
             
             if (!isLocalEnv) { 
                 cookie += "; Secure"; // 운영 환경(HTTPS)에서는 Secure 속성 추가
