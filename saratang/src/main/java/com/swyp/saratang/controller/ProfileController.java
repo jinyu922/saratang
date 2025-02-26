@@ -1,11 +1,15 @@
 package com.swyp.saratang.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +28,7 @@ import com.swyp.saratang.model.BoardDTO;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.model.SafeUserDTO;
 import com.swyp.saratang.model.PointDTO;
+import com.swyp.saratang.service.AuthServiceImpl;
 import com.swyp.saratang.service.BoardService;
 import com.swyp.saratang.service.UserService;
 import com.swyp.saratang.session.SessionManager;
@@ -42,7 +47,7 @@ public class ProfileController {
     @Autowired
     private SessionManager sessionManager;
 
-    
+    private static final Logger logger = LogManager.getLogger(ProfileController.class);
 
     /**
      * 신규 회원 프로필 입력 API
@@ -83,7 +88,8 @@ public class ProfileController {
     @Operation(summary = "프로필 조회", description = "현재 로그인한 사용자의 프로필 정보 확인")
     @ApiResponse(responseCode = "200", description = "프로필 조회 성공")
     @ApiResponse(responseCode = "401", description = "세션이 만료됨")
-    public ApiResponseDTO<SafeUserDTO> getProfile(HttpSession session) {
+    public ApiResponseDTO<SafeUserDTO> getProfile(HttpSession session,HttpServletRequest request) {
+    	
         UserDTO sessionUser = sessionManager.getSession(session.getId());
         if (sessionUser == null) {
             return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);

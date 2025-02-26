@@ -187,7 +187,7 @@ public class BoardService {
             boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
         }
 		
-		int total = boardMapper.getBoardListCount();
+		int total = boardMapper.getHistoryCount(requestList);
 		
 		return new PageImpl<>(boardDTOs, pageable, total);
 	}
@@ -213,12 +213,14 @@ public class BoardService {
 				.period(period)
 				.build();
 		List<BoardDTO> boardDTOs= new ArrayList<>();
-		
+		int total = boardMapper.getBoardListCount();
 		if("fashion".equals(postType)) {
 			boardDTOs = boardMapper.getFashionBest(requestList);
+			total=boardMapper.getFashionBestCount(requestList);
 		}
 		else if("discount".equals(postType)) {
 			boardDTOs = boardMapper.getDiscountBest(requestList);
+			total=boardMapper.getDiscountBestCount(requestList);
 		}
 		
 		
@@ -228,7 +230,7 @@ public class BoardService {
             boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
         }
 		
-		int total = boardMapper.getBoardListCount();
+		
 		
 		return new PageImpl<>(boardDTOs, pageable, total);
 		
@@ -252,4 +254,24 @@ public class BoardService {
 	        return boardMapper.getBoardById(boardId);
 	    }
 	
+	//작성한 게시글 출력
+	public Page<BoardDTO> getMyPosts(int userId,Pageable pageable){
+		//Mapper 쿼리에 필요한 내용 정의
+		RequestList<?> requestList=RequestList.builder()
+				.requestUserId(userId)
+				.pageable(pageable)
+				.build();
+		
+		List<BoardDTO> boardDTOs = boardMapper.getMyPosts(requestList);
+		
+		//반환할 게시글 DTO마다 url 정보 추가
+        for (BoardDTO boardDTO : boardDTOs) {
+            List<String> imageUrls = boardMapper.getImagesByPostId(boardDTO.getId());
+            boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
+        }
+		
+		int total = boardMapper.getMyPostsCount(requestList);
+		
+		return new PageImpl<>(boardDTOs, pageable, total);
+	}
 }

@@ -90,6 +90,11 @@
 	    ORDER BY p.REGDATE DESC  <!-- 최신순 정렬 -->
 	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
+	<!-- 리스트 조회 페이징시 total 개수 받아오기 -->
+	<select id="getBoardListCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		  FROM posts
+	</select>
 
         <!-- 패션정보 리스트 상세 조회 -->
     <select id="getFashionPostById" resultType="com.swyp.saratang.model.BoardDTO">
@@ -113,7 +118,7 @@
 		WHERE ID = #{id} AND POST_TYPE = #{postType}
     </select>
     
-    <!--사라/마라 판단한 게시글 히스토리-->
+    <!--사라/마라 판단한 게시글 히스토리(페이징)-->
 	<select id="getHistory" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
 		SELECT 
 	        p.ID, p.USER_ID,p.CATEGORY_ID,p.CONCERN_KEYWORD_ID,p.POST_TYPE,p.BRAND,p.ORIGINAL_PRICE,
@@ -127,7 +132,18 @@
 	    ORDER BY p.REGDATE ${sortType}
 	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
-	<!--링크 들어간 게시글 히스토리 페이징요 요청변수로 패션/할인정보 최신/오래된순-->
+	<!-- 사라/마라 판단한 게시글 히스토리 페이징시 total 개수 받아오기 -->
+	<select id="getHistoryCount" parameterType="com.swyp.saratang.data.RequestList" resultType="int">
+	    SELECT COUNT(*) AS CNT
+	    FROM posts p
+	    WHERE p.POST_TYPE = #{postType}
+	    AND p.ID IN (
+	        SELECT j.post_id 
+	        FROM judgements j 
+	        WHERE j.user_id = #{requestUserId} 
+	        AND j.judgement = #{judgementType}
+	    )
+	</select>
 	
 	<!--기간별 패션 베스트 조회-->
 	<select id="getFashionBest" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
@@ -161,8 +177,22 @@
 	    ORDER BY popularity DESC <!-- 정렬방식 판단 개수 많은 순으로 -->
 	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
+	<!-- 기간별 패션 베스트 조회 시 total 개수 구하는 쿼리 -->
+	<select id="getFashionBestCount" parameterType="com.swyp.saratang.data.RequestList" resultType="int">
+	    SELECT COUNT(*) AS CNT
+	    FROM posts p
+	    JOIN user_categories uc ON p.CATEGORY_ID = uc.category_id
+	    LEFT JOIN (
+	        SELECT post_id, COUNT(*) AS judgement_count
+	        FROM judgements
+	        GROUP BY post_id
+	    ) j ON p.ID = j.post_id
+	    WHERE p.POST_TYPE = 'fashion'
+	      AND uc.user_id = #{requestUserId}
+	      AND p.REGDATE >= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+	</select>
 	
-	<!--기간별 할인 베스트 조회-->
+	<!--기간별 할인 베스트 조회(페이징)-->
 	<select id="getDiscountBest" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
 	    SELECT 
 	        p.ID, 
@@ -195,6 +225,21 @@
 	    ORDER BY popularity DESC <!-- 정렬방식 사라판단 개수 많은 순으로 -->
 	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
+	<!-- 기간별 할인 베스트 조회 시 total 개수 구하는 쿼리 -->
+	<select id="getDiscountBestCount" parameterType="com.swyp.saratang.data.RequestList" resultType="int">
+	    SELECT COUNT(*) AS CNT
+	    FROM posts p
+	    JOIN user_categories uc ON p.CATEGORY_ID = uc.category_id
+	    LEFT JOIN (
+	        SELECT post_id, COUNT(*) AS judgement_count
+	        FROM judgements
+	        WHERE judgement = 'positive'
+	        GROUP BY post_id
+	    ) j ON p.ID = j.post_id
+	    WHERE p.POST_TYPE = 'discount'
+	      AND uc.user_id = #{requestUserId}
+	      AND p.REGDATE >= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+	</select>
 	
     <select id="getImagesByPostId" parameterType="Integer" resultType="String">
 	    SELECT 
@@ -202,11 +247,8 @@
 	    FROM post_images
 	    WHERE post_id = #{postId}
 	</select>
-    <!-- 리스트 조회 페이징 -->
-	<select id="getBoardListCount" resultType="int">
-		SELECT COUNT(*) AS CNT
-		  FROM posts
-	</select>
+	
+
 	
 	<!-- 이미지 url 삽입 -->
 	<insert id="insertPostImage" parameterType="com.swyp.saratang.model.PostImageDTO">
@@ -260,4 +302,35 @@
         FROM posts
         WHERE id = #{boardId}
     </select>
+    
+    <!-- 작성한 게시글들 조회(페이징) -->
+	<select id="getMyPosts" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+	    SELECT 
+	        p.ID, 
+	        p.USER_ID,
+	        p.CATEGORY_ID,
+	        p.CONCERN_KEYWORD_ID,
+	        p.POST_TYPE,
+	        p.BRAND,
+	        p.ORIGINAL_PRICE,
+	        p.DISCOUNT_PRICE,
+	        p.PRODUCT_LINK,
+	        p.TITLE,
+	        p.CURRENT_PRICE,
+	        p.MEMO,
+	        p.IS_SPEC_PUBLIC,
+	        p.DETAIL_MEMO,
+	        p.REGDATE
+	    FROM posts p
+	    WHERE p.USER_ID = #{requestUserId}
+	    ORDER BY p.REGDATE DESC  <!-- 최신순 정렬 -->
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+	<!-- 작성한 게시글들의 총 개수 조회 -->
+	<select id="getMyPostsCount" parameterType="com.swyp.saratang.data.RequestList" resultType="int">
+	    SELECT COUNT(*) AS CNT
+	    FROM posts p
+	    WHERE p.USER_ID = #{requestUserId}
+	</select>
+
 </mapper>

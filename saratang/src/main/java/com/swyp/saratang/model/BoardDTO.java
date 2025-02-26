@@ -63,6 +63,9 @@ public class BoardDTO {
     @Schema(description = "이미지 URL 리스트", example = "[\"https://example.com/image1.jpg\"]")
     private List<String> imageUrls; // 이미지 URL 리스트
     
+    @Schema(description = "페이징 시 레코드 총 개수 (입력할 필요 없음)", accessMode = Schema.AccessMode.READ_ONLY)
+    private Integer cnt; // 게시글 고유 ID *
+    
     
     	
     //게시물 랜덤 출력 메소드에서 중복 제거를 위해 해시맵을 이용합니다, 그때 id 기준으로만 중복데이터를 제거하기 위해 비교 객체를 분명히 명시했습니다

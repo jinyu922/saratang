@@ -216,5 +216,22 @@ public class BoardController {
 		Pageable pageable = PageRequest.of(page, size);
 		return new ApiResponseDTO<>(200, "성공적으로 댓글 정보를 조회하였습니다.", boardService.getCommentList(postId,pageable));
 	}
-
+	
+	@Operation(summary = "작성한 게시글들 조회", description = "작성한 게시글들 리스트 페이징 조회")
+	@GetMapping("/my_post")
+	public ApiResponseDTO<?> getMyPosts(
+	        @Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
+			@RequestParam(defaultValue = "5") int size ,
+	        @RequestParam(defaultValue = "0") int page,
+	        HttpSession session){
+        Integer userId = null;
+        try {
+            userId=sessionManager.getUserIdFromSession(session, requestUserId);
+        } catch (Exception e) {
+            return new ApiResponseDTO<>(500,e.getMessage(), null );
+        }
+        
+		Pageable pageable = PageRequest.of(page, size);
+		return new ApiResponseDTO<>(200, "성공적으로 작성한 게시글들을 조회했습니다", boardService.getMyPosts(userId,pageable));
+	}
 }
