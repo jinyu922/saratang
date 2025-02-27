@@ -1,6 +1,7 @@
 package com.swyp.saratang.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -114,9 +115,13 @@ public class AuthServiceImpl implements AuthService {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken);
         HttpEntity<String> entity = new HttpEntity<>(headers);
-
+        
+        //debug 김준혁
         ResponseEntity<Map> responseEntity = restTemplate.exchange(profileUrl, HttpMethod.GET, entity, Map.class);
-        Map<String, Object> response = responseEntity.getBody();
+        System.out.println("getuserprofile메소드1:"+responseEntity);
+        Map<String, Object> response=responseEntity.getBody();
+        System.out.println("getuserprofile메소드2:"+response);
+
 
         if (response == null) {
             throw new RuntimeException("사용자 정보 요청 실패: 응답이 null");

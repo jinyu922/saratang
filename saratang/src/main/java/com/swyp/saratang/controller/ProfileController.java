@@ -62,7 +62,7 @@ public class ProfileController {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
 
         if (sessionUser == null) {
-            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다1. 다시 로그인해주세요.", null);
         }
 
         if (sessionUser.getUsername() != null) {
@@ -92,7 +92,7 @@ public class ProfileController {
     	
         UserDTO sessionUser = sessionManager.getSession(session.getId());
         if (sessionUser == null) {
-            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다2. 다시 로그인해주세요.", null);
         }
 
         SafeUserDTO user = userService.getSafeUserById(sessionUser.getId());
@@ -111,7 +111,7 @@ public class ProfileController {
     public ApiResponseDTO<String> editProfile(@RequestBody UserDTO user, HttpSession session) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
         if (sessionUser == null) {
-            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다3. 다시 로그인해주세요.", null);
         }
 
         user.setSocialId(sessionUser.getSocialId());

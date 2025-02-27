@@ -212,7 +212,7 @@ public class AuthController {
     public ApiResponseDTO<String> deleteProfile(HttpSession session) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
         if (sessionUser == null) {
-            return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
+            return new ApiResponseDTO<>(401, "세션이 만료되었습니다0. 다시 로그인해주세요.", null);
         }
 
         userService.deleteUser(sessionUser.getSocialId(), sessionUser.getAuthProvider(), sessionUser.getEmail());
