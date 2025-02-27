@@ -8,4 +8,8 @@ public class CommentDTO {
 	private int postId;
 	private int userId;
 	private String content;
+	
+	//추가정보
+	private String username;
+	private String judgement;
 }

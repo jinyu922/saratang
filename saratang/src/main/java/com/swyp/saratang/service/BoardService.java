@@ -36,6 +36,7 @@ public class BoardService {
 	BoardMapper boardMapper;
 	@Autowired
 	JudgeMapper judgeMapper;
+
 	@Autowired
 	SessionManager sessionManager;
 	@Autowired

@@ -41,7 +41,6 @@ public interface BoardMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id") //options로 user_id 를 boardDTO에 넣기 위해 실행
 	public void createPost(BoardDTO boardDTO); //패션정보 게시
 	
-	
 	public List<String> getImagesByPostId(Integer postId); //NCP object storage 이미지 url 리스트 조회
 	public void insertPostImage(PostImageDTO postImageDTO); //NCP object storage 이미지 url 저장
 	

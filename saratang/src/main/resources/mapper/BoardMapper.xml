@@ -281,12 +281,22 @@
 	<!--댓글리스트조회-->
 	<select id="getCommentList" resultType="com.swyp.saratang.model.CommentDTO">
 		SELECT 
-			id,post_id,user_id,content,regdate
+		    comments.id, 
+		    comments.post_id, 
+		    comments.user_id, 
+		    users.username,
+		    judgements.judgement,
+		    comments.content, 
+		    comments.regdate
 		FROM 
-			comments
+		    comments
+		JOIN users ON comments.user_id = users.id
+		JOIN judgements ON comments.user_id = judgements.user_id AND comments.post_id= judgements.post_id
+		
 		WHERE 
-			post_id=#{postId}
-		ORDER BY regdate DESC  <!-- 최신순 정렬 -->
+		    comments.post_id = 1
+		ORDER BY 
+		    comments.regdate DESC  <!-- 최신순 정렬 -->
 	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
 	
