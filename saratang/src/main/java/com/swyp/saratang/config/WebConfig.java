@@ -13,6 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins(
                         "http://localhost:3000", 
                         "http://localhost:8080", 
+                        "http://223.130.162.183",
                         "https://saratangmaratang.vercel.app"
                 )  // ✅ 정확한 출처(origin)만 허용
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // ✅ OPTIONS 추가

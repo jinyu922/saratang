@@ -89,7 +89,7 @@ public class ProfileController {
     @ApiResponse(responseCode = "200", description = "프로필 조회 성공")
     @ApiResponse(responseCode = "401", description = "세션이 만료됨")
     public ApiResponseDTO<SafeUserDTO> getProfile(HttpSession session,HttpServletRequest request) {
-    	
+    	System.out.println("📌 프로필 조회 요청 - 세션 ID: " + session.getId());
         UserDTO sessionUser = sessionManager.getSession(session.getId());
         if (sessionUser == null) {
             return new ApiResponseDTO<>(401, "세션이 만료되었습니다2. 다시 로그인해주세요.", null);
