@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.swyp.saratang.mapper.PointMapper;
+import com.swyp.saratang.model.LinkAccessDTO;
 import com.swyp.saratang.model.PointDTO;
 
 
@@ -15,6 +16,10 @@ public class PointService {
 	
 	public void addPoint(PointDTO pointDTO) {
 		pointMapper.addPoint(pointDTO);
+	}
+	
+	public void addLinkAccess(LinkAccessDTO accessDTO) {
+		pointMapper.addLinkAccess(accessDTO);
 	}
 
 }
