@@ -56,7 +56,7 @@ public class PointController {
 		    @ApiResponse(responseCode = "404", description = "해당 게시글을 찾을 수 없음")
     public ApiResponseDTO<Map<String, Object>> usePointsForProductLink(@RequestBody Map<String, Integer> requestData, HttpSession session) {
         UserDTO sessionUser = sessionManager.getSession(session.getId());
-
+        
         // 세션 검증
         if (sessionUser == null) {
             return new ApiResponseDTO<>(401, "세션이 만료되었습니다. 다시 로그인해주세요.", null);
@@ -94,6 +94,9 @@ public class PointController {
         Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
         sessionUser.setCredits(updatedCredits);
         sessionManager.setSession(session.getId(), sessionUser);
+        
+        // 포인트 엑세스 권한 부여
+        
 
         // 응답 데이터 반환
         Map<String, Object> responseData = new HashMap<>();
