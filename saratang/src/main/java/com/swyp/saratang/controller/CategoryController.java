@@ -25,7 +25,6 @@ public class CategoryController {
 	@Autowired
 	private SessionManager sessionManager;
 	
-	
 	@Operation(summary = "유저별 선호 카테고리 조회", description = "유저 id를 통해 선호 카테고리를 조회합니다")
 	@GetMapping("/category")
 	public ApiResponseDTO<CategoryDTO> getCategoryList(@Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId
