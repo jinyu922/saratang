@@ -9,5 +9,10 @@
     	VALUES (#{userId}, #{postId}, #{type}, #{credits},#{description});
     </insert>
     
+    <insert id="addLinkAccess" parameterType="com.swyp.saratang.model.LinkAccessDTO">
+        INSERT INTO linkAccess (user_id, post_id)
+        VALUES (#{userId}, #{postId});
+    </insert>
+    
 
 </mapper>
