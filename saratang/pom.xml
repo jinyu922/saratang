@@ -19,7 +19,18 @@
         <java.version>1.8</java.version>
         
     </properties>
-
+	
+	<repositories>
+    <repository>
+        <id>spring-releases</id>
+        <url>https://repo.spring.io/release</url>
+    </repository>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+	</repositories>
+	
     <dependencies>
         <!-- Spring Boot Starter Web -->
         <dependency>
@@ -92,6 +103,23 @@
             </exclusions>
         </dependency>
 
+		<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+    <version>0.11.5</version>
+		</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-impl</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>  <!-- 이 부분이 중요함 -->
+</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-jackson</artifactId> <!-- JSON 직렬화/역직렬화 지원 -->
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+</dependency>
 
 		<!-- Spring Boot Starter Web (spring-boot-starter-logging 제외) -->
 		<dependency>
@@ -110,9 +138,26 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
+			
+			
+		<dependency>
+   			 <groupId>org.springframework.boot</groupId>
+   			 <artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+	
+		<dependency>
+    			<groupId>org.springframework.security</groupId>
+    			<artifactId>spring-security-config</artifactId>
+				</dependency>
 
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-web</artifactId>
+		</dependency>	
 		<!-- 기타 의존성 (생략) -->
     </dependencies>
+    
+    
 
     <build>
         <plugins>

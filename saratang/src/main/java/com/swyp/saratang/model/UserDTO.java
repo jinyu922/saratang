@@ -33,6 +33,7 @@ public class UserDTO {
 	    private String color;
 	    private Integer credits; // 포인트 양
 	    private Integer Icon;
+	    private String jwtToken;
 	    
 	    public UserDTO() {}
 	    
