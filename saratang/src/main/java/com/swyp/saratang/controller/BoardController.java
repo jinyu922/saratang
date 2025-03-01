@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.javassist.NotFoundException;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swyp.saratang.config.JwtAuthUtil;
 import com.swyp.saratang.data.PeriodType;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.BoardDTO;
@@ -41,6 +44,9 @@ public class BoardController {
 	@Autowired
 	private SessionManager sessionManager;
 	
+    @Autowired
+    private JwtAuthUtil jwtAuthUtil; // JWT 유틸리티 주입
+	
 	
 	@Operation(summary = "패션/할인정보 조회", description = "패션/할인정보 리스트 페이징 조회")
 	@GetMapping("/fashion")
@@ -50,19 +56,20 @@ public class BoardController {
 	        @Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
 			@RequestParam(defaultValue = "5") int size ,
 	        @RequestParam(defaultValue = "0") int page,
-	        HttpSession session){
+	        @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
         if (!"fashion".equals(postType) && !"discount".equals(postType)) {
             return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
         }
-        Integer userId = null;
-        try {
-            userId=sessionManager.getUserIdFromSession(session, requestUserId);
-        } catch (Exception e) {
-            return new ApiResponseDTO<>(500,e.getMessage(), null );
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
         }     
         
 		Pageable pageable = PageRequest.of(page, size);
-		return new ApiResponseDTO<>(200, "성공적으로 패션정보를 조회했습니다", boardService.getFashionList(userId,pageable,postType));
+		return new ApiResponseDTO<>(200, "성공적으로 패션정보를 조회했습니다", boardService.getFashionList(Integer.parseInt(userId),pageable,postType));
 	}
 	
 	@Operation(summary = "히스토리 조회", description = "히스토리 리스트 페이징 조회")
@@ -77,7 +84,8 @@ public class BoardController {
 			@Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
 			@RequestParam(defaultValue = "5") int size,
 	        @RequestParam(defaultValue = "0") int page,
-	        HttpSession session){
+	        @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
         if (!"fashion".equals(postType) && !"discount".equals(postType)) {
             return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
         }
@@ -87,15 +95,16 @@ public class BoardController {
         if (!"desc".equals(sortType) && !"asc".equals(sortType)&& !"ASC".equals(sortType)&& !"DESC".equals(sortType)) {
             return new ApiResponseDTO<>(400, "sort은 desc,asc,ASC,DESC 중 하나입니다.", null);
         }
-        Integer userId = null;
-        try {
-            userId=sessionManager.getUserIdFromSession(session, requestUserId);
-        } catch (Exception e) {
-            return new ApiResponseDTO<>(500,e.getMessage(), null );
-        }      
+        
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
+        }
         
 		Pageable pageable = PageRequest.of(page, size);
-		return new ApiResponseDTO<>(200, "성공적으로 히스토리를 조회했습니다", boardService.getHistory(userId,pageable,postType,judgementType,sortType));
+		return new ApiResponseDTO<>(200, "성공적으로 히스토리를 조회했습니다", boardService.getHistory(Integer.parseInt(userId),pageable,postType,judgementType,sortType));
 	}
 	
 	@Operation(summary = "랜덤 알고리즘 적용된 패션/할인정보 조회", description = "패션/할인정보 리스트 페이징은 지원하지 않습니다,"
@@ -110,20 +119,22 @@ public class BoardController {
 			@Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
 	        @RequestParam(defaultValue = "5" ) int limitSize,
 	        @RequestParam(defaultValue = "5" ) int finalLimitSize,
-	        HttpSession session){
+	        @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
         if (!"fashion".equals(postType) && !"discount".equals(postType)) {
             return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
         }
-        Integer userId = null;
-        try {
-            userId=sessionManager.getUserIdFromSession(session, requestUserId);
-        } catch (Exception e) {
-            return new ApiResponseDTO<>(500,e.getMessage(), null );
+        
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
         }
         
         List<BoardDTO> result=new ArrayList<>();
         try {
-        	result=boardService.getFashionListAlgorithm(userId,postType,limitSize,finalLimitSize);
+        	result=boardService.getFashionListAlgorithm(Integer.parseInt(userId),postType,limitSize,finalLimitSize);
 		} catch (Exception e) {
 			return new ApiResponseDTO<>(400, "쿼리 조회중 오류 발생: "+e.getMessage(), null);
 		}
@@ -132,8 +143,10 @@ public class BoardController {
 	
 	@Operation(summary = "패션/할인정보 상세 조회", description = "id로 상세조회 사라,마라 카운트가 추가되어 나타납니다")
 	@GetMapping("/fashion/{id}")
-	public ApiResponseDTO<Map<String, Object>> getFashionPostById(	@Parameter(name="postType" ,schema=@Schema(allowableValues = { "fashion", "discount" },defaultValue = "fashion"))
-	@RequestParam(defaultValue = "fashion" ) String postType,@PathVariable int id){
+	public ApiResponseDTO<Map<String, Object>> getFashionPostById(	
+	        @Parameter(name="postType" ,schema=@Schema(allowableValues = { "fashion", "discount" },defaultValue = "fashion"))
+	        @RequestParam(defaultValue = "fashion" ) String postType,
+	        @PathVariable int id){
         if (!"fashion".equals(postType) && !"discount".equals(postType)) {
             return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
         }
@@ -150,18 +163,23 @@ public class BoardController {
 	
 	@Operation(summary = "패션/할인정보 저장", description = "패션정보 저장<br>- 복수의 url은 콤마로 구분하여 입력 \"url1\",\"url2\"<br>- 각 필드 별 세부 정보는 하단 Schemas 의 BoardDTO 참고하세요 ")
 	@PostMapping("/fashion")
-	public ApiResponseDTO<Integer> createPost(@RequestBody BoardDTO boardDTO,
-			@Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,HttpSession session){
-        Integer userId = null;
-        try {
-            userId=sessionManager.getUserIdFromSession(session, requestUserId);
-        } catch (Exception e) {
-            return new ApiResponseDTO<>(500,e.getMessage(), null );
+	public ApiResponseDTO<Integer> createPost(
+	        @RequestBody BoardDTO boardDTO,
+			@Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
+			@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
+        
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
         }
+        
 		if (!("fashion".equals(boardDTO.getPostType()) || "discount".equals(boardDTO.getPostType()))) {
 			return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
 		}
-		boardDTO.setUserId(userId);//
+		boardDTO.setUserId(Integer.parseInt(userId));
 		Integer createdPostId=boardService.createPost(boardDTO, boardDTO.getImageUrls());
 		return new ApiResponseDTO<>(200, "성공적으로 정보를 저장하였습니다.", createdPostId);
 	}
@@ -176,7 +194,8 @@ public class BoardController {
         @Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
 		@RequestParam(defaultValue = "5") int size,
         @RequestParam(defaultValue = "0") int page,
-        HttpSession session){
+        @RequestHeader(value = "Authorization", required = false) String token,
+        HttpServletRequest request){
         if (!"fashion".equals(postType) && !"discount".equals(postType)) {
             return new ApiResponseDTO<>(400, "postType 값은 'fashion', 'discount' 중 하나여야 함.", null);
         }
@@ -184,29 +203,38 @@ public class BoardController {
             return new ApiResponseDTO<>(400, "period 값은 'yesterday', 'week', 'month', 'year' 중 하나여야 함.", null);
         }
         int period=PeriodType.fromString(periodType).getDays();
-        Integer userId = null;
-        try {
-            userId=sessionManager.getUserIdFromSession(session, requestUserId);
-        } catch (Exception e) {
-            return new ApiResponseDTO<>(500,e.getMessage(), null );
+        
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
         }
+        
 		Pageable pageable = PageRequest.of(page, size);
-		return new ApiResponseDTO<>(200, "성공적으로 베스트정보를 상세 조회했습니다", boardService.getBest(userId, pageable, postType, period));
+		return new ApiResponseDTO<>(200, "성공적으로 베스트정보를 상세 조회했습니다", boardService.getBest(Integer.parseInt(userId), pageable, postType, period));
 	}
 	
 	@Operation(summary = "댓글저장", description = "어떤 유저가 어떤 post에 저장하는지 입력받습니다. id는 입력안해도됩니다")
 	@PostMapping("/comment")
-	public ApiResponseDTO<?> insertComment(@RequestBody CommentDTO commentDTO,@Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,HttpSession session){
-        Integer userId = null;
-        try {
-            userId=sessionManager.getUserIdFromSession(session, requestUserId);
-        } catch (Exception e) {
-            return new ApiResponseDTO<>(500,e.getMessage(), null );
+	public ApiResponseDTO<?> insertComment(
+	        @RequestBody CommentDTO commentDTO,
+	        @Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
+	        @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
+        
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
         }
-        commentDTO.setUserId(userId);
+        
+        commentDTO.setUserId(Integer.parseInt(userId));
 		boardService.insertComment(commentDTO);
 		return new ApiResponseDTO<>(200, "성공적으로 댓글 정보를 저장하였습니다.", null);
 	}
+	
 	@Operation(summary = "댓글조회", description = "게시글의 댓글 목록 최신순 조회, 페이징 지원합니다")
 	@GetMapping("/comment/{postId}")
 	public ApiResponseDTO<?> getCommentList(
@@ -221,17 +249,19 @@ public class BoardController {
 	@GetMapping("/my_post")
 	public ApiResponseDTO<?> getMyPosts(
 	        @Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
-			@RequestParam(defaultValue = "5") int size ,
+			@RequestParam(defaultValue = "5") int size,
 	        @RequestParam(defaultValue = "0") int page,
-	        HttpSession session){
-        Integer userId = null;
-        try {
-            userId=sessionManager.getUserIdFromSession(session, requestUserId);
-        } catch (Exception e) {
-            return new ApiResponseDTO<>(500,e.getMessage(), null );
+	        @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
+        
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
         }
         
 		Pageable pageable = PageRequest.of(page, size);
-		return new ApiResponseDTO<>(200, "성공적으로 작성한 게시글들을 조회했습니다", boardService.getMyPosts(userId,pageable));
+		return new ApiResponseDTO<>(200, "성공적으로 작성한 게시글들을 조회했습니다", boardService.getMyPosts(Integer.parseInt(userId), pageable));
 	}
 }

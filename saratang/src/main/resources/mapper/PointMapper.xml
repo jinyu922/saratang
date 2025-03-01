@@ -14,5 +14,13 @@
         VALUES (#{userId}, #{postId});
     </insert>
     
+    <select id="existsLinkAccess" parameterType="com.swyp.saratang.model.LinkAccessDTO" resultType="boolean">
+	    SELECT COUNT(*) > 0 
+	    FROM linkAccess 
+	    WHERE user_id = #{userId} AND post_id = #{postId}
+	</select>
+    
+    
+    
 
 </mapper>

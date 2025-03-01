@@ -21,5 +21,9 @@ public class PointService {
 	public void addLinkAccess(LinkAccessDTO accessDTO) {
 		pointMapper.addLinkAccess(accessDTO);
 	}
+	
+	public boolean existsLinkAccess(LinkAccessDTO accessDTO) {
+		return pointMapper.existsLinkAccess(accessDTO);
+	}
 
 }

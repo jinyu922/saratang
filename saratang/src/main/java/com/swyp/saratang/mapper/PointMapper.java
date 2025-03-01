@@ -9,4 +9,5 @@ import com.swyp.saratang.model.PointDTO;
 public interface PointMapper {
 	void addPoint(PointDTO pointDTO);
 	void addLinkAccess(LinkAccessDTO linkAccessDTO);
+	boolean existsLinkAccess(LinkAccessDTO linkAccessDTO);
 }
