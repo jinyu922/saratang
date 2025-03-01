@@ -20,4 +20,19 @@ public class CategoryDTO {
     
     private boolean beauty;
     private boolean food;
+    
+    public void setAll() {
+    	outerwear=true;
+    	tops=true;
+    	bottoms=true;
+    	underwearHomewear=true;
+    	shoes=true;
+    	bags=true;
+    	fashionAccessories=true;
+    	kids=true;
+    	sportsLeisure=true;
+    	digitalLife=true;
+    	beauty=true;
+    	food=true;
+    }
 }

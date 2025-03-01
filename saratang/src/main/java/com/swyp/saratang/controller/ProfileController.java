@@ -13,9 +13,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import com.swyp.saratang.config.JwtAuthUtil;
 import com.swyp.saratang.model.ApiResponseDTO;
+import com.swyp.saratang.model.CategoryDTO;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.model.SafeUserDTO;
 import com.swyp.saratang.model.PointDTO;
+import com.swyp.saratang.service.CategoryService;
 import com.swyp.saratang.service.UserService;
 import com.swyp.saratang.config.JwtAuthUtil;
 
@@ -29,6 +31,9 @@ public class ProfileController {
 
     @Autowired
     private JwtAuthUtil jwtAuthUtil; //  JWT 유틸리티 주입
+    
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      *  신규 회원 프로필 입력 API
@@ -63,6 +68,12 @@ public class ProfileController {
         user.setAuthProvider(existingUser.getAuthProvider());
 
         userService.newProfile(user);
+        //새로운 유저 카테고리 등록 (기본값 : 전부 선호)
+        CategoryDTO categoryDTO=new CategoryDTO();
+        categoryDTO.setAll();
+        categoryDTO.setUserId(Integer.parseInt(userId));
+        categoryService.saveCategory(categoryDTO);
+        
         return new ApiResponseDTO<>(200, "프로필 입력 완료(회원가입완료)", user);
     }
 

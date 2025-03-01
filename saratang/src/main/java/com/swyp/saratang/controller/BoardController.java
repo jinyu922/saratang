@@ -63,6 +63,9 @@ public class BoardController {
         }
         String jwtToken = jwtAuthUtil.extractToken(request, token, null);
         String userId = jwtAuthUtil.extractUserId(jwtToken);
+        System.out.println("userId = jwtAuthUtil.extractUserId(jwtToken) == "+userId);
+        System.out.println(Integer.parseInt(userId));
+        
 
         if (userId == null) {
             return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
