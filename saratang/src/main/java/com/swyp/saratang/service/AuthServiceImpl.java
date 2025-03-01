@@ -13,6 +13,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.swyp.saratang.config.JwtUtil;
 import com.swyp.saratang.mapper.UserMapper;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.session.SessionManager;
@@ -28,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
     private UserMapper userMapper;
 
     @Autowired
-    private SessionManager sessionManager;
+    private JwtUtil jwtUtil;
 
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -67,11 +68,22 @@ public class AuthServiceImpl implements AuthService {
      * ✅ OAuth 로그인 처리
      */
     @Override
-    public UserDTO processOAuthLogin(String provider, String code, String sessionId) {
+    public UserDTO processOAuthLogin(String provider, String code) {
+        // OAuth provider에서 access token을 가져옴
         String accessToken = getAccessToken(provider, code);
-        return getUserProfile(provider, accessToken);
+
+        // OAuth provider에서 사용자 프로필 정보 가져옴
+        UserDTO user = getUserProfile(provider, accessToken);
+
+        // JWT 생성
+        String jwtToken = jwtUtil.generateToken(user.getId().toString(), user.getEmail(), user.getAuthProvider());
+        logger.info("✅ JWT 생성 완료 - Token: {}", jwtToken);
+
+        // 반환된 UserDTO에 JWT를 추가 (필요하다면 JWT를 반환하거나 세션을 유지할 수 있습니다)
+        user.setJwtToken(jwtToken);
+
+        return user;
     }
-    
     /**
      * ✅ 인증 코드로 액세스 토큰 요청
      */

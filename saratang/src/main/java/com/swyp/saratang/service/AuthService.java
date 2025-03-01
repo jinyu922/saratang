@@ -17,7 +17,7 @@ public interface AuthService {
     /**
      * SNS 로그인 - OAuth 인증 코드로 Access Token을 발급받고 로그인 처리
      */
-    UserDTO processOAuthLogin(String provider, String code, String sessionId);
+    public UserDTO processOAuthLogin(String provider, String code);
 
     /**
      * 인증 코드로 Access Token 요청
