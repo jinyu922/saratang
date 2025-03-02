@@ -49,7 +49,8 @@
 	
 	<update id="editUserProfile">
         UPDATE users
-        SET weight = #{weight}, 
+        SET nickname = #{nickname},
+            weight = #{weight}, 
             height = #{height}, 
             top_size = #{topSize}, 
             bottom_size = #{bottomSize}, 
