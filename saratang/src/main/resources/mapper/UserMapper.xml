@@ -62,9 +62,10 @@
     UPDATE users
 	SET 
     is_active = 0,
-    email = CONCAT('Delete', email, 'Delete'),
-    social_id = CONCAT('Delete', social_id, 'Delete')
-	WHERE social_id = #{socialId} AND auth_provider = #{authProvider};
+    email = CONCAT('Delete_', email, '_', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s')), 
+    social_id = CONCAT('Delete_', social_id, '_', DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'))
+	WHERE social_id = #{socialId} 
+	AND auth_provider = #{authProvider}
     </update>
     
     
@@ -86,6 +87,8 @@
         UPDATE users SET color = #{newNicknameColor} WHERE id = #{userId};
     </update>
     
+    
+    
     <update id="updateUserIcon">
         UPDATE users 
         SET icon = #{iconId}
@@ -97,5 +100,50 @@
         INSERT INTO credits (user_id, type, credits, description)
         VALUES (#{userId}, #{type}, #{credits}, #{description});
     </insert>
+    
+    <select id="getUserColorsByUserId" resultType="com.swyp.saratang.model.UserColorDTO">
+        SELECT 
+            uc.colorid, 
+            c.color AS colorName,
+            uc.userid
+        FROM usernamecolors uc
+        JOIN colors c ON uc.colorid = c.id
+        WHERE uc.userid = #{userId}
+   </select>
+	
+	<select id="getAllColors" resultType="com.swyp.saratang.model.UserColorDTO">
+        SELECT 
+            id as colorId, 
+           color AS colorName
+        FROM colors
+        WHERE id != 1
+   </select>
+   
+   <select id="getCurrentColorByUserId" resultType="com.swyp.saratang.model.UserColorDTO">
+       SELECT 
+            c.id as colorId, 
+            c.color AS colorName,
+            u.id as userID
+        FROM users u
+        JOIN colors c ON u.id = c.id
+        WHERE u.id = #{userId}
+   </select>
+	
+	
+	 <!-- 닉네임 색상 변경 -->
+    <update id="updateUserColor">
+        UPDATE users SET color = #{colorId} WHERE id = #{userId}
+    </update>
+
+    <!-- 닉네임 색상 구매 -->
+    <insert id="insertUserColor">
+        INSERT INTO usernamecolors (userid, colorid) VALUES (#{userId}, #{colorId})
+    </insert>
+
+    <!-- 사용자가 특정 색상을 보유하고 있는지 확인 -->
+    <select id="countUserColor" resultType="int">
+        SELECT COUNT(*) FROM usernamecolors WHERE userid = #{userId} AND colorid = #{colorId}
+    </select>
+    
     
 </mapper>
