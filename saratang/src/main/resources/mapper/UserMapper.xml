@@ -125,7 +125,7 @@
             c.color AS colorName,
             u.id as userID
         FROM users u
-        JOIN colors c ON u.id = c.id
+        JOIN colors c ON u.color = c.id
         WHERE u.id = #{userId}
    </select>
 	

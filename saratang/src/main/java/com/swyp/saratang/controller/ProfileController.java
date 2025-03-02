@@ -436,7 +436,7 @@ public class ProfileController {
         }
     }
     
-   /////////////////////////
+   /////////////////////////테스트
     
     @GetMapping("/test/usernamecolors")
     @Operation(summary = "사용자 닉네임 색상 목록 조회 (테스트용)", description = "JWT 없이 userId를 직접 전달하여 사용자의 닉네임 색상 목록을 조회합니다.")
