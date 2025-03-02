@@ -145,6 +145,32 @@
 	    )
 	</select>
 	
+
+		<!--링크 조회한 게시글 히스토리(페이징)-->
+	<select id="getLinkHistory" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+		SELECT 
+	        p.ID, p.USER_ID,p.CATEGORY_ID,p.CONCERN_KEYWORD_ID,p.POST_TYPE,p.BRAND,p.ORIGINAL_PRICE,
+	        p.DISCOUNT_PRICE,p.PRODUCT_LINK,p.TITLE,p.CURRENT_PRICE,p.MEMO,p.IS_SPEC_PUBLIC,p.DETAIL_MEMO,p.REGDATE
+	    FROM posts p
+	    WHERE p.POST_TYPE = #{postType}
+	      AND p.ID IN (
+	          SELECT linkAccess.post_id FROM linkAccess
+	          WHERE linkAccess.user_id = #{requestUserId}
+	      )
+	    ORDER BY p.REGDATE ${sortType}
+	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+		<!--링크 조회한 게시글 히스토리 페이징시 total 개수 받아오기-->
+	<select id="getLinkHistoryCount" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+		SELECT COUNT(*) AS CNT
+		FROM posts p
+	    WHERE p.POST_TYPE = #{postType}
+	      AND p.ID IN (
+	          SELECT linkAccess.post_id FROM linkAccess
+	          WHERE linkAccess.user_id = #{requestUserId}
+	      )
+	</select>
+	
 	<!--기간별 패션 베스트 조회-->
 	<select id="getFashionBest" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
 	    SELECT 
@@ -284,15 +310,14 @@
 		    comments.id, 
 		    comments.post_id, 
 		    comments.user_id, 
-		    users.nickname,
-		    judgements.judgement,
+		    colors.color,
 		    comments.content, 
 		    comments.regdate
 		FROM 
 		    comments
 		JOIN users ON comments.user_id = users.id
 		JOIN judgements ON comments.user_id = judgements.user_id AND comments.post_id= judgements.post_id
-		
+		JOIN colors ON users.color = colors.id
 		WHERE 
 		    comments.post_id = #{postId}
 		ORDER BY 

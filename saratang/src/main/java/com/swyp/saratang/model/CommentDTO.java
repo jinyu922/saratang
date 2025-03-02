@@ -12,4 +12,5 @@ public class CommentDTO {
 	//추가정보
 	private String nickname;
 	private String judgement;
+	private String color;
 }

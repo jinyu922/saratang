@@ -35,6 +35,9 @@ public interface BoardMapper {
 	
 	public List<BoardDTO> getHistory(RequestList<?> requestList); //히스토리 조회
 	public int getHistoryCount(RequestList<?> requestList); //페이징
+	
+	public List<BoardDTO> getLinkHistory(RequestList<?> requestList); // 링크 히스토리 조회
+	public int getLinkHistoryCount(RequestList<?> requestList); //페이징
 
     @Insert("INSERT INTO posts (user_id, category_id, concern_keyword_id, post_type, brand, original_price, discount_price, product_link, title, current_price, is_spec_public, memo, detail_memo) " +
             "VALUES (#{userId}, #{categoryId}, #{concernKeywordId}, #{postType} , #{brand}, #{originalPrice}, #{discountPrice}, #{productLink}, #{title}, #{currentPrice}, #{isSpecPublic}, #{memo}, #{detailMemo})")
