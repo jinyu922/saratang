@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.swyp.saratang.model.PointDTO;
 import com.swyp.saratang.model.SafeUserDTO;
+import com.swyp.saratang.model.UserColorDTO;
 import com.swyp.saratang.model.UserDTO;
 
 import io.swagger.v3.oas.annotations.Parameter;
@@ -29,7 +30,7 @@ public interface UserMapper {
     
     void editUserProfile(UserDTO user);
 
-    void changeUserColor(@Param("id") Integer id, @Param("newNicknameColor") String newNicknameColor, @Param("updatedCredits") Integer updatedCredits);
+    
     
     void deleteUser(@Param("socialId") String socialId, @Param("authProvider") String authProvider, @Param("email") String email);
     
@@ -40,9 +41,20 @@ public interface UserMapper {
     void insertCreditHistory(@Param("userId") Integer userId, @Param("type") String type, 
             @Param("credits") Integer credits, @Param("description") String description);
     
-    void changeUserColor(@Param("userId") Integer userId, @Param("newNicknameColor") String newNicknameColor);
-    
     void updateUserIcon(@Param("userId") Integer userId, @Param("iconId") Integer iconId);
+
+    List<UserColorDTO> getUserColorsByUserId(@Param("userId") int userId);
+    
+    void updateUserColor(@Param("userId") int userId, @Param("colorId") int colorId);
+
+    void insertUserColor(@Param("userId") int userId, @Param("colorId") int colorId);
+
+    int countUserColor(@Param("userId") int userId, @Param("colorId") int colorId);
+    
+ 
+    UserColorDTO getCurrentColorByUserId(@Param("userId") int userId);
+
+    List<UserColorDTO> getAllColors();
     
     
 }

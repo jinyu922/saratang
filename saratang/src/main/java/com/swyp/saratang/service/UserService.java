@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.PointDTO;
 import com.swyp.saratang.model.SafeUserDTO;
+import com.swyp.saratang.model.UserColorDTO;
 import com.swyp.saratang.model.UserDTO;
 
 public interface UserService {
@@ -24,18 +25,32 @@ public interface UserService {
     
     void deleteUser(String socialId, String authProvider, String email);
     
-    void changeUserColor(int Id, String newNicknameColor, int updatedCredits);
     
     List<PointDTO> getCreditHistoryByUserId(Integer userId);
     
     Integer getTotalCreditsByUserId(Integer userId);
-    
-    void changeUserColor(Integer userId, String newNicknameColor);
+   
     
     void changeUserIcon(Integer userId, Integer newIconId);
     
     void insertCreditHistory(Integer userId, String type, Integer credits, String description);
 
     
+    // 사용자가 보유한 닉네임 색상 목록 조회
+    List<UserColorDTO> getUserColorsByUserId(int userId);
+
+    // 닉네임 색상 변경 
+    void changeUserColor(int userId, int colorId);
+
+    // 닉네임 색상 구매 (포인트 3 차감)
+    void purchaseUserColor(int userId, int colorId);
+
+    // 사용자가 특정 색상을 보유하고 있는지 확인
+    boolean isUserOwnsColor(int userId, int colorId);
+    
+    public UserColorDTO getCurrentColorByUserId(int userId);
+    
+    public List<UserColorDTO> getAllColors();
+
 }
 

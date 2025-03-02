@@ -11,6 +11,7 @@ import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.PointDTO;
 import com.swyp.saratang.model.SafeUserDTO;
+import com.swyp.saratang.model.UserColorDTO;
 
 
 @Service
@@ -56,10 +57,7 @@ public class UserServiceImpl implements UserService {
         userMapper.deleteUser(socialId, authProvider, email);
     }
     
-    @Override
-    public void changeUserColor(int Id, String newNicknameColor, int updatedCredits) {
-        userMapper.changeUserColor(Id, newNicknameColor, updatedCredits);
-    }
+   
     
     @Override
     public List<PointDTO> getCreditHistoryByUserId(Integer userId) {
@@ -71,10 +69,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.getTotalCreditsByUserId(userId);
     }
     
-    @Override
-    public void changeUserColor(Integer userId, String newNicknameColor) {
-        userMapper.changeUserColor(userId, newNicknameColor);
-    }
 
     @Override
     public void insertCreditHistory(Integer userId, String type, Integer credits, String description) {
@@ -85,5 +79,43 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changeUserIcon(Integer userId, Integer newIconId) {
         userMapper.updateUserIcon(userId, newIconId);
+    }
+    
+    @Override
+    public List<UserColorDTO> getUserColorsByUserId(int userId) {
+        return userMapper.getUserColorsByUserId(userId);
+    }
+    
+    
+    
+    @Override
+    public void changeUserColor(int userId, int colorId) {
+        userMapper.updateUserColor(userId, colorId);
+    }
+
+    /**
+     * 닉네임 색상 구매 
+     */
+    @Override
+    public void purchaseUserColor(int userId, int colorId) {
+        userMapper.insertUserColor(userId, colorId);
+    }
+
+    /**
+     * 사용자가 특정 색상을 보유하고 있는지 확인
+     */
+    @Override
+    public boolean isUserOwnsColor(int userId, int colorId) {
+        return userMapper.countUserColor(userId, colorId) > 0;
+    }
+
+    @Override
+    public UserColorDTO getCurrentColorByUserId(int userId) {
+        return userMapper.getCurrentColorByUserId(userId);
+    }
+    
+    @Override
+    public List<UserColorDTO> getAllColors() {
+        return userMapper.getAllColors();
     }
 }

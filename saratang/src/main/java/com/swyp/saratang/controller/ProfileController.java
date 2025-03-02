@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+
 import com.swyp.saratang.config.JwtAuthUtil;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.CategoryDTO;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.model.SafeUserDTO;
+import com.swyp.saratang.model.UserColorDTO;
 import com.swyp.saratang.model.PointDTO;
 import com.swyp.saratang.service.CategoryService;
 import com.swyp.saratang.service.UserService;
@@ -244,19 +247,19 @@ public class ProfileController {
                     .body(new ApiResponseDTO<>(500, "아이콘 변경 중 오류 발생", null));
         }
     }
-
-    /**
-     * 닉네임 색상 변경 API (JWT 인증)
-     */
-    @PostMapping("/changeusercolor")
-    @Operation(summary = "닉네임 색상 변경", description = "JWT 인증을 이용하여 닉네임 색상을 변경 (3포인트 차감 후 기록)")
-    @ApiResponse(responseCode = "200", description = "닉네임 색상 변경 완료")
-    @ApiResponse(responseCode = "400", description = "변경할 값이 없음")
+    
+    
+    
+    
+    
+    
+    
+    @GetMapping("/usernamecolors")
+    @Operation(summary = "사용자 닉네임 색상 목록 조회", description = "JWT 인증을 이용하여 사용자가 보유한 닉네임 색상 목록을 조회합니다.")
+    @ApiResponse(responseCode = "200", description = "닉네임 색상 목록 조회 완료")
     @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
-    @ApiResponse(responseCode = "402", description = "포인트 부족")
     @ApiResponse(responseCode = "500", description = "서버 오류 발생")
-    public ResponseEntity<ApiResponseDTO<Map<String, Object>>> changeUserColor(
-            @RequestBody Map<String, String> requestData,
+    public ResponseEntity<ApiResponseDTO<List<UserColorDTO>>> getUserColors(
             @RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
 
@@ -269,34 +272,285 @@ public class ProfileController {
                         .body(new ApiResponseDTO<>(401, "JWT 인증 실패", null));
             }
 
-            String newNicknameColor = requestData.get("nicknameColor");
-            if (newNicknameColor == null || newNicknameColor.trim().isEmpty()) {
+            List<UserColorDTO> userColors = userService.getUserColorsByUserId(Integer.parseInt(userId));
+
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "닉네임 색상 목록 조회 완료", userColors));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(new ApiResponseDTO<>(500, "닉네임 색상 목록 조회 중 오류 발생", null));
+        }
+    }
+
+    @PostMapping("/buyusercolor")
+    @Operation(summary = "닉네임 색상 구매", description = "JWT 인증을 이용하여 닉네임 색상을 구매 (3포인트 차감 후 기록)")
+    @ApiResponse(responseCode = "200", description = "닉네임 색상 구매 완료")
+    @ApiResponse(responseCode = "400", description = "구매할 값이 없음")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "402", description = "포인트 부족")
+    @ApiResponse(responseCode = "409", description = "이미 보유한 색상")
+    @ApiResponse(responseCode = "500", description = "서버 오류 발생")
+    public ResponseEntity<ApiResponseDTO<Map<String, Object>>> purchaseUserColor(
+            @RequestBody Map<String, Integer> requestData,
+            @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+
+        try {
+            String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+            String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+            if (userId == null) {
+                return ResponseEntity.status(401)
+                        .body(new ApiResponseDTO<>(401, "JWT 인증 실패", null));
+            }
+
+            Integer colorId = requestData.get("colorId");
+            if (colorId == null) {
                 return ResponseEntity.badRequest()
-                        .body(new ApiResponseDTO<>(400, "변경할 닉네임 색상 값이 없습니다.", null));
+                        .body(new ApiResponseDTO<>(400, "구매할 닉네임 색상이 없습니다.", null));
+            }
+
+            // 이미 보유한 색상인지 확인
+            boolean alreadyOwned = userService.isUserOwnsColor(Integer.parseInt(userId), colorId);
+            if (alreadyOwned) {
+                return ResponseEntity.status(409)
+                        .body(new ApiResponseDTO<>(409, "이미 보유한 색상입니다.", null));
             }
 
             Integer currentCredits = userService.getTotalCreditsByUserId(Integer.parseInt(userId));
-            int changeCost = 3;
+            int purchaseCost = 3;
 
-            if (currentCredits < changeCost) {
+            if (currentCredits < purchaseCost) {
                 return ResponseEntity.status(402)
                         .body(new ApiResponseDTO<>(402, "포인트가 부족합니다.", null));
             }
 
-            userService.changeUserColor(Integer.parseInt(userId), newNicknameColor);
-            userService.insertCreditHistory(Integer.parseInt(userId), "spend", -3, "닉네임 색상 변경");
+            // 색상 구매 등록
+            userService.purchaseUserColor(Integer.parseInt(userId), colorId);
+            userService.insertCreditHistory(Integer.parseInt(userId), "spend", -3, "닉네임 색상 구매");
 
             Integer updatedCredits = userService.getTotalCreditsByUserId(Integer.parseInt(userId));
 
             Map<String, Object> responseData = new HashMap<>();
             responseData.put("updatedCredits", updatedCredits);
-            responseData.put("nicknameColor", newNicknameColor);
+            responseData.put("colorId", colorId);
 
-            return ResponseEntity.ok(new ApiResponseDTO<>(200, "닉네임 색상 변경 완료 (포인트 3 차감)", responseData));
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "닉네임 색상 구매 완료 (포인트 3 차감)", responseData));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(new ApiResponseDTO<>(500, "닉네임 색상 구매 중 오류 발생", null));
+        }
+    }
+
+    /**
+     * 닉네임 색상 변경 
+     */
+    @PostMapping("/changeusercolor")
+    @Operation(summary = "닉네임 색상 변경", description = "JWT 인증을 이용하여 닉네임 색상을 변경")
+    @ApiResponse(responseCode = "200", description = "닉네임 색상 변경 완료")
+    @ApiResponse(responseCode = "400", description = "변경할 값이 없음")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "409", description = "이미 현재 사용 중인 색상")
+    @ApiResponse(responseCode = "500", description = "서버 오류 발생")
+    public ResponseEntity<ApiResponseDTO<Map<String, Object>>> changeUserColor(
+            @RequestBody Map<String, Integer> requestData,
+            @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+
+        try {
+            // JWT에서 사용자 ID 추출
+            String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+            String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+            if (userId == null) {
+                return ResponseEntity.status(401)
+                        .body(new ApiResponseDTO<>(401, "JWT 인증 실패", null));
+            }
+
+            Integer newColorId = requestData.get("colorId");
+
+
+            // 색상 변경
+            userService.changeUserColor(Integer.parseInt(userId), newColorId);
+
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("colorId", newColorId);
+
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "닉네임 색상 변경 완료", responseData));
 
         } catch (Exception e) {
             return ResponseEntity.status(500)
                     .body(new ApiResponseDTO<>(500, "닉네임 색상 변경 중 오류 발생", null));
         }
     }
+    
+    
+    /**
+     * 현재 사용자의 닉네임 색상 조회 (JWT 인증)
+     */
+    @GetMapping("/currentcolor")
+    @Operation(summary = "현재 사용자의 닉네임 색상 조회", description = "JWT 인증을 이용하여 현재 사용자의 색상을 조회합니다.")
+    @ApiResponse(responseCode = "200", description = "현재 색상 조회 성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "500", description = "서버 오류 발생")
+    public ResponseEntity<ApiResponseDTO<UserColorDTO>> getCurrentUserColor(
+            @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+
+        try {
+            String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+            String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+            if (userId == null) {
+                return ResponseEntity.status(401)
+                        .body(new ApiResponseDTO<>(401, "JWT 인증 실패", null));
+            }
+
+            UserColorDTO currentColor = userService.getCurrentColorByUserId(Integer.parseInt(userId));
+
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "현재 색상 조회 성공", currentColor));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(new ApiResponseDTO<>(500, "현재 색상 조회 중 오류 발생", null));
+        }
+    }
+    
+    /**
+     * 전체 색상 리스트 조회
+     */
+    @GetMapping("/allcolors")
+    @Operation(summary = "전체 색상 리스트 조회", description = "전체 색상 리스트를 조회합니다.")
+    @ApiResponse(responseCode = "200", description = "전체 색상 조회 성공")
+    @ApiResponse(responseCode = "500", description = "서버 오류 발생")
+    public ResponseEntity<ApiResponseDTO<List<UserColorDTO>>> getAllColors() {
+        try {
+            List<UserColorDTO> allColors = userService.getAllColors();
+
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "전체 색상 조회 성공", allColors));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(new ApiResponseDTO<>(500, "전체 색상 조회 중 오류 발생", null));
+        }
+    }
+    
+   /////////////////////////테스트
+    
+    @GetMapping("/test/usernamecolors")
+    @Operation(summary = "사용자 닉네임 색상 목록 조회 (테스트용)", description = "JWT 없이 userId를 직접 전달하여 사용자의 닉네임 색상 목록을 조회합니다.")
+    public ResponseEntity<ApiResponseDTO<List<UserColorDTO>>> testGetUserColors(@RequestParam("userId") Integer userId) {
+        try {
+            if (userId == null) {
+                return ResponseEntity.badRequest()
+                        .body(new ApiResponseDTO<>(400, "userId가 없습니다.", null));
+            }
+
+            List<UserColorDTO> userColors = userService.getUserColorsByUserId(userId);
+
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "닉네임 색상 목록 조회 완료", userColors));
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(new ApiResponseDTO<>(500, "닉네임 색상 목록 조회 중 오류 발생", null));
+        }
+    }
+
+    /**
+     * 닉네임 색상 구매 (테스트용)
+     */
+    @PostMapping("/test/buyusercolor")
+    @Operation(summary = "닉네임 색상 구매 (테스트용)", description = "JWT 없이 userId를 직접 전달하여 닉네임 색상을 구매합니다.")
+    public ResponseEntity<ApiResponseDTO<Map<String, Object>>> testPurchaseUserColor(@RequestBody Map<String, Integer> requestData) {
+        try {
+            Integer userId = requestData.get("userId");
+            Integer colorId = requestData.get("colorId");
+
+            if (userId == null || colorId == null) {
+                return ResponseEntity.badRequest()
+                        .body(new ApiResponseDTO<>(400, "userId 또는 colorId가 없습니다.", null));
+            }
+
+            boolean alreadyOwned = userService.isUserOwnsColor(userId, colorId);
+            if (alreadyOwned) {
+                return ResponseEntity.status(409)
+                        .body(new ApiResponseDTO<>(409, "이미 보유한 색상입니다.", null));
+            }
+
+            Integer currentCredits = userService.getTotalCreditsByUserId(userId);
+            int purchaseCost = 3;
+
+            if (currentCredits < purchaseCost) {
+                return ResponseEntity.status(402)
+                        .body(new ApiResponseDTO<>(402, "포인트가 부족합니다.", null));
+            }
+
+            userService.purchaseUserColor(userId, colorId);
+            userService.insertCreditHistory(userId, "spend", -3, "닉네임 색상 구매");
+
+            Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
+
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("updatedCredits", updatedCredits);
+            responseData.put("colorId", colorId);
+
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "닉네임 색상 구매 완료", responseData));
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(new ApiResponseDTO<>(500, "닉네임 색상 구매 중 오류 발생", null));
+        }
+    }
+
+    /**
+     * 닉네임 색상 변경 (테스트용)
+     */
+    @PostMapping("/test/changeusercolor")
+    @Operation(summary = "닉네임 색상 변경 (테스트용)", description = "JWT 없이 userId를 직접 전달하여 닉네임 색상을 변경합니다.")
+    public ResponseEntity<ApiResponseDTO<Map<String, Object>>> testChangeUserColor(@RequestBody Map<String, Integer> requestData) {
+        try {
+            Integer userId = requestData.get("userId");
+            Integer newColorId = requestData.get("colorId");
+
+            if (userId == null || newColorId == null) {
+                return ResponseEntity.badRequest()
+                        .body(new ApiResponseDTO<>(400, "userId 또는 colorId가 없습니다.", null));
+            }
+
+
+            userService.changeUserColor(userId, newColorId);
+
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("colorId", newColorId);
+
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "닉네임 색상 변경 완료", responseData));
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(new ApiResponseDTO<>(500, "닉네임 색상 변경 중 오류 발생", null));
+        }
+    }
+
+    /**
+     * 현재 사용자의 닉네임 색상 조회 (테스트용)
+     */
+    @GetMapping("/test/currentcolor")
+    @Operation(summary = "현재 사용자의 닉네임 색상 조회 (테스트용)", description = "JWT 없이 userId를 직접 전달하여 현재 사용자의 닉네임 색상을 조회합니다.")
+    public ResponseEntity<ApiResponseDTO<UserColorDTO>> testGetCurrentUserColor(@RequestParam("userId") Integer userId) {
+        try {
+            if (userId == null) {
+                return ResponseEntity.badRequest()
+                        .body(new ApiResponseDTO<>(400, "userId가 없습니다.", null));
+            }
+
+            UserColorDTO currentColor = userService.getCurrentColorByUserId(userId);
+
+            return ResponseEntity.ok(new ApiResponseDTO<>(200, "현재 색상 조회 성공", currentColor));
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(new ApiResponseDTO<>(500, "현재 색상 조회 중 오류 발생", null));
+        }
+    }
+    
+    
+   
+    
 }
