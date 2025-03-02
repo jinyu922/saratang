@@ -161,7 +161,7 @@
 	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
 		<!--링크 조회한 게시글 히스토리 페이징시 total 개수 받아오기-->
-	<select id="getLinkHistoryCount" parameterType="com.swyp.saratang.data.RequestList" resultType="com.swyp.saratang.model.BoardDTO">
+	<select id="getLinkHistoryCount" parameterType="com.swyp.saratang.data.RequestList" resultType="int">
 		SELECT COUNT(*) AS CNT
 		FROM posts p
 	    WHERE p.POST_TYPE = #{postType}

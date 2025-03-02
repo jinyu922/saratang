@@ -110,6 +110,36 @@ public class BoardController {
 		return new ApiResponseDTO<>(200, "성공적으로 히스토리를 조회했습니다", boardService.getHistory(Integer.parseInt(userId),pageable,postType,judgementType,sortType));
 	}
 	
+	@Operation(summary = "링크 히스토리 조회", description = "링크 히스토리 리스트 페이징 조회")
+	@GetMapping("/fashion/linkHistory")
+	public ApiResponseDTO<?> getLinkHistory(
+			@Parameter(name="postType" ,schema=@Schema(allowableValues = { "fashion", "discount" },defaultValue = "fashion"))
+	        @RequestParam(defaultValue = "fashion" ) String postType,
+	    	@Parameter(name="sortType" ,schema=@Schema(allowableValues = { "ASC", "DESC" },defaultValue = "DESC"))
+			@RequestParam String sortType,
+			@Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
+			@RequestParam(defaultValue = "5") int size,
+	        @RequestParam(defaultValue = "0") int page,
+	        @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
+        if (!"fashion".equals(postType) && !"discount".equals(postType)) {
+            return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
+        }
+        if (!"desc".equals(sortType) && !"asc".equals(sortType)&& !"ASC".equals(sortType)&& !"DESC".equals(sortType)) {
+            return new ApiResponseDTO<>(400, "sort은 desc,asc,ASC,DESC 중 하나입니다.", null);
+        }
+        
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
+        }
+        
+		Pageable pageable = PageRequest.of(page, size);
+		return new ApiResponseDTO<>(200, "성공적으로 링크 히스토리를 조회했습니다", boardService.getLinkHistory(Integer.parseInt(userId),pageable,postType,sortType));
+	}
+	
 	@Operation(summary = "랜덤 알고리즘 적용된 패션/할인정보 조회", description = "패션/할인정보 리스트 페이징은 지원하지 않습니다,"
 			+ "<br><br>  *limitSize,finalLimitSize 설명"
 			+ "<br>  데이터에서 1.최신순/2.인기순/3.랜덤 다른 방식으로 총 3번 limitSize 만큼 뽑아 하나로 합친 뒤 다시 랜덤으로 섞은것을 finalLimitSize 만큼 출력하는 방식입니다"
