@@ -284,7 +284,7 @@
 		    comments.id, 
 		    comments.post_id, 
 		    comments.user_id, 
-		    users.username,
+		    users.nickname,
 		    judgements.judgement,
 		    comments.content, 
 		    comments.regdate
@@ -294,7 +294,7 @@
 		JOIN judgements ON comments.user_id = judgements.user_id AND comments.post_id= judgements.post_id
 		
 		WHERE 
-		    comments.post_id = 1
+		    comments.post_id = #{postId}
 		ORDER BY 
 		    comments.regdate DESC  <!-- 최신순 정렬 -->
 	    LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}

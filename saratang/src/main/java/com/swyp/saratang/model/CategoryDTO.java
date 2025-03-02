@@ -22,15 +22,15 @@ public class CategoryDTO {
     private boolean food;
     
     public void setAll() {
-    	outerwear=true;
-    	tops=true;
-    	bottoms=true;
-    	underwearHomewear=true;
-    	shoes=true;
-    	bags=true;
-    	fashionAccessories=true;
-    	kids=true;
-    	sportsLeisure=true;
+    	outerwear=true;//1
+    	tops=true;//2
+    	bottoms=true;//3
+    	underwearHomewear=true;//4
+    	shoes=true;//5
+    	bags=true;//6
+    	fashionAccessories=true;//7
+    	kids=true;//8
+    	sportsLeisure=true;//9
     	digitalLife=true;
     	beauty=true;
     	food=true;

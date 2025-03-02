@@ -15,6 +15,12 @@
     	WHERE user_id = #{userId} AND post_id = #{postId}
     </select>
     
+    <select id="getJudegeByUserIdAndPostId" resultType="String">
+    	SELECT judgement
+    	FROM judgements
+    	WHERE user_id = #{userId} AND post_id = #{postId}
+    </select>
+    
     <select id="countJudgementsByPostId" resultType="map">
 	    SELECT 
         SUM(CASE WHEN judgement = 'positive' THEN 1 ELSE 0 END) AS positiveCount,

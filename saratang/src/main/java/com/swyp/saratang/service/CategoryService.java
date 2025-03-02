@@ -46,6 +46,10 @@ public class CategoryService {
 		
         // 기존 카테고리 삭제
         categoryMapper.deleteCategoryByUserId(userId);
+        
+        System.out.println("isOuterwear: "+categoryDTO.isOuterwear());
+        System.out.println("isTops: "+categoryDTO.isTops());
+        System.out.println("isBottoms: "+categoryDTO.isBottoms());
 		
         // 카테고리 배열 (순서대로 categoryId와 매칭)
         boolean[] categories = {

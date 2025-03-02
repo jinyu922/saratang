@@ -39,4 +39,8 @@ public class JudgeService {
 		judgeMapper.addJudgement(userId, postId, judgementType);
 	}
 	
+	public String getJudegeByUserIdAndPostId(int userId,int postId) {
+		return judgeMapper.getJudegeByUserIdAndPostId(userId, postId);
+	}
+	
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,7 +53,7 @@ public class CategoryController {
 	@Operation(summary = "유저별 선호 카테고리 저장", description = "유저 id를 통해 선호 카테고리를 저장합니다<br>전체 지우고 다시 등록하는 방식이라 카테고리 수정도 해당 api를 이용하면 됩니다")
 	@PostMapping("/category")
 	public ApiResponseDTO<?> saveCategory(
-			CategoryDTO categoryDTO,
+			@RequestBody CategoryDTO categoryDTO,
 			@Parameter(description = "요청유저 고유id, 로그인 세션 있으면 입력하지 않아도 됩니다")@RequestParam(required = false) Integer requestUserId,
 			@RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request){

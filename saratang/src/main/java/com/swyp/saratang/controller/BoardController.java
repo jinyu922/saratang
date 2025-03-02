@@ -149,13 +149,21 @@ public class BoardController {
 	public ApiResponseDTO<Map<String, Object>> getFashionPostById(	
 	        @Parameter(name="postType" ,schema=@Schema(allowableValues = { "fashion", "discount" },defaultValue = "fashion"))
 	        @RequestParam(defaultValue = "fashion" ) String postType,
-	        @PathVariable int id){
+	        @PathVariable int id,
+	        @RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
         if (!"fashion".equals(postType) && !"discount".equals(postType)) {
             return new ApiResponseDTO<>(400, "postType은 fashion 혹은 discount 중 하나입니다.", null);
         }
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
+        }
 		Map<String, Object> response=new HashMap<>();
 		try {
-			response =boardService.getFashionPostById(id,postType);
+			response =boardService.getFashionPostById(id,Integer.parseInt(userId),postType);
 		} catch (NotFoundException e) {
         	return new ApiResponseDTO<>(400, "정보를 찾을 수 없습니다, "+e.getMessage(), null);
         } catch (Exception e) {

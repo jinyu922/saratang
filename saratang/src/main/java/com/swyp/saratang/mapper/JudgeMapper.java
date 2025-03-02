@@ -15,4 +15,6 @@ public interface JudgeMapper {
 	public Map<String, BigDecimal> countJudgementsByPostId(@Param("postId") int postId);
 	
 	public int countJudgementsByUserId(@Param("userId") int userId);
+	
+	public String getJudegeByUserIdAndPostId(@Param("userId") int userId, @Param("postId") int postId);
 }

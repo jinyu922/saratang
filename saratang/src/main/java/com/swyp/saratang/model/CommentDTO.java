@@ -10,6 +10,6 @@ public class CommentDTO {
 	private String content;
 	
 	//추가정보
-	private String username;
+	private String nickname;
 	private String judgement;
 }

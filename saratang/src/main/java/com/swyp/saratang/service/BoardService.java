@@ -44,6 +44,9 @@ public class BoardService {
 	@Autowired
 	CategoryService categoryService;
 	
+	@Autowired
+	JudgeService judgeService;
+	
 	//최신순 페이징 리스트 출력
 	public Page<BoardDTO> getFashionList(int userId,Pageable pageable,String postType){
 		//Mapper 쿼리에 필요한 내용 정의
@@ -107,31 +110,36 @@ public class BoardService {
 		return resultDTOs;
 	}
 	
-	public Map<String, Object> getFashionPostById(int id,String postType) throws NotFoundException {
+	public Map<String, Object> getFashionPostById(int postId,int userId,String postType) throws NotFoundException {
 	    try {
 	        // 패션 포스트 상세 조회
-	        BoardDTO boardDTO = boardMapper.getFashionPostById(id,postType);
+	        BoardDTO boardDTO = boardMapper.getFashionPostById(postId,postType);
 	        if (boardDTO == null) {
 	            throw new NotFoundException("데이터가 없습니다");
 	        }
+	        List<String> imageUrls = boardMapper.getImagesByPostId(boardDTO.getId());
+	        boardDTO.setImageUrls(imageUrls);  // imageUrls 필드에 이미지 URL 리스트 추가
 	        // 작성자 프로필 조회(프론트요청)
 	        UserDTO userDTO = userService.getUserById(boardDTO.getUserId());
 	        SafeUserDTO safeUserDTO = new SafeUserDTO(userDTO); // 민감한 데이터 제외
 	        
 	        // 판별 결과 조회
-	        Map<String, BigDecimal> judgementCounts = judgeMapper.countJudgementsByPostId(id);
+	        Map<String, BigDecimal> judgementCounts = judgeMapper.countJudgementsByPostId(postId);
 	        if (judgementCounts == null) {
 	            judgementCounts = new HashMap<>(); // 빈 맵으로 초기화
 	        }
 	        
+	        // 작성자의 사라 마라 판단 여부 조회
+	        String judge=judgeService.getJudegeByUserIdAndPostId(userId, postId);
+	        
 	        
 	        //남여 통계
-	        int positiveCount=judgementCounts.get("positiveCount").intValue();
-	        int negativeCount=judgementCounts.get("negativeCount").intValue();
-	        int malePositiveCount=judgementCounts.get("malePositiveCount").intValue();
-	        int maleNegativeCount=judgementCounts.get("maleNegativeCount").intValue();
-	        int femalePositiveCount=judgementCounts.get("femalePositiveCount").intValue();
-	        int femaleNegativeCount=judgementCounts.get("femaleNegativeCount").intValue();
+	        int positiveCount = judgementCounts.getOrDefault("positiveCount", BigDecimal.ZERO).intValue();
+	        int negativeCount = judgementCounts.getOrDefault("negativeCount", BigDecimal.ZERO).intValue();
+	        int malePositiveCount = judgementCounts.getOrDefault("malePositiveCount", BigDecimal.ZERO).intValue();
+	        int maleNegativeCount = judgementCounts.getOrDefault("maleNegativeCount", BigDecimal.ZERO).intValue();
+	        int femalePositiveCount = judgementCounts.getOrDefault("femalePositiveCount", BigDecimal.ZERO).intValue();
+	        int femaleNegativeCount = judgementCounts.getOrDefault("femaleNegativeCount", BigDecimal.ZERO).intValue();
 	        
 	        // 남자/여자별 총 투표 수
 	        int maleTotal = malePositiveCount + maleNegativeCount;
@@ -151,6 +159,7 @@ public class BoardService {
 	        Map<String, Object> response = new LinkedHashMap<>();
 	        response.put("content", boardDTO);
 	        response.put("writerProfile", safeUserDTO);
+	        response.put("userJudgement", judge);
 	        response.put("positiveCount", positiveCount);
 	        response.put("negativeCount", negativeCount);
 	        response.put("positiveRate", positiveRate);
