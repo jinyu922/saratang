@@ -49,12 +49,13 @@
 	
 	<update id="editUserProfile">
         UPDATE users
-        SET weight = #{weight}, 
+        SET nickname = #{nickname},
+            weight = #{weight}, 
             height = #{height}, 
             top_size = #{topSize}, 
             bottom_size = #{bottomSize}, 
             foot_size = #{footSize}
-        WHERE social_id = #{socialId} AND auth_provider = #{authProvider}
+        WHERE id = #{id}
     </update>
 	
 	

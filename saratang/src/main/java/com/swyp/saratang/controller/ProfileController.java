@@ -106,12 +106,9 @@ public class ProfileController {
     /**
      *  프로필 수정 API
      */
-    @Operation(summary = "회원 프로필 수정", description = "JWT 인증 후 자신의 프로필 정보를 수정합니다.")
-    @ApiResponse(responseCode = "200", description = "프로필 수정 완료")
-    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
     @PostMapping("/edit")
     public ApiResponseDTO<String> editProfile(
-            @RequestBody UserDTO user,
+            @RequestBody UserDTO userDTO,
             @RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
 
@@ -122,11 +119,24 @@ public class ProfileController {
             return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
         }
 
-        user.setId(Integer.parseInt(userId));
-        user.setIsActive(true);
+        userDTO.setId(Integer.parseInt(userId));
 
-        userService.editProfile(user);
+        userService.editProfile(userDTO);
         return new ApiResponseDTO<>(200, "프로필 수정 완료", "success");
+    }
+    
+    @Operation(summary = "테스트용 회원 프로필 수정", description = "JWT 없이 프로필 정보를 수정합니다.")
+    @ApiResponse(responseCode = "200", description = "프로필 수정 완료")
+    @PostMapping("/edit/test")
+    public ApiResponseDTO<String> editProfileTest(@RequestBody UserDTO userDTO) {
+
+        // 테스트를 위해 ID를 1번 사용자로 고정
+        int testUserId = 55;
+
+        userDTO.setId(testUserId);
+        userService.editProfile(userDTO);
+
+        return new ApiResponseDTO<>(200, "테스트 프로필 수정 완료", "success");
     }
     
     /**
