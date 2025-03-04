@@ -296,6 +296,26 @@
 			#{currentPrice}, #{isSpecPublic}, #{memo}, #{detailMemo})
 	</insert>-->
 	
+	<!--패션/할인정보 수정 -->
+	<!--BoardDTO의 어떤 필드가 null이더라도 해당 필드는 업데이트되지 않고 기존 값을 유지-->
+	<update id="updatePost" parameterType="com.swyp.saratang.model.BoardDTO">
+	    UPDATE posts
+	    <set>
+	        <if test="categoryId != null">category_id = #{categoryId},</if>
+	        <if test="concernKeywordId != null">concern_keyword_id = #{concernKeywordId},</if>
+	        <if test="brand != null">brand = #{brand},</if>
+	        <if test="originalPrice != null">original_price = #{originalPrice},</if>
+	        <if test="discountPrice != null">discount_price = #{discountPrice},</if>
+	        <if test="productLink != null">product_link = #{productLink},</if>
+	        <if test="title != null">title = #{title},</if>
+	        <if test="currentPrice != null">current_price = #{currentPrice},</if>
+	        <if test="isSpecPublic != null">is_spec_public = #{isSpecPublic},</if>
+	        <if test="memo != null">memo = #{memo},</if>
+	        <if test="detailMemo != null">detail_memo = #{detailMemo},</if>
+	    </set>
+	    WHERE id = #{id}
+	</update>
+	
 	<!--댓글저장-->
 	<insert id="insertComment" parameterType="com.swyp.saratang.model.CommentDTO">
 		INSERT INTO comments
@@ -333,7 +353,7 @@
 	</select>
 
 	<!-- url가져오기 -->
-	<select id="getBoardById" parameterType="int" resultType="com.swyp.saratang.model.BoardDTO">
+	<select id="getUrlById" parameterType="int" resultType="com.swyp.saratang.model.BoardDTO">
         SELECT id, product_link AS productLink
         FROM posts
         WHERE id = #{boardId}
@@ -368,5 +388,16 @@
 	    FROM posts p
 	    WHERE p.USER_ID = #{requestUserId}
 	</select>
+	<!--게시글 아이디로 게시글 조회-->
+	<select id="getPostById" resultType="com.swyp.saratang.model.BoardDTO">
+		SELECT *
+		FROM posts
+		WHERE ID = #{postId}
+	</select>
+	
+	<delete id="deletePostImage">
+		DELETE FROM post_images
+		WHERE post_id = #{postId}
+	</delete>
 
 </mapper>

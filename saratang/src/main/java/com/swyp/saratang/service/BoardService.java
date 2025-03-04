@@ -1,6 +1,7 @@
 package com.swyp.saratang.service;
 
 import java.math.BigDecimal;
+import java.nio.channels.IllegalBlockingModeException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.apache.ibatis.javassist.NotFoundException;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.swyp.saratang.data.RequestList;
+import com.swyp.saratang.exception.UnauthorizedAccessException;
 import com.swyp.saratang.mapper.BoardMapper;
 import com.swyp.saratang.mapper.JudgeMapper;
 import com.swyp.saratang.model.BoardDTO;
@@ -27,7 +30,6 @@ import com.swyp.saratang.model.SafeUserDTO;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.session.SessionManager;
 
-import io.netty.handler.codec.AsciiHeadersEncoder.NewlineType;
 
 @Service
 public class BoardService {
@@ -36,16 +38,16 @@ public class BoardService {
 	BoardMapper boardMapper;
 	@Autowired
 	JudgeMapper judgeMapper;
-
 	@Autowired
 	SessionManager sessionManager;
 	@Autowired
 	UserService userService;
 	@Autowired
 	CategoryService categoryService;
-	
 	@Autowired
 	JudgeService judgeService;
+	@Autowired
+	NCPStorageService ncpStorageService;
 	
 	//최신순 페이징 리스트 출력
 	public Page<BoardDTO> getFashionList(int userId,Pageable pageable,String postType){
@@ -284,9 +286,9 @@ public class BoardService {
 		return new PageImpl<>(commentDTOs, pageable, total);
 	}
 	
-	public BoardDTO getBoardById(Integer boardId) {
-	        return boardMapper.getBoardById(boardId);
-	    }
+	public BoardDTO getUrlById(Integer boardId) {
+	        return boardMapper.getUrlById(boardId);
+	}
 	
 	//작성한 게시글 출력
 	public Page<BoardDTO> getMyPosts(int userId,Pageable pageable){
@@ -307,5 +309,52 @@ public class BoardService {
 		int total = boardMapper.getMyPostsCount(requestList);
 		
 		return new PageImpl<>(boardDTOs, pageable, total);
+	}
+
+	//게시글 수정
+	public Integer updatePost(BoardDTO boardDTO, List<String> imageUrls,int RequestUserId,int postId) throws RuntimeException{
+		
+		//클라이언트에서 보낸 boardDTO엔 id,userId 정보가 없음
+		
+		//변경 요청 게시글 찾기
+		BoardDTO targetPost=boardMapper.getPostById(postId);
+		
+		//변경 요청 게시글이 실제로 존재하는지
+		if(targetPost==null) {
+			throw new NoSuchElementException();
+		}
+		
+		//요청자가 게시글 쓴 본인인지
+		Integer postWriterUserId=targetPost.getUserId();
+		if(postWriterUserId!=RequestUserId) {
+			throw new UnauthorizedAccessException(null);
+		}
+		
+		//게시글 수정 쿼리
+		boardDTO.setId(targetPost.getId());
+		boardMapper.updatePost(boardDTO);
+		
+		//새로운 이미지 url 정보가 있다면
+		if(imageUrls != null && !imageUrls.isEmpty()) {
+			System.out.println("새로운 이미지 url정보 있음");
+			//기존 그림자료 삭제를 위해 url 가져옴
+			List<String> oldImageUrls = boardMapper.getImagesByPostId(boardDTO.getId());
+			System.out.println("oldImageUrls :"+oldImageUrls);
+			//기존 그림자료 S3에서 삭제
+			ncpStorageService.deleteFiles(oldImageUrls);
+			//기존 그림자료 url 데이터베이스에서 삭제
+			boardMapper.deletePostImage(postId);
+			
+			//새 그림자료 저장
+	        if (imageUrls != null && !imageUrls.isEmpty()) {
+	            for (String imageUrl : imageUrls) {
+	            	PostImageDTO postImageDTO=new PostImageDTO(boardDTO.getId(), imageUrl);
+	            	boardMapper.insertPostImage(postImageDTO);
+	            }
+	        }
+		}
+		
+        //수정한 게시글 id 반환
+        return boardDTO.getId();
 	}
 }

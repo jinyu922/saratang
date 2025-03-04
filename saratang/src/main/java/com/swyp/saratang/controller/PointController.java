@@ -112,7 +112,7 @@ public class PointController {
             Integer updatedCredits = userService.getTotalCreditsByUserId(userId);
             
             // Board 정보 가져오기
-            BoardDTO boardDTO = boardService.getBoardById(boardId);
+            BoardDTO boardDTO = boardService.getUrlById(boardId);
             if (boardDTO == null) {
                 return new ApiResponseDTO<>(404, "해당 게시글을 찾을 수 없습니다.", null);
             }
@@ -125,7 +125,7 @@ public class PointController {
         else {
         // 권한 있으면 포인트 소모하지 않고 조회
             // Board 정보 가져오기
-            BoardDTO boardDTO = boardService.getBoardById(boardId);
+            BoardDTO boardDTO = boardService.getUrlById(boardId);
             if (boardDTO == null) {
                 return new ApiResponseDTO<>(404, "해당 게시글을 찾을 수 없습니다.", null);
             }

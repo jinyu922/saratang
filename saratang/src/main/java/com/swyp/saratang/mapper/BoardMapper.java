@@ -46,10 +46,15 @@ public interface BoardMapper {
 	
 	public List<String> getImagesByPostId(Integer postId); //NCP object storage 이미지 url 리스트 조회
 	public void insertPostImage(PostImageDTO postImageDTO); //NCP object storage 이미지 url 저장
+	public void deletePostImage(@Param("postId") int postId); //해당 post의 이미지 url 리스트 삭제
 	
 	public void insertComment(CommentDTO commentDTO);//댓글 저장
 	public List<CommentDTO> getCommentList(@Param("postId") int postId,Pageable pageable);//댓글 조회
 	public int getCommentListCount(); //페이징
 	
-	public BoardDTO getBoardById(Integer boardId); //url가져오기
+	public BoardDTO getUrlById(Integer boardId); //url가져오기
+	
+	public BoardDTO getPostById(@Param("postId") int postId);
+	
+	public void updatePost(BoardDTO boardDTO);
 }

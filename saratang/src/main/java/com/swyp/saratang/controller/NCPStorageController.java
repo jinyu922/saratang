@@ -33,5 +33,8 @@ public class NCPStorageController {
         }
 		
 	}
+	
+	//deleteFile()
+	//클라이언트에서 삭제 메소드는 구현하지 않음
 
 }

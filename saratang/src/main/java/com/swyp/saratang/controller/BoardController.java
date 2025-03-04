@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.swyp.saratang.config.JwtAuthUtil;
 import com.swyp.saratang.data.PeriodType;
+import com.swyp.saratang.exception.UnauthorizedAccessException;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.BoardDTO;
 import com.swyp.saratang.model.CommentDTO;
@@ -304,5 +307,33 @@ public class BoardController {
         
 		Pageable pageable = PageRequest.of(page, size);
 		return new ApiResponseDTO<>(200, "성공적으로 작성한 게시글들을 조회했습니다", boardService.getMyPosts(Integer.parseInt(userId), pageable));
+	}
+	
+	@Operation(summary = "게시글 수정", description = "1.글 작성자만 수정가능함(로그인 토큰 여부로 판별)<br>2.속성이 널값이면 해당 속성은 기존 값으로 유지(이미지url도 동일)<br>3.ImageUrl을 받으면 받은 이미지로 교체<br>4.body의 userId 속성값엔 영향이 없습니다(입력해도 작성자는 변경되지 않음).")
+	@PutMapping("/fashion/{postId}")
+	public ApiResponseDTO<?> updatePost(
+			@PathVariable Integer postId,
+			@Parameter(description = "수정할 게시글의 고유 id")@RequestBody BoardDTO boardDTO,
+			@Parameter(description = "jwt 토큰 없는 테스트용 파라미터")@RequestParam(required = false) Integer requestUserId,
+			@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
+		
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+        Integer updatedPostId=0;
+        if (userId == null) {
+            return new ApiResponseDTO<>(401, "JWT 인증 실패", null);
+        }
+        try {
+        	updatedPostId=boardService.updatePost(boardDTO, boardDTO.getImageUrls(),Integer.parseInt(userId),postId);
+        } catch (UnauthorizedAccessException e) {
+            return new ApiResponseDTO<>(403, "게시글 수정 권한이 없습니다.", null);
+        } catch (NoSuchElementException e) {
+            return new ApiResponseDTO<>(404, "수정할 게시글을 찾을 수 없습니다.", null);
+        } catch (Exception e) {
+            return new ApiResponseDTO<>(500, "게시글 수정 중 오류가 발생했습니다."+e.toString(), null);
+        }
+        
+		return new ApiResponseDTO<>(200, "성공적으로 정보를 저장하였습니다.", updatedPostId);
 	}
 }

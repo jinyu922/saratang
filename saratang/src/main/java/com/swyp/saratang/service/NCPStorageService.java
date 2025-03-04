@@ -56,4 +56,35 @@ public class NCPStorageService {
     	
     	return fileUrls;
     }
+    
+    // 단일 파일 삭제 메서드
+    public void deleteFile(String fileUrl) {
+        try {
+            // URL에서 파일 이름 추출
+            String fileName = extractFileNameFromUrl(fileUrl);
+            
+            // S3에서 객체 삭제 (메타데이터 포함)
+            s3Client.deleteObject(bucketName, fileName);
+        } catch (Exception e) {
+            // 로깅 또는 예외 처리
+            throw new RuntimeException("파일 삭제 중 오류 발생: " + e.getMessage(), e);
+        }
+    }
+
+    // 여러 파일 삭제 메서드
+    public void deleteFiles(List<String> fileUrls) {
+        if (fileUrls == null || fileUrls.isEmpty()) {//아무것도 없으면 실행하지 않음
+            return;
+        }
+        for (String fileUrl : fileUrls) {
+            deleteFile(fileUrl);
+        }
+    }
+
+    // URL에서 파일 이름 추출 유틸리티 메서드
+    private String extractFileNameFromUrl(String fileUrl) {
+        // 엔드포인트와 버킷 이름을 제외한 파일 이름 추출
+        String endpoint = endPoint + "/" + bucketName + "/";
+        return fileUrl.replace(endpoint, "");
+    }
 }
