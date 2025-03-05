@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swyp.saratang.mapper.OotdMapper">
+
+	<!--Util-->
+	<select id="getOotdById">
+	</select>
+	
+	<select id="getOotdByUserId">
+	</select>
+	
+	<select id="existOotdById">
+	</select>
+	
+	<select id="existOotdByUserId">
+	</select>
+	
+	<!--저장 삭제-->
+	
+	<!--Ootd저장-->
+	<insert id="insertOotd">
+	</insert>
+	
+	<!--Ootd삭제-->
+	<delete id="deleteOotdById">
+	</delete>
+	
+	<!--Ootd좋아요-->
+	<insert id="insertOotdLike">
+	</insert>
+	
+	<!--Ootd좋아요 취소-->
+	<delete id="deleteOotdLike">
+	</delete>
+	
+	<!--조회-->
+	
+	<!--전체 Ootd 조회/페이징,정렬-->
+	<select id="selectOotds">
+	</select>
+	
+	<!--UserId로 좋아요한 Ootd 조회/페이징,정렬-->
+	<select id="selectLikedOotdsByUserId">
+	</select>
+	
+	<!--UserId로 작성한 Ootd 조회/페이징,정렬-->
+	<select id="selectOotdsByUserId">
+	</select>
+	
+</mapper>
