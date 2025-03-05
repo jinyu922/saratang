@@ -1,5 +1,8 @@
 package com.swyp.saratang.mapper;
 
-public class OotdMapper {
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface OotdMapper {
 
 }
