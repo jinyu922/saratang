@@ -3,52 +3,130 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.swyp.saratang.mapper.OotdMapper">
 
-	<!--Util-->
-	<select id="getOotdById">
+	<!--
+		Util
+	-->
+	<select id="getOotdById" resultType="com.swyp.saratang.model.OotdDTO">
+		SELECT * FROM ootd_posts WHERE id=#{id}
 	</select>
 	
-	<select id="getOotdByUserId">
+	<select id="existOotdById" resultType="int">
+		SELECT EXISTS (SELECT 1 FROM ootd_posts WHERE id=#{id} LIMIT 1);
 	</select>
 	
-	<select id="existOotdById">
+	<select id="existOotdByUserId" resultType="int">
+		SELECT EXISTS (SELECT 1 FROM ootd_posts WHERE user_id=#{userId} LIMIT 1);
 	</select>
 	
-	<select id="existOotdByUserId">
-	</select>
-	
-	<update id="updateOotd">
+	<update id="updateOotd" parameterType="com.swyp.saratang.model.OotdDTO">
+		UPDATE ootd_posts
+		<set>
+			<if test="title != null">title=#{title}</if>
+			<if test="content != null">content=#{content}</if>
+			<if test="like_count != null">like_count=#{likeCount}</if>
+			<if test="scrap_count != null">scrap_count=#{scrapCount}</if>
+			updated_at = NOW()
+		</set>
+		WHERE id=#{id}
 	</update>
 	
-	<!--저장 삭제-->
+	<update id="incrementOotdLikeCount">
+	    UPDATE ootd_posts 
+	    SET like_count = like_count + 1 
+	    WHERE id = #{id}
+	</update>
+	
+	<update id="decrementOotdLikeCount">
+	    UPDATE ootd_posts 
+	    SET like_count = GREATEST(like_count - 1, 0) 
+	    WHERE id = #{id}
+	</update>
+	
+	<update id="incrementOotdScrapCount">
+	    UPDATE ootd_posts 
+	    SET scrap_count = scrap_count + 1 
+	    WHERE id = #{id}
+	</update>
+	
+	<update id="decrementOotdScrapCount">
+	    UPDATE ootd_posts 
+	    SET scrap_count = GREATEST(scrap_count - 1, 0) 
+	    WHERE id = #{id}
+	</update>
+	
+	<!--
+		저장/삭제
+	-->
 	
 	<!--Ootd저장-->
-	<insert id="insertOotd">
+	<insert id="insertOotd" parameterType="com.swyp.saratang.model.OotdDTO">
+		INSERT INTO ootd_posts
+			(user_id,title,content)
+		VALUES
+			(#{user_id},#{title},#{content})
 	</insert>
 	
 	<!--Ootd삭제-->
 	<delete id="deleteOotdById">
+		DELETE FROM ootd_posts WHERE id=#{id}
 	</delete>
 	
 	<!--Ootd좋아요-->
 	<insert id="insertOotdLike">
+		INSERT INTO ootd_likes (user_id,ootd_post_id) VALUES (#{userId},#{ootdPostId})
 	</insert>
 	
 	<!--Ootd좋아요 취소-->
 	<delete id="deleteOotdLike">
+		DELETE FROM ootd_likes WHERE user_id=#{userId} AND ootd_post_id=#{ootdPostId}
 	</delete>
 	
-	<!--조회-->
+	<!--Ootd스크랩-->
+	<insert id="insertOotdScrap">
+		INSERT INTO ootd_scraps (user_id,ootd_post_id) VALUES (#{userId},#{ootdPostId})
+	</insert>
 	
-	<!--전체 Ootd 조회/페이징,정렬-->
-	<select id="selectOotds">
+	<!--Ootd스크랩 취소-->
+	<delete id="deleteOotdScrap">
+		DELETE FROM ootd_scraps WHERE user_id=#{userId} AND ootd_post_id=#{ootdPostId}
+	</delete>
+	
+	<!--
+		조회 
+	-->
+	
+	<!--전체 Ootd 최신순 조회/페이징,정렬-->
+	<select id="selectOotds" resultType="com.swyp.saratang.model.OotdDTO">
+		SELECT * FROM ootd_posts ORDER BY created_at DESC
+		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
 	
-	<!--UserId로 좋아요한 Ootd 조회/페이징,정렬-->
-	<select id="selectLikedOotdsByUserId">
+	<!--전체 Ootd 좋아요순 조회/페이징,정렬-->
+	<select id="selectOotdsByLikes" resultType="com.swyp.saratang.model.OotdDTO">
+		SELECT * FROM ootd_posts ORDER BY like_count DESC
+		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
 	
-	<!--UserId로 작성한 Ootd 조회/페이징,정렬-->
-	<select id="selectOotdsByUserId">
+	<!--UserId가 좋아요한 Ootd 조회/페이징,정렬-->
+	<select id="selectLikedOotdsByUserId" resultType="com.swyp.saratang.model.OotdDTO">
+		SELECT * FROM ootd_posts JOIN ootd_likes ON (ootd_posts.id = ootd_likes.ootd_post_id)
+		WHERE ootd_likes.user_id = #{userId}
+		ORDER BY ootd_posts.created_at DESC
+		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+	
+	<!--UserId가 스크랩한 Ootd 조회/페이징,정렬-->
+	<select id="selectScrapedOotdsByUserId" resultType="com.swyp.saratang.model.OotdDTO">
+		SELECT * FROM ootd_posts JOIN ootd_scraps ON (ootd_posts.id = ootd_scraps.ootd_post_id)
+		WHERE ootd_scraps.user_id = #{userId}
+		ORDER BY ootd_posts.created_at DESC
+		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
+	</select>
+	
+	<!--UserId가 작성한 Ootd 조회/페이징,정렬-->
+	<select id="selectOotdsByUserId" resultType="com.swyp.saratang.model.OotdDTO">
+		SELECT * FROM ootd_posts WHERE user_id=#{userId}
+		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
 	
 </mapper>
