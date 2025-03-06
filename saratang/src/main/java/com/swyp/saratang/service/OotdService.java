@@ -114,42 +114,67 @@ public class OotdService {
 				
 	}
 	
-	public Page<OotdDTO> getLikedOotds(int userId,Pageable pageable){
+	public Page<Map<String, Object>> getLikedOotds(int userId,Pageable pageable){
+		List<Map<String, Object>> responses = new ArrayList<>();
 		List<OotdDTO> ootdDTOs=new ArrayList<>();
 		ootdDTOs=ootdMapper.selectLikedOotdsByUserId(userId, pageable);
+		
 		for(OotdDTO ootdDTO:ootdDTOs) {
+			Map<String,Object> response=new HashMap<>();
 			Integer postId=ootdDTO.getId();
 			List<String> imageUrls = ootdMapper.getImagesByOotdPostId(postId);
 			ootdDTO.setOotdImageUrls(imageUrls);
+			
+			response.put("content", ootdDTO);
+			response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
+			response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
+			responses.add(response);
+			
 		}
 		
 		int total=ootdMapper.selectLikedOotdsByUserIdCount(userId);
-		return new PageImpl<>(ootdDTOs, pageable, total);
+		return new PageImpl<>(responses, pageable, total);
 	}
 	
-	public Page<OotdDTO> getScrappedOotds(int userId,Pageable pageable){
+	public Page<Map<String, Object>> getScrappedOotds(int userId,Pageable pageable){
+		List<Map<String, Object>> responses = new ArrayList<>();
 		List<OotdDTO> ootdDTOs=new ArrayList<>();
 		ootdDTOs=ootdMapper.selectScrapedOotdsByUserId(userId, pageable);
+		
 		for(OotdDTO ootdDTO:ootdDTOs) {
+			Map<String,Object> response=new HashMap<>();
 			Integer postId=ootdDTO.getId();
 			List<String> imageUrls = ootdMapper.getImagesByOotdPostId(postId);
 			ootdDTO.setOotdImageUrls(imageUrls);
+			
+			response.put("content", ootdDTO);
+			response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
+			response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
+			responses.add(response);
 		}
 		
 		int total=ootdMapper.selectScrapedOotdsByUserIdCount(userId);
-		return new PageImpl<>(ootdDTOs, pageable, total);
+		return new PageImpl<>(responses, pageable, total);
 	}
 	
-	public Page<OotdDTO> getMyOotds(int userId,Pageable pageable){
+	public Page<Map<String, Object>> getMyOotds(int userId,Pageable pageable){
+		List<Map<String, Object>> responses = new ArrayList<>();
 		List<OotdDTO> ootdDTOs=new ArrayList<>();
 		ootdDTOs=ootdMapper.selectOotdsByUserId(userId, pageable);
+		
 		for(OotdDTO ootdDTO:ootdDTOs) {
+			Map<String,Object> response=new HashMap<>();
 			Integer postId=ootdDTO.getId();
 			List<String> imageUrls = ootdMapper.getImagesByOotdPostId(postId);
 			ootdDTO.setOotdImageUrls(imageUrls);
+			
+			response.put("content", ootdDTO);
+			response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
+			response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
+			responses.add(response);
 		}
 		
 		int total=ootdMapper.selectOotdsByUserIdCount(userId);
-		return new PageImpl<>(ootdDTOs, pageable, total);
+		return new PageImpl<>(responses, pageable, total);
 	}
 }
