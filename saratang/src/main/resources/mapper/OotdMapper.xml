@@ -58,12 +58,12 @@
 		저장/삭제
 	-->
 	
-	<!--Ootd저장-->
-	<insert id="insertOotd" parameterType="com.swyp.saratang.model.OotdDTO">
+	<!--Ootd저장 -->
+	<insert id="insertOotd" parameterType="com.swyp.saratang.model.OotdDTO" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO ootd_posts
 			(user_id,title,content)
 		VALUES
-			(#{user_id},#{title},#{content})
+			(#{userId},#{title},#{content})
 	</insert>
 	
 	<!-- 이미지 url 삽입 -->

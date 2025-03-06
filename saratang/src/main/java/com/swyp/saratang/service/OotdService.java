@@ -1,8 +1,8 @@
 package com.swyp.saratang.service;
 
+import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.swyp.saratang.exception.AlreadyExistException;
 import com.swyp.saratang.exception.NotFoundException;
 import com.swyp.saratang.mapper.OotdMapper;
-import com.swyp.saratang.model.BoardDTO;
 import com.swyp.saratang.model.OotdDTO;
 
 @Service
@@ -38,7 +37,16 @@ public class OotdService {
         return ootdDTO.getId();
 	}
 	
-	public void deleteOotd(int postId) {
+	public void deleteOotd(int UserId,int postId) throws RuntimeException{
+		// 삭제하려는 OOTD가 있는지 확인
+		OotdDTO ootdDTO=ootdMapper.getOotdById(postId);
+		if(ootdDTO==null) {
+			throw new NotFoundException("삭제할 데이터가 없습니다");
+		}
+    	// 삭제하려는 OOTD가 로그인한 본인인지 확인
+        if(UserId!=ootdDTO.getUserId()) {
+        	throw new RuntimeException("권한부족");
+        }
 		ootdMapper.deleteOotdById(postId);
 		//기존 그림자료 삭제를 위해 url 가져옴
 		List<String> oldImageUrls = ootdMapper.getImagesByOotdPostId(postId);
@@ -67,7 +75,7 @@ public class OotdService {
 			throw new AlreadyExistException("이미 스크랩한 게시글");
 		}
 		ootdMapper.insertOotdScrap(UserId, postId);
-		ootdMapper.incrementOotdLikeCount(postId);
+		ootdMapper.incrementOotdScrapCount(postId);
 	}
 	
 	public void unscrapOotd(int UserId,int postId) throws RuntimeException{
@@ -75,7 +83,7 @@ public class OotdService {
 			throw new NotFoundException("철회할 스크랩 기록이 없습니다");
 		}
 		ootdMapper.deleteOotdScrap(UserId, postId);
-		ootdMapper.decrementOotdLikeCount(postId);
+		ootdMapper.decrementOotdScrapCount(postId);
 	}
 	
 	public Page<Map<String, Object>> getOotds(int userId,String sort,Pageable pageable) throws RuntimeException{

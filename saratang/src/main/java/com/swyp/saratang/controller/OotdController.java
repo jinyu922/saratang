@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swyp.saratang.exception.NotFoundException;
 import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.OotdDTO;
 import com.swyp.saratang.service.AuthService;
@@ -53,11 +54,15 @@ public class OotdController {
         if(userId==null) {
         	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
         }
-    	// 삭제하려는 OOTD가 로그인한 본인인지 확인
-        if(userId!=id) {
-        	return new ApiResponseDTO<>(403, "게시글 삭제 권한이 없습니다 : 작성자 본인만 삭제가능.", null);
-        }
-        ootdService.deleteOotd(id);
+        try {
+        	ootdService.deleteOotd(userId,id);
+		} catch (NotFoundException e) {
+			return new ApiResponseDTO<>(400, "삭제할 데이터가 없습니다", null);
+		} 
+        catch (Exception e) {
+			return new ApiResponseDTO<>(403, "게시글 삭제 권한이 없습니다 : 작성자 본인만 삭제가능.", null);
+		}
+        
         return new ApiResponseDTO<>(200, "성공적으로 정보를 삭제하였습니다.", null);
     }
 
