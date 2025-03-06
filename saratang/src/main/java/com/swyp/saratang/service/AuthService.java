@@ -4,6 +4,8 @@ import com.swyp.saratang.model.UserDTO;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * AuthService는 인증 관련 기능을 제공하는 서비스 인터페이스입니다.
  */
@@ -28,4 +30,7 @@ public interface AuthService {
      * Access Token을 이용해 사용자 프로필 조회
      */
     UserDTO getUserProfile(String provider, String accessToken);
+    
+    //토큰으로 userId 가져오기
+    public Integer validateJwtAndGetUserId(HttpServletRequest request, String token);
 }

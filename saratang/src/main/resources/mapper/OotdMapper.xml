@@ -66,10 +66,35 @@
 			(#{user_id},#{title},#{content})
 	</insert>
 	
+	<!-- 이미지 url 삽입 -->
+	<insert id="insertOotdImage">
+	    INSERT INTO ootd_images 
+	    	(ootd_post_id, image_url ,uploaded_at) 
+	    VALUES 
+	    	(#{id}, #{imageUrl},NOW())
+	</insert>
+	
+	<!-- 이미지 url 삭제 -->
+	<delete id="deleteOotdImageByOotdPostId">
+	    DELETE FROM ootd_images WHERE ootd_post_id=#{OotdPostId}
+	</delete>
+	
+	<select id="getImagesByOotdPostId" parameterType="Integer" resultType="String">
+	    SELECT 
+	    	image_url
+	    FROM ootd_images
+	    WHERE ootd_post_id = #{OotdPostId}
+	</select>
+	
 	<!--Ootd삭제-->
 	<delete id="deleteOotdById">
 		DELETE FROM ootd_posts WHERE id=#{id}
 	</delete>
+	
+	<!--Ootd좋아요 존재여부-->
+	<select id="existOotdLike" resultType="int">
+		SELECT EXISTS (SELECT 1 FROM ootd_likes WHERE ootd_post_id=#{ootdPostId} AND user_id=#{userId} LIMIT 1);
+	</select>
 	
 	<!--Ootd좋아요-->
 	<insert id="insertOotdLike">
@@ -85,6 +110,11 @@
 	<insert id="insertOotdScrap">
 		INSERT INTO ootd_scraps (user_id,ootd_post_id) VALUES (#{userId},#{ootdPostId})
 	</insert>
+	
+	<!--Ootd스크랩 존재여부-->
+	<select id="existOotdScrap" resultType="int">
+		SELECT EXISTS (SELECT 1 FROM ootd_scraps WHERE ootd_post_id=#{ootdPostId} AND user_id=#{userId} LIMIT 1);
+	</select>
 	
 	<!--Ootd스크랩 취소-->
 	<delete id="deleteOotdScrap">
@@ -128,5 +158,34 @@
 		SELECT * FROM ootd_posts WHERE user_id=#{userId}
 		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
+	
+	<!-- 
+		페이징
+	-->
+	
+	<!--전체 Ootd 최신순 조회/전체 카운트-->
+	<select id="selectOotdsCount" resultType="int">
+	    SELECT COUNT(*) FROM ootd_posts
+	</select>
+	
+	<!--UserId가 좋아요한 Ootd 조회/전체 카운트-->
+	<select id="selectLikedOotdsByUserIdCount" resultType="int">
+	    SELECT COUNT(*) FROM ootd_posts 
+	    JOIN ootd_likes ON (ootd_posts.id = ootd_likes.ootd_post_id)
+	    WHERE ootd_likes.user_id = #{userId}
+	</select>
+	
+	<!--UserId가 스크랩한 Ootd 조회/전체 카운트-->
+	<select id="selectScrapedOotdsByUserIdCount" resultType="int">
+	    SELECT COUNT(*) FROM ootd_posts 
+	    JOIN ootd_scraps ON (ootd_posts.id = ootd_scraps.ootd_post_id)
+	    WHERE ootd_scraps.user_id = #{userId}
+	</select>
+	
+	<!--UserId가 작성한 Ootd 조회/전체 카운트-->
+	<select id="selectOotdsByUserIdCount" resultType="int">
+	    SELECT COUNT(*) FROM ootd_posts WHERE user_id=#{userId}
+	</select>
+	
 	
 </mapper>

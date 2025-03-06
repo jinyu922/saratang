@@ -1,78 +1,187 @@
 package com.swyp.saratang.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.OotdDTO;
+import com.swyp.saratang.service.AuthService;
+import com.swyp.saratang.service.OotdService;
 
 @RestController
 @RequestMapping("/Ootd")
 public class OotdController {
 	
+	@Autowired
+	private OotdService ootdService;
+	
+	@Autowired
+	private AuthService authService;
+	
     // OOTD 저장
     @PostMapping("")
-    public void createOotd(@RequestBody OotdDTO ootdDTO) {
-        // Logic to create an OOTD
+    public ApiResponseDTO<?> createOotd(@RequestBody OotdDTO ootdDTO,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+        ootdDTO.setUserId(userId);
+        return new ApiResponseDTO<>(200, "성공적으로 정보를 저장하였습니다.", ootdService.createOotd(ootdDTO));
     }
 
     // OOTD 삭제
     @DeleteMapping("/{id}")
-    public void deleteOotd(@PathVariable Long id) {
-        // Logic to delete an OOTD by id
+    public ApiResponseDTO<?> deleteOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+    	// 삭제하려는 OOTD가 로그인한 본인인지 확인
+        if(userId!=id) {
+        	return new ApiResponseDTO<>(403, "게시글 삭제 권한이 없습니다 : 작성자 본인만 삭제가능.", null);
+        }
+        ootdService.deleteOotd(id);
+        return new ApiResponseDTO<>(200, "성공적으로 정보를 삭제하였습니다.", null);
     }
 
     // OOTD 좋아요
     @PostMapping("/{id}/likes")
-    public void likeOotd(@PathVariable Long id) {
-        // Logic to like an OOTD by id
+    public ApiResponseDTO<?> likeOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+        try {
+			ootdService.likeOotd(userId, id);
+		} catch (Exception e) {
+			return new ApiResponseDTO<>(404, "좋아요 판단 실패 :"+e.getMessage(),null);
+		}
+        return new ApiResponseDTO<>(200, "성공적으로 좋아요 판단을 내렸습니다.", null);
     }
 
     // OOTD 좋아요 취소
     @DeleteMapping("/{id}/likes")
-    public void unlikeOotd(@PathVariable Long id) {
-        // Logic to unlike an OOTD by id
+    public ApiResponseDTO<?> unlikeOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+        try {
+			ootdService.unlikeOotd(userId, id);
+		} catch (Exception e) {
+			return new ApiResponseDTO<>(404, "좋아요 취소 실패 :"+e.getMessage(),null);
+		}
+        return new ApiResponseDTO<>(200, "성공적으로 좋아요 취소 했습니다.", null);
     }
 
     // OOTD 스크랩
     @PostMapping("/{id}/scraps")
-    public void scrapOotd(@PathVariable Long id) {
-        // Logic to scrap an OOTD by id
+    public ApiResponseDTO<?> scrapOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+        try {
+			ootdService.scrapOotd(userId, id);
+		} catch (Exception e) {
+			return new ApiResponseDTO<>(404, "스크랩 실패 :"+e.getMessage(),null);
+		}
+        return new ApiResponseDTO<>(200, "성공적으로 스크랩 했습니다.", null);
     }
 
     // OOTD 스크랩 취소
     @DeleteMapping("/{id}/scraps")
-    public void unscrapOotd(@PathVariable Long id) {
-        // Logic to cancel scrap of an OOTD by id
+    public ApiResponseDTO<?> unscrapOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+        try {
+			ootdService.unscrapOotd(userId, id);
+		} catch (Exception e) {
+			return new ApiResponseDTO<>(404, "스크랩 취소 실패 :"+e.getMessage(),null);
+		}
+        return new ApiResponseDTO<>(200, "성공적으로 스크랩 취소 했습니다.", null);
     }
 
+    //todo 게시글 리턴시 요청자가 판단한 좋아요 싫어요 필드 추가
     // OOTD 조회 (인기순, 최신순)
     @GetMapping("")
-    public void getOotds(@RequestParam String sort, @RequestParam int page) {
-        // Logic to retrieve OOTDs based on sort (popular, latest) and pagination (page)
+    public ApiResponseDTO<?> getOotds(@RequestParam String sort, @RequestParam int page, @RequestParam int size,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+        // sort 형식 검증
+        if(!sort.equals("recent")&&!sort.equals("like")) {
+        	return new ApiResponseDTO<>(400, "잘못된 sort 형식", null);
+        }
+        // 페이징 객체 보내기
+    	Pageable pageable = PageRequest.of(page, size);
+    	// 인기순인지 최신순인지 판단
+        Page<Map<String, Object>> response=ootdService.getOotds(userId, sort, pageable);
+    	return new ApiResponseDTO<>(200, "성공적으로 조회했습니다", response);
     }
 
     // OOTD 좋아요한 글 조회
     @GetMapping("/liked")
-    public void getLikedOotds(@RequestParam int page) {
-        // Logic to retrieve liked OOTDs by page
+    public ApiResponseDTO<?> getLikedOotds(@RequestParam int page, @RequestParam int size,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+
+    	Pageable pageable = PageRequest.of(page, size);
+        return new ApiResponseDTO<>(200, "성공적으로 조회했습니다", ootdService.getLikedOotds(userId, pageable));
     }
 
     // OOTD 스크랩한 글 조회
     @GetMapping("/scrapped")
-    public void getScrappedOotds(@RequestParam int page) {
-        // Logic to retrieve scrapped OOTDs by page
+    public ApiResponseDTO<?> getScrappedOotds(@RequestParam int page, @RequestParam int size, 
+    		@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+        
+        Pageable pageable = PageRequest.of(page, size);
+        return new ApiResponseDTO<>(200, "성공적으로 조회했습니다", ootdService.getScrappedOotds(userId, pageable));
     }
 
     // OOTD 내가 쓴 글 조회
     @GetMapping("/my")
-    public void getMyOotds(@RequestParam int page) {
-        // Logic to retrieve OOTDs created by the logged-in user by page
+    public ApiResponseDTO<?> getMyOotds(@RequestParam int page, @RequestParam int size,
+    		@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request) {
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+        Pageable pageable = PageRequest.of(page, size);
+        return new ApiResponseDTO<>(200, "성공적으로 조회했습니다", ootdService.getMyOotds(userId, pageable));
     }
-
 }

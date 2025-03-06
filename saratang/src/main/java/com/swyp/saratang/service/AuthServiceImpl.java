@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -13,8 +15,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.swyp.saratang.config.JwtAuthUtil;
 import com.swyp.saratang.config.JwtUtil;
 import com.swyp.saratang.mapper.UserMapper;
+import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.UserDTO;
 import com.swyp.saratang.session.SessionManager;
 import org.apache.logging.log4j.LogManager;
@@ -30,6 +34,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private JwtUtil jwtUtil;
+    
+    @Autowired
+    private JwtAuthUtil jwtAuthUtil;
 
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -181,5 +188,19 @@ public class AuthServiceImpl implements AuthService {
 
         userMapper.insertUser(newUser);
         return newUser;  //  컨트롤러에서 201 응답 처리
+    }
+    
+    @Override
+    public Integer validateJwtAndGetUserId(HttpServletRequest request, String token) {
+        // 토큰을 추출하고, 사용자 ID를 가져오는 작업을 수행
+        String jwtToken = jwtAuthUtil.extractToken(request, token, null);
+        String userId = jwtAuthUtil.extractUserId(jwtToken);
+
+        // 인증 실패 시 응답
+        if (userId == null) {
+            return null;
+        }
+
+        return Integer.parseInt(userId); // 인증 성공 시 null을 반환
     }
 }
