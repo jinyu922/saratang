@@ -1,5 +1,6 @@
 package com.swyp.saratang.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,9 @@ import com.swyp.saratang.model.ApiResponseDTO;
 import com.swyp.saratang.model.OotdDTO;
 import com.swyp.saratang.service.AuthService;
 import com.swyp.saratang.service.OotdService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/Test/Ootd")
@@ -149,7 +153,26 @@ public class TestOotdController {
         return new ApiResponseDTO<>(200, "성공적으로 스크랩 취소 했습니다.", null);
     }
 
-    //todo 게시글 리턴시 요청자가 판단한 좋아요 싫어요 필드 추가
+    // OOTD 상세조회
+
+    @GetMapping("{id}")
+    public ApiResponseDTO<?> getOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request,
+            @RequestParam(required = false) Integer requestUserId){
+//        Integer userId = authService.validateJwtAndGetUserId(request, token);
+//        if(userId==null) {
+//        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+//        }
+    	Integer userId = requestUserId;
+        Map<String, Object> response=new HashMap<>();
+        try {
+			response=ootdService.getOotd(userId, id);
+		} catch (Exception e) {
+			return new ApiResponseDTO<>(404, "상세조회 실패", null);
+		}
+        return new ApiResponseDTO<>(200, "성공적으로 조회했습니다", response);
+    }
+    
     // OOTD 조회 (인기순, 최신순)
     @GetMapping("")
     public ApiResponseDTO<?> getOotds(@RequestParam String sort, 

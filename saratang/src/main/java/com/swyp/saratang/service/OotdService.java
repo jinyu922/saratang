@@ -15,12 +15,17 @@ import com.swyp.saratang.exception.AlreadyExistException;
 import com.swyp.saratang.exception.NotFoundException;
 import com.swyp.saratang.mapper.OotdMapper;
 import com.swyp.saratang.model.OotdDTO;
+import com.swyp.saratang.model.SafeUserDTO;
 
 @Service
 public class OotdService {
 	
 	@Autowired
 	private OotdMapper ootdMapper;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private IconService iconService;
 	@Autowired
 	private NCPStorageService ncpStorageService;
 	
@@ -85,6 +90,25 @@ public class OotdService {
 		ootdMapper.decrementOotdScrapCount(postId);
 	}
 	
+	public Map<String, Object> getOotd(int userId,int postId) throws RuntimeException{
+		Map<String, Object> response=new HashMap<>();
+		OotdDTO ootdDTO=ootdMapper.selectOotd(postId);
+		if(ootdDTO==null) {
+			throw new NotFoundException("해당 ootd는 존재하지 않습니다");
+		}
+		ootdDTO.setOotdImageUrls(ootdMapper.getImagesByOotdPostId(postId));
+		
+		response.put("content", ootdDTO);
+		response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
+		response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
+
+		SafeUserDTO safeUserDTO=userService.getSafeUserById(ootdDTO.getUserId());
+		response.put("username",safeUserDTO.getUsername());
+		response.put("nickname",safeUserDTO.getNickname());
+		response.put("iconId", iconService.getUserIconId(ootdDTO.getUserId()));
+		return response;
+	}
+	
 	public Page<Map<String, Object>> getOotds(int userId,String sort,Pageable pageable) throws RuntimeException{
 		List<Map<String, Object>> responses = new ArrayList<>();
 		
@@ -106,6 +130,10 @@ public class OotdService {
 			response.put("content", ootdDTO);
 			response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
 			response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
+			SafeUserDTO safeUserDTO=userService.getSafeUserById(ootdDTO.getUserId());
+			response.put("username",safeUserDTO.getUsername());
+			response.put("nickname",safeUserDTO.getNickname());
+			response.put("iconId", iconService.getUserIconId(ootdDTO.getUserId()));
 			responses.add(response);
 		}
 		
@@ -118,6 +146,7 @@ public class OotdService {
 		List<Map<String, Object>> responses = new ArrayList<>();
 		List<OotdDTO> ootdDTOs=new ArrayList<>();
 		ootdDTOs=ootdMapper.selectLikedOotdsByUserId(userId, pageable);
+
 		
 		for(OotdDTO ootdDTO:ootdDTOs) {
 			Map<String,Object> response=new HashMap<>();
@@ -128,6 +157,10 @@ public class OotdService {
 			response.put("content", ootdDTO);
 			response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
 			response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
+			SafeUserDTO safeUserDTO=userService.getSafeUserById(ootdDTO.getUserId());
+			response.put("username",safeUserDTO.getUsername());
+			response.put("nickname",safeUserDTO.getNickname());
+			response.put("iconId", iconService.getUserIconId(ootdDTO.getUserId()));
 			responses.add(response);
 			
 		}
@@ -150,6 +183,10 @@ public class OotdService {
 			response.put("content", ootdDTO);
 			response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
 			response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
+			SafeUserDTO safeUserDTO=userService.getSafeUserById(ootdDTO.getUserId());
+			response.put("username",safeUserDTO.getUsername());
+			response.put("nickname",safeUserDTO.getNickname());
+			response.put("iconId", iconService.getUserIconId(ootdDTO.getUserId()));
 			responses.add(response);
 		}
 		

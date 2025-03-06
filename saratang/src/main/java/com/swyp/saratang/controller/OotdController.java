@@ -1,5 +1,6 @@
 package com.swyp.saratang.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -155,8 +156,28 @@ public class OotdController {
 		}
         return new ApiResponseDTO<>(200, "성공적으로 스크랩 취소 했습니다.", null);
     }
+    
+    // OOTD 상세조회
+    @ApiResponse(responseCode = "200", description = "조회성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "404", description = "해당 ootd 가 존재하지 않음")
+    @Operation(summary = "OOTD 상세조회", description = "조회할 OOTD 고유 id 입력받음")
+    @GetMapping("{id}")
+    public ApiResponseDTO<?> getOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
+            HttpServletRequest request){
+        Integer userId = authService.validateJwtAndGetUserId(request, token);
+        if(userId==null) {
+        	return new ApiResponseDTO<>(401, "JWT 인증 실패 : UserId is null", null);
+        }
+        Map<String, Object> response=new HashMap<>();
+        try {
+			response=ootdService.getOotd(userId, id);
+		} catch (Exception e) {
+			return new ApiResponseDTO<>(404, "상세조회 실패", null);
+		}
+        return new ApiResponseDTO<>(200, "성공적으로 조회했습니다", response);
+    }
 
-    //todo 게시글 리턴시 요청자가 판단한 좋아요 싫어요 필드 추가
     // OOTD 조회 (인기순, 최신순)
     @ApiResponse(responseCode = "200", description = "조회성공")
     @ApiResponse(responseCode = "401", description = "JWT 인증 실패")

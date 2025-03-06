@@ -67,6 +67,9 @@ public interface OotdMapper {
 
     // Ootd 스크랩 삭제 (연결테이블)
     void deleteOotdScrap(@Param("userId") int userId, @Param("ootdPostId") int ootdPostId);
+    
+    // 단일 Ootd 조회
+    OotdDTO selectOotd(@Param("ootdPostId") int ootdPostId);
 
     // 최신순 Ootd 리스트 조회 (페이징)
     List<OotdDTO> selectOotds(@Param("pageable") Pageable pageable);

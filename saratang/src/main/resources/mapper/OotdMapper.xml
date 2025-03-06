@@ -125,6 +125,12 @@
 		조회 
 	-->
 	
+	<!--단일 Ootd 조회-->
+	<select id="selectOotd" resultType="com.swyp.saratang.model.OotdDTO">
+		SELECT * FROM ootd_posts
+		WHERE id=#{ootdPostId}
+	</select>
+	
 	<!--전체 Ootd 최신순 조회/페이징,정렬-->
 	<select id="selectOotds" resultType="com.swyp.saratang.model.OotdDTO">
 		SELECT * FROM ootd_posts ORDER BY created_at DESC
