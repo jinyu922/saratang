@@ -24,6 +24,9 @@ import com.swyp.saratang.model.OotdDTO;
 import com.swyp.saratang.service.AuthService;
 import com.swyp.saratang.service.OotdService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestController
 @RequestMapping("/Ootd")
 public class OotdController {
@@ -35,6 +38,9 @@ public class OotdController {
 	private AuthService authService;
 	
     // OOTD 저장
+    @ApiResponse(responseCode = "200", description = "저장성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+	@Operation(summary = "OOTD 저장", description = "userId는 요청자 로그인 정보로 자동 맵핑됩니다 (입력필요x)")
     @PostMapping("")
     public ApiResponseDTO<?> createOotd(@RequestBody OotdDTO ootdDTO,@RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
@@ -47,6 +53,10 @@ public class OotdController {
     }
 
     // OOTD 삭제
+    @ApiResponse(responseCode = "200", description = "삭제성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "403", description = "삭제 권한 없음")
+	@Operation(summary = "OOTD 삭제", description = "삭제할 ootd의 id를 입력받음, 작성자 본인만 삭제 가능")
     @DeleteMapping("/{id}")
     public ApiResponseDTO<?> deleteOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
@@ -67,6 +77,10 @@ public class OotdController {
     }
 
     // OOTD 좋아요
+    @ApiResponse(responseCode = "200", description = "좋아요성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "404", description = "이미 좋아요 누른 ootd")
+	@Operation(summary = "OOTD 좋아요", description = "특정 ootd에 좋아요 판단을 남깁니다")
     @PostMapping("/{id}/likes")
     public ApiResponseDTO<?> likeOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
@@ -83,6 +97,10 @@ public class OotdController {
     }
 
     // OOTD 좋아요 취소
+    @ApiResponse(responseCode = "200", description = "좋아요취소성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "404", description = "좋아요 누른적 없는 ootd")
+	@Operation(summary = "OOTD 좋아요 철회", description = "특정 ootd에 좋아요 판단을 철회합니다")
     @DeleteMapping("/{id}/likes")
     public ApiResponseDTO<?> unlikeOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
@@ -99,6 +117,10 @@ public class OotdController {
     }
 
     // OOTD 스크랩
+    @ApiResponse(responseCode = "200", description = "스크랩성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "404", description = "이미 스크랩한 ootd")
+	@Operation(summary = "OOTD 스크랩", description = "특정 ootd를 스크랩합니다")
     @PostMapping("/{id}/scraps")
     public ApiResponseDTO<?> scrapOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
@@ -115,6 +137,10 @@ public class OotdController {
     }
 
     // OOTD 스크랩 취소
+    @ApiResponse(responseCode = "200", description = "스크랩취소성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "404", description = "스크랩 한 적 없는 ootd")
+	@Operation(summary = "OOTD 스크랩 철회", description = "특정 ootd에 스크랩을 철회합니다")
     @DeleteMapping("/{id}/scraps")
     public ApiResponseDTO<?> unscrapOotd(@PathVariable Integer id,@RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
@@ -132,6 +158,10 @@ public class OotdController {
 
     //todo 게시글 리턴시 요청자가 판단한 좋아요 싫어요 필드 추가
     // OOTD 조회 (인기순, 최신순)
+    @ApiResponse(responseCode = "200", description = "조회성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+    @ApiResponse(responseCode = "400", description = "잘못된 sort 형식")
+	@Operation(summary = "전체 OOTD 조회", description = "sort 는 recent/like (최신순/인기순) 입니다. 페이징을 지원합니다")
     @GetMapping("")
     public ApiResponseDTO<?> getOotds(@RequestParam String sort, @RequestParam int page, @RequestParam int size,@RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
@@ -151,6 +181,9 @@ public class OotdController {
     }
 
     // OOTD 좋아요한 글 조회
+    @ApiResponse(responseCode = "200", description = "조회성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+	@Operation(summary = "전체 OOTD 조회", description = "로그인 사용자가 좋아요한 OOTD 조회. 페이징을 지원합니다")
     @GetMapping("/liked")
     public ApiResponseDTO<?> getLikedOotds(@RequestParam int page, @RequestParam int size,@RequestHeader(value = "Authorization", required = false) String token,
             HttpServletRequest request) {
@@ -164,6 +197,9 @@ public class OotdController {
     }
 
     // OOTD 스크랩한 글 조회
+    @ApiResponse(responseCode = "200", description = "조회성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+	@Operation(summary = "전체 OOTD 조회", description = "로그인 사용자가 스크랩한 OOTD 조회. 페이징을 지원합니다")
     @GetMapping("/scrapped")
     public ApiResponseDTO<?> getScrappedOotds(@RequestParam int page, @RequestParam int size, 
     		@RequestHeader(value = "Authorization", required = false) String token,
@@ -178,6 +214,9 @@ public class OotdController {
     }
 
     // OOTD 내가 쓴 글 조회
+    @ApiResponse(responseCode = "200", description = "조회성공")
+    @ApiResponse(responseCode = "401", description = "JWT 인증 실패")
+	@Operation(summary = "전체 OOTD 조회", description = "로그인 사용자가 작성한 OOTD 조회. 페이징을 지원합니다")
     @GetMapping("/my")
     public ApiResponseDTO<?> getMyOotds(@RequestParam int page, @RequestParam int size,
     		@RequestHeader(value = "Authorization", required = false) String token,
