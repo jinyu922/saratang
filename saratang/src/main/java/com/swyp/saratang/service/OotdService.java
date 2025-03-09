@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.swyp.saratang.exception.AlreadyExistException;
 import com.swyp.saratang.exception.NotFoundException;
 import com.swyp.saratang.mapper.OotdMapper;
+import com.swyp.saratang.model.IconDTO;
 import com.swyp.saratang.model.OotdDTO;
 import com.swyp.saratang.model.SafeUserDTO;
 
@@ -28,6 +30,9 @@ public class OotdService {
 	private IconService iconService;
 	@Autowired
 	private NCPStorageService ncpStorageService;
+	
+    @Value("${server.base.url}")
+    private String serverBaseUrl;
 	
 	public int createOotd(OotdDTO ootdDTO) {
 		ootdMapper.insertOotd(ootdDTO);
@@ -103,9 +108,12 @@ public class OotdService {
 		response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
 
 		SafeUserDTO safeUserDTO=userService.getSafeUserById(ootdDTO.getUserId());
+		Integer iconId=iconService.getUserIconId(ootdDTO.getUserId());
+		IconDTO icon = iconService.getIconById(iconId);
+		icon.setFileUrl(serverBaseUrl + "/icons/" + icon.getFilename());
 		response.put("username",safeUserDTO.getUsername());
 		response.put("nickname",safeUserDTO.getNickname());
-		response.put("iconId", iconService.getUserIconId(ootdDTO.getUserId()));
+		response.put("iconUrl", icon.getFileUrl());
 		return response;
 	}
 	
@@ -131,9 +139,12 @@ public class OotdService {
 			response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
 			response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
 			SafeUserDTO safeUserDTO=userService.getSafeUserById(ootdDTO.getUserId());
+			Integer iconId=iconService.getUserIconId(ootdDTO.getUserId());
+			IconDTO icon = iconService.getIconById(iconId);
+			icon.setFileUrl(serverBaseUrl + "/icons/" + icon.getFilename());
 			response.put("username",safeUserDTO.getUsername());
 			response.put("nickname",safeUserDTO.getNickname());
-			response.put("iconId", iconService.getUserIconId(ootdDTO.getUserId()));
+			response.put("iconUrl", icon.getFileUrl());
 			responses.add(response);
 		}
 		
@@ -158,9 +169,12 @@ public class OotdService {
 			response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
 			response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
 			SafeUserDTO safeUserDTO=userService.getSafeUserById(ootdDTO.getUserId());
+			Integer iconId=iconService.getUserIconId(ootdDTO.getUserId());
+			IconDTO icon = iconService.getIconById(iconId);
+			icon.setFileUrl(serverBaseUrl + "/icons/" + icon.getFilename());
 			response.put("username",safeUserDTO.getUsername());
 			response.put("nickname",safeUserDTO.getNickname());
-			response.put("iconId", iconService.getUserIconId(ootdDTO.getUserId()));
+			response.put("iconUrl", icon.getFileUrl());
 			responses.add(response);
 			
 		}
@@ -184,9 +198,12 @@ public class OotdService {
 			response.put("requestUserLike", ootdMapper.existOotdLike(userId, postId));
 			response.put("requestUserScrap", ootdMapper.existOotdScrap(userId, postId));
 			SafeUserDTO safeUserDTO=userService.getSafeUserById(ootdDTO.getUserId());
+			Integer iconId=iconService.getUserIconId(ootdDTO.getUserId());
+			IconDTO icon = iconService.getIconById(iconId);
+			icon.setFileUrl(serverBaseUrl + "/icons/" + icon.getFilename());
 			response.put("username",safeUserDTO.getUsername());
 			response.put("nickname",safeUserDTO.getNickname());
-			response.put("iconId", iconService.getUserIconId(ootdDTO.getUserId()));
+			response.put("iconUrl", icon.getFileUrl());
 			responses.add(response);
 		}
 		
